@@ -40,7 +40,7 @@
       "import": "./dist/components/*.js"
     }
   },
-  "sideEffects": false,
+  "sideEffects": ["./dist/**/*.js"],
   "files": [
     "dist",
     "src"

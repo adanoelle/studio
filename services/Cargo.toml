@@ -45,6 +45,13 @@ glitch-core = { path = "shared/glitch-core" }
 unsafe_code = "deny"
 
 [workspace.lints.clippy]
-unwrap_used = "warn"
-expect_used = "warn"
+unwrap_used = "deny"
+expect_used = "deny"
 panic = "warn"
+
+# Optimize Lambda cold start and binary size
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"

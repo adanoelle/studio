@@ -5,14 +5,17 @@ A web component library that embodies feminist theoretical commitments through v
 ## Quick Start
 
 ```bash
+# Check your environment
+just doctor
+
 # Install dependencies
-npm install
+just setup
 
-# Start development server
-npm run dev
+# Start development
+just dev
 
-# Build for production
-npm run build
+# Run all checks (CI equivalent)
+just check
 ```
 
 ## What Is This?
@@ -24,6 +27,23 @@ This is not just a design system—it's a **visual argument** about identity, mu
 - **Hiromix's Girl Photo Movement**: Warm, intimate, analog aesthetics
 - **Algorave/Live Coding Culture**: Terminal aesthetics, generative patterns, code as performance
 - **Pixel Art/Retro Computing**: PC-98, Aseprite, technical precision
+
+## Project Structure
+
+```
+glitch/
+├── apps/
+│   └── website/          # Main website application
+├── packages/
+│   ├── design-system/    # Web components (Lit)
+│   └── tokens/           # Design tokens (CSS custom properties)
+├── services/             # Rust Lambda functions
+│   ├── shared/glitch-core/   # Shared Rust library
+│   └── lambdas/
+│       ├── api/          # API Lambda
+│       └── media-upload/ # Media upload Lambda
+└── docs/                 # Documentation
+```
 
 ## Core Concepts
 
@@ -52,7 +72,7 @@ This is not just a design system—it's a **visual argument** about identity, mu
 
 ### Dithering + Glitch Synthesis
 
-**NEW**: PC-98 dithering meets glitch feminism
+PC-98 dithering meets glitch feminism:
 
 **PC-98 Dithering:**
 - Technical constraint (16 colors)
@@ -64,12 +84,6 @@ This is not just a design system—it's a **visual argument** about identity, mu
 - Chromatic separation (magenta/cyan, not RGB)
 - Constraint AND refusal visible simultaneously
 
-**Inspired by Hyper Light Drifter:**
-- Beautiful corruption aesthetics
-- Movement trails with chromatic aberration
-- Holographic UI elements
-- Corruption as transformation, not damage
-
 ### Key Visual Metaphors
 
 1. **Chromatic aberration** = Multiple simultaneous identities
@@ -78,20 +92,36 @@ This is not just a design system—it's a **visual argument** about identity, mu
 4. **Color shifting** = Gender fluidity
 5. **Grain overlays** = Analog warmth in digital space
 
+## Development Commands
+
+All commands use `just` as the unified interface:
+
+| Command | Description |
+|---------|-------------|
+| `just doctor` | Verify development environment |
+| `just setup` | Install all dependencies |
+| `just dev` | Start development servers |
+| `just build` | Build for production |
+| `just check` | Run all quality checks |
+| `just test` | Run all tests |
+| `just lint` | Lint TypeScript code |
+| `just fmt` | Format all code |
+| `just ci` | Full CI pipeline locally |
+
+Run `just` without arguments to see all available commands.
+
 ## Component Architecture
 
 ```
-components/
+packages/design-system/src/components/
 ├── core/           # Atomic, single-purpose
 │   ├── glitch-text.ts
 │   ├── glitch-border.ts
-│   └── dithered-glitch-gradient.ts  ← NEW
+│   └── dithered-glitch-gradient.ts
 ├── composite/      # Combined functionality
-│   ├── world-switcher.ts
-│   ├── modal-window.ts
-│   ├── holographic-ui.ts            ← NEW (HLD-inspired)
-│   ├── dither-corruption.ts         ← NEW
-│   └── dash-trail.ts                ← NEW (HLD movement trails)
+│   ├── holographic-ui.ts
+│   ├── dither-corruption.ts
+│   └── dash-trail.ts
 └── layout/         # Page structure
     └── page-layout.ts
 ```
@@ -131,55 +161,17 @@ components/
 </glitch-border>
 ```
 
-### Complete Page
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="/styles/tokens.css">
-  <link rel="stylesheet" href="/styles/overworld.css">
-  <link rel="stylesheet" href="/styles/underworld.css">
-</head>
-<body>
-  <world-switcher>
-    <glitch-border world="overworld">
-      <h1>
-        <glitch-text text="Ada - Reliability Engineer"></glitch-text>
-      </h1>
-    </glitch-border>
-  </world-switcher>
-  
-  <script type="module" src="/src/main.ts"></script>
-</body>
-</html>
-```
-
 ## Documentation
 
-- **[ADR-001](docs/ADR-001-architecture.md)**: Architecture decisions
-- **[Design System](docs/DESIGN-SYSTEM.md)**: Complete visual language
+- **[Design Summary](docs/DESIGN-SUMMARY.md)**: Primary source of truth for design direction
+- **[Design System](docs/DESIGN-SYSTEM.md)**: Complete visual language specification
 - **[Theoretical Framework](docs/THEORETICAL-FRAMEWORK.md)**: Feminist theory connections
 - **[Component API](docs/COMPONENT-API.md)**: Component reference
-- **[HLD + Dithering Aesthetic](docs/HLD-DITHERING-AESTHETIC.md)**: PC-98 dithering meets glitch feminism ← NEW
+- **[Contributing](CONTRIBUTING.md)**: How to contribute
 
 ## For Claude Code Agents
 
-This system is designed to be extended by AI agents. Each component:
-
-- Has extensive inline documentation
-- Maps visual choices to theoretical concepts
-- Includes performance budgets
-- Follows consistent patterns
-
-When adding new components:
-
-1. Read `docs/DESIGN-SYSTEM.md` first
-2. Follow patterns in existing components
-3. Document theoretical grounding
-4. Test in both worlds (overworld/underworld)
-5. Respect performance budgets
-6. Add accessibility features
+This system is designed to be extended by AI agents. See [CLAUDE.md](CLAUDE.md) for detailed instructions.
 
 ## Philosophy
 
@@ -212,4 +204,4 @@ Technical inspiration:
 
 ---
 
-Built with ♥ and theory by Ada
+Built with theory by Ada
