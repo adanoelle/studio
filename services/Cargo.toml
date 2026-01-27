@@ -1,0 +1,50 @@
+[workspace]
+members = [
+  "shared/glitch-core",
+  "lambdas/media-upload",
+  "lambdas/api"
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Ada"]
+license = "MIT"
+repository = "https://github.com/ada/glitch"
+
+[workspace.dependencies]
+# AWS SDK - pinned to specific minor versions to prevent mismatches
+aws-config = "1.5"
+aws-sdk-dynamodb = "1.55"
+aws-sdk-s3 = "1.65"
+
+# Lambda runtime
+lambda_runtime = "0.13"
+lambda_http = "0.13"
+
+# Async runtime - minimal features for Lambda
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Error handling
+thiserror = "2"
+anyhow = "1"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Internal crates
+glitch-core = { path = "shared/glitch-core" }
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+
+[workspace.lints.clippy]
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"

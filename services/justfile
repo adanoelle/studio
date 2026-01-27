@@ -1,0 +1,181 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                      RUST SERVICES - JUSTFILE                                ║
+# ╠══════════════════════════════════════════════════════════════════════════════╣
+# ║                                                                              ║
+# ║  Rust Lambda functions for the Glitch backend.                               ║
+# ║                                                                              ║
+# ║  This is a Cargo workspace containing serverless functions deployed to       ║
+# ║  AWS Lambda. Each function is compiled to a standalone binary using          ║
+# ║  cargo-lambda for optimal cold start performance.                            ║
+# ║                                                                              ║
+# ║  WORKSPACE STRUCTURE                                                         ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║    shared/                                                                   ║
+# ║      glitch-core/    Shared domain logic, types, and utilities               ║
+# ║                                                                              ║
+# ║    lambdas/                                                                  ║
+# ║      api/            Main API handler                                        ║
+# ║      media-upload/   Media upload handler (S3 integration)                   ║
+# ║                                                                              ║
+# ║  COMMON VERBS                                                                ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║    build       Build all crates (dev mode)                                   ║
+# ║    check       Type check with cargo check + clippy                          ║
+# ║    test        Run all tests                                                 ║
+# ║    fmt         Format code with rustfmt                                      ║
+# ║    clean       Remove target/ directory                                      ║
+# ║                                                                              ║
+# ║  LAMBDA-SPECIFIC                                                             ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║    build-lambdas     Build all Lambdas for deployment (release mode)         ║
+# ║    watch <fn>        Watch and run a Lambda locally                          ║
+# ║    invoke <fn>       Invoke a Lambda locally with test payload               ║
+# ║                                                                              ║
+# ║  USAGE                                                                       ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║  From repository root:                                                       ║
+# ║    just services::build                                                       ║
+# ║    just services::watch api                                                   ║
+# ║                                                                              ║
+# ║  From this directory:                                                        ║
+# ║    just build                                                                ║
+# ║    just watch api                                                            ║
+# ║                                                                              ║
+# ║  REQUIREMENTS                                                                ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║    • Rust toolchain (rustup.rs)                                              ║
+# ║    • cargo-lambda (cargo install cargo-lambda)                               ║
+# ║                                                                              ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+# Default: show available commands
+default:
+    @just --list
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BUILDING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Build all crates in development mode
+[doc("Build all Rust crates (debug mode)")]
+build:
+    cargo build
+
+# Build all crates in release mode
+[doc("Build all Rust crates (release mode, optimized)")]
+build-release:
+    cargo build --release
+
+# Build Lambda functions for deployment (ARM64 for Graviton)
+[doc("Build Lambda functions with cargo-lambda (release mode, ARM64 for Graviton)")]
+build-lambdas:
+    cargo lambda build --release --arm64
+
+# Build a specific Lambda function
+[doc("Build a specific Lambda function (e.g., just build-lambda api)")]
+build-lambda name:
+    cargo lambda build --release -p {{name}}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# QUALITY CHECKS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Type check all crates
+[doc("Run cargo check on all crates")]
+check:
+    cargo check
+    cargo clippy -- -D warnings
+
+# Run clippy with all warnings as errors
+[doc("Run clippy linter with strict settings")]
+clippy:
+    cargo clippy -- -D warnings
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TESTING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Run all tests
+[doc("Run all tests in the workspace")]
+test:
+    cargo test
+
+# Run tests for a specific crate
+[doc("Run tests for a specific crate")]
+test-crate name:
+    cargo test -p {{name}}
+
+# Run tests with output shown
+[doc("Run tests with stdout/stderr visible")]
+test-verbose:
+    cargo test -- --nocapture
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# FORMATTING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Format all code
+[doc("Format all Rust code with rustfmt")]
+fmt:
+    cargo fmt
+
+# Check formatting without making changes
+[doc("Check Rust formatting without making changes")]
+fmt-check:
+    cargo fmt --check
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# LOCAL DEVELOPMENT
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Watch and run a Lambda function locally
+[doc("Watch a Lambda and restart on code changes (e.g., just watch api)")]
+watch name:
+    cargo lambda watch -p {{name}}
+
+# Invoke a Lambda function locally
+[doc("Invoke a Lambda locally with empty payload (e.g., just invoke api)")]
+invoke name:
+    cargo lambda invoke {{name}} --data-ascii '{}'
+
+# Invoke a Lambda with a custom payload file
+[doc("Invoke a Lambda with payload from file (e.g., just invoke-file api events/test.json)")]
+invoke-file name payload:
+    cargo lambda invoke {{name}} --data-file {{payload}}
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DOCUMENTATION
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Generate and open documentation
+[doc("Generate and open Rust documentation in browser")]
+doc:
+    cargo doc --open --no-deps
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLEANUP
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Remove all build artifacts
+[doc("Remove target/ directory and all build artifacts")]
+clean:
+    cargo clean
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# UTILITIES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Update dependencies
+[doc("Update Cargo.lock to latest compatible versions")]
+update:
+    cargo update
+
+# Audit dependencies for security vulnerabilities
+[doc("Check dependencies for known security vulnerabilities")]
+audit:
+    cargo audit
+
+# Show dependency tree
+[doc("Display the dependency tree")]
+tree:
+    cargo tree

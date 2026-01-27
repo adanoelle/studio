@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.npm-tools/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Vite
+.vite/
+
+# Turborepo
+.turbo/
+
+# Rust
+target/
+# Note: Cargo.lock is committed for services/ (Lambda applications)
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Nix
+result
+result-*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Test coverage
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*

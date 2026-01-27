@@ -1,0 +1,96 @@
+/**
+ * OVERWORLD THEME
+ * 
+ * Professional, public, "expected" presentation.
+ * Cool palette, pixel precision, formal structure.
+ * 
+ * THEORETICAL GROUNDING:
+ * Represents Lugones' "overworld" - the dominant culture where
+ * certain identities are validated and visible.
+ */
+
+.overworld {
+  /* Base colors */
+  background: var(--ow-bg-dark);
+  color: var(--ow-text-primary);
+
+  /* Typography */
+  font-family: var(--font-overworld);
+
+  /* Pixel rendering */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+
+  /* Geometric, precise */
+  border-radius: 0;
+
+  /* Accent color */
+  --accent-color: var(--ow-border);
+}
+
+/* Overworld text styles */
+.overworld h1,
+.overworld h2,
+.overworld h3 {
+  color: var(--ow-text-primary);
+  font-weight: normal;
+  line-height: var(--leading-tight);
+}
+
+.overworld p {
+  color: var(--ow-text-secondary);
+  line-height: var(--leading-normal);
+}
+
+.overworld a {
+  color: var(--ow-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ow-accent);
+  transition: color var(--duration-normal);
+}
+
+.overworld a:hover {
+  color: var(--glitch-cyan);
+  border-color: var(--glitch-cyan);
+}
+
+/* Overworld code blocks */
+.overworld code,
+.overworld pre {
+  background: var(--ow-bg-medium);
+  color: var(--code-green);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--ow-border);
+  font-family: var(--font-overworld-pixel);
+}
+
+/* Overworld borders */
+.overworld .border {
+  border: var(--border-normal) solid var(--ow-border);
+}
+
+/* Overworld buttons */
+.overworld button,
+.overworld .button {
+  background: var(--ow-bg-medium);
+  color: var(--ow-text-primary);
+  border: var(--border-normal) solid var(--ow-border);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-overworld);
+  cursor: pointer;
+  transition: all var(--duration-normal);
+}
+
+.overworld button:hover,
+.overworld .button:hover {
+  background: var(--ow-border);
+  color: var(--ow-bg-dark);
+}
+
+/* Overworld sections */
+.overworld section {
+  padding: var(--space-8);
+  border: var(--border-normal) solid var(--ow-border);
+  margin-bottom: var(--space-6);
+}

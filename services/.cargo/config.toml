@@ -1,0 +1,11 @@
+# Cargo build configuration for Glitch services
+# Optimizes for small, fast Lambda binaries
+
+[build]
+rustflags = ["-C", "link-arg=-s"]  # Strip symbols from binaries
+
+[profile.release]
+lto = true              # Enable Link-Time Optimization
+codegen-units = 1       # Single codegen unit for better optimization
+panic = "abort"         # No unwinding, smaller binaries
+strip = true            # Strip symbols and debug info

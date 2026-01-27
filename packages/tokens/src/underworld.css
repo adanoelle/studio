@@ -1,0 +1,108 @@
+/**
+ * UNDERWORLD THEME
+ * 
+ * Personal, authentic, playful presentation.
+ * Warm palette, organic textures, experimental structure.
+ * 
+ * THEORETICAL GROUNDING:
+ * Represents Lugones' "underworld" - marginalized spaces where
+ * different aspects of identity can fully exist and play.
+ */
+
+.underworld {
+  /* Base colors */
+  background: var(--uw-bg-warm);
+  color: var(--uw-text-primary);
+
+  /* Typography */
+  font-family: var(--font-underworld);
+
+  /* Film aesthetic */
+  filter: sepia(0.08) saturate(0.85) contrast(0.95);
+
+  /* Slightly softer edges */
+  border-radius: 1px;
+
+  /* Accent color */
+  --accent-color: var(--uw-border);
+}
+
+/* Underworld text styles */
+.underworld h1,
+.underworld h2,
+.underworld h3 {
+  color: var(--uw-text-primary);
+  font-weight: normal;
+  line-height: var(--leading-tight);
+}
+
+.underworld p {
+  color: var(--uw-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.underworld a {
+  color: var(--uw-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--uw-accent);
+  transition: color var(--duration-normal);
+}
+
+.underworld a:hover {
+  color: var(--uw-text-primary);
+  border-color: var(--uw-text-primary);
+}
+
+/* Underworld code blocks */
+.underworld code,
+.underworld pre {
+  background: var(--uw-bg-medium);
+  color: var(--uw-text-primary);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--uw-border);
+  font-family: var(--font-underworld);
+}
+
+/* Underworld borders */
+.underworld .border {
+  border: var(--border-normal) solid var(--uw-border);
+}
+
+/* Underworld buttons */
+.underworld button,
+.underworld .button {
+  background: var(--uw-bg-medium);
+  color: var(--uw-text-primary);
+  border: var(--border-normal) solid var(--uw-border);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-underworld);
+  cursor: pointer;
+  transition: all var(--duration-normal);
+}
+
+.underworld button:hover,
+.underworld .button:hover {
+  background: var(--uw-border);
+  color: var(--uw-bg-warm);
+}
+
+/* Underworld sections */
+.underworld section {
+  padding: var(--space-8);
+  border: var(--border-normal) solid var(--uw-border);
+  margin-bottom: var(--space-6);
+}
+
+/* Film grain overlay (optional) */
+.underworld::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABZJREFUeNpi2r9//38gYGAEESAAEGAAasgJOgzOKCoAAAAASUVORK5CYII=');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: var(--z-overlay);
+}

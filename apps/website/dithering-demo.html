@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dithering + Glitch Aesthetic - Demo</title>
+  
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/overworld.css">
+  <link rel="stylesheet" href="/src/styles/underworld.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #0a0e1a;
+      font-family: var(--font-overworld-pixel);
+      color: #e5e7eb;
+    }
+    
+    .demo-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #00ffff;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: #ff00ff;
+      margin-bottom: 60px;
+      font-size: 18px;
+    }
+    
+    .section {
+      margin-bottom: 80px;
+    }
+    
+    h2 {
+      font-size: 32px;
+      color: #ff6b9d;
+      margin-bottom: 20px;
+    }
+    
+    h3 {
+      font-size: 20px;
+      color: #00ffff;
+      margin: 30px 0 10px 0;
+    }
+    
+    p {
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .gradient-demo {
+      height: 400px;
+      margin: 20px 0;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .gradient-content {
+      text-align: center;
+      max-width: 600px;
+    }
+    
+    .gradient-content h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .control-panel {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      margin: 20px 0;
+    }
+    
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 15px 0;
+    }
+    
+    .control-row label {
+      min-width: 150px;
+      color: #00ffff;
+    }
+    
+    input[type="range"] {
+      flex: 1;
+      max-width: 300px;
+    }
+    
+    .value-display {
+      min-width: 60px;
+      color: #ff00ff;
+      font-weight: bold;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin: 30px 0;
+    }
+    
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      min-height: 250px;
+    }
+    
+    code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      color: #b4ff9f;
+      font-size: 14px;
+    }
+    
+    .theory-box {
+      background: rgba(255, 0, 255, 0.1);
+      border-left: 4px solid #ff00ff;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    
+    .theory-box h4 {
+      color: #ff00ff;
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    
+    <!-- Hero Section -->
+    <section class="section">
+      <dithered-glitch-gradient 
+        color-a="#1a0a2e" 
+        color-b="#7209b7"
+        pattern="bayer"
+        direction="diagonal"
+        glitch-intensity="0.7"
+        class="gradient-demo"
+      >
+        <div class="gradient-content">
+          <h1>Dithering + Glitch</h1>
+          <p class="subtitle">
+            PC-98 constraint meets glitch feminist refusal
+          </p>
+          <p style="color: rgba(255, 255, 255, 0.6);">
+            Hover to see the dithering pattern separate into chromatic chaos
+          </p>
+        </div>
+      </dithered-glitch-gradient>
+    </section>
+    
+    <!-- Theoretical Framework -->
+    <section class="section">
+      <h2>Theoretical Framework</h2>
+      
+      <div class="theory-box">
+        <h4>The Synthesis</h4>
+        <p>
+          <strong>PC-98 Dithering:</strong> "Here's a constraint (16 colors). 
+          We'll work beautifully within it through ordered patterns."
+        </p>
+        <p>
+          <strong>Glitch Feminism:</strong> "Even the adaptation can be refused. 
+          The pattern itself breaks down."
+        </p>
+        <p>
+          <strong>Visual Result:</strong> You see BOTH order (dither) and chaos (glitch) 
+          simultaneously—worldtraveling made visible.
+        </p>
+      </div>
+      
+      <div style="background: rgba(0, 255, 255, 0.1); border-left: 4px solid #00ffff; padding: 20px;">
+        <h4 style="color: #00ffff; margin-top: 0;">Hyper Light Drifter Inspiration</h4>
+        <p>
+          HLD uses chromatic aberration (cyan/magenta separation) on movement and corruption.
+          We apply this to dithering patterns—the constraint workaround itself becomes the 
+          site of glitching.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Interactive Corruption Demo -->
+    <section class="section">
+      <h2>Interactive: Dither Corruption</h2>
+      <p>Adjust the corruption level to see the ordered Bayer pattern break down:</p>
+      
+      <div class="control-panel">
+        <div class="control-row">
+          <label for="corruption-slider">Corruption Level:</label>
+          <input 
+            type="range" 
+            id="corruption-slider"
+            min="0" 
+            max="1" 
+            step="0.05" 
+            value="0.3"
+          >
+          <span class="value-display" id="corruption-value">30%</span>
+        </div>
+      </div>
+      
+      <dither-corruption 
+        id="corruption-demo"
+        corruption-level="0.3"
+        primary-color="#1a0a2e"
+        corruption-color="#ff006e"
+        style="
+          min-height: 300px;
+          display: block;
+          padding: 40px;
+        "
+      >
+        <h3>Watch the pattern corrupt</h3>
+        <p>
+          The ordered Bayer matrix randomizes. Technical constraint becomes 
+          site of organic chaos. Even adaptation can refuse stability.
+        </p>
+        <ul style="line-height: 1.8; color: rgba(255, 255, 255, 0.7);">
+          <li>0% = Perfect ordered dithering</li>
+          <li>50% = Pattern fragmenting, corruption spreading</li>
+          <li>100% = Complete chaos, original pattern lost</li>
+        </ul>
+      </dither-corruption>
+    </section>
+    
+    <!-- Gradient Variations -->
+    <section class="section">
+      <h2>Dithered Gradient Variations</h2>
+      <p>Different color combinations and directions (hover each to glitch):</p>
+      
+      <div class="grid">
+        <dithered-glitch-gradient 
+          color-a="#0a0e1a" 
+          color-b="#00ffff"
+          pattern="bayer"
+          direction="vertical"
+          class="card"
+        >
+          <h3>Overworld</h3>
+          <p>Dark → Cyan</p>
+          <code>Vertical Bayer</code>
+        </dithered-glitch-gradient>
+        
+        <dithered-glitch-gradient 
+          color-a="#f5f1e8" 
+          color-b="#c9a88a"
+          pattern="bayer"
+          direction="horizontal"
+          class="card"
+        >
+          <h3>Underworld</h3>
+          <p>Warm paper → Terracotta</p>
+          <code>Horizontal Bayer</code>
+        </dithered-glitch-gradient>
+        
+        <dithered-glitch-gradient 
+          color-a="#1a0a2e" 
+          color-b="#ff006e"
+          pattern="floyd-steinberg"
+          direction="diagonal"
+          class="card"
+        >
+          <h3>HLD Corruption</h3>
+          <p>Void → Hot Pink</p>
+          <code>Diagonal Floyd-Steinberg</code>
+        </dithered-glitch-gradient>
+        
+        <dithered-glitch-gradient 
+          color-a="#240046" 
+          color-b="#b4ff9f"
+          pattern="bayer"
+          direction="vertical"
+          glitch-intensity="0.8"
+          class="card"
+        >
+          <h3>High Intensity</h3>
+          <p>Purple → Lime</p>
+          <code>Glitch: 0.8</code>
+        </dithered-glitch-gradient>
+      </div>
+    </section>
+    
+    <!-- Holographic UI -->
+    <section class="section">
+      <h2>Holographic UI (HLD-inspired)</h2>
+      
+      <div class="grid">
+        <holographic-ui flickering scan-speed="3" border-color="#00ffff">
+          <h3>Cyan Hologram</h3>
+          <p>
+            Semi-transparent, flickering interface with moving scan line.
+            Identity as unstable, multiple states simultaneously.
+          </p>
+          <p style="font-size: 12px; color: rgba(0, 255, 255, 0.6);">
+            ▓▓▓▓▓▓ SCAN LINE ACTIVE ▓▓▓▓▓▓
+          </p>
+        </holographic-ui>
+        
+        <holographic-ui flickering scan-speed="2" border-color="#ff00ff">
+          <h3>Magenta Hologram</h3>
+          <p>
+            Information exists ephemerally. Not solid/permanent 
+            but translucent and shifting.
+          </p>
+          <p style="font-size: 12px; color: rgba(255, 0, 255, 0.6);">
+            ▓▓▓ UNSTABLE CONNECTION ▓▓▓
+          </p>
+        </holographic-ui>
+      </div>
+    </section>
+    
+    <!-- Color Theory -->
+    <section class="section">
+      <h2>Color Politics: Not RGB</h2>
+      
+      <div style="background: rgba(255, 255, 255, 0.03); padding: 30px;">
+        <p style="margin-top: 0;">
+          Traditional chromatic aberration uses <strong>Red, Green, Blue</strong> 
+          (technical reality of screens).
+        </p>
+        <p>
+          We use <strong>Magenta, Cyan, Pink, Lime</strong> (political color choices):
+        </p>
+        
+        <div class="grid" style="margin-top: 20px;">
+          <div style="background: #ff00ff; color: #000; padding: 20px;">
+            <h3>Magenta</h3>
+            <p>Red + Blue simultaneously. Refuses binary (pink=fem, blue=masc)</p>
+          </div>
+          
+          <div style="background: #00ffff; color: #000; padding: 20px;">
+            <h3>Cyan</h3>
+            <p>Blue + Green simultaneously. Between categories</p>
+          </div>
+          
+          <div style="background: #ff6b9d; color: #000; padding: 20px;">
+            <h3>Hot Pink</h3>
+            <p>Riot grrrl, punk feminism. Reclaimed aggressive femininity</p>
+          </div>
+          
+          <div style="background: #b4ff9f; color: #000; padding: 20px;">
+            <h3>Lime Green</h3>
+            <p>"Toxic femininity". Unnatural, refusing organic essentialism</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Code Examples -->
+    <section class="section">
+      <h2>Usage Examples</h2>
+      
+      <h3>Basic Dithered Gradient</h3>
+      <pre style="background: rgba(0, 0, 0, 0.5); padding: 20px; overflow-x: auto;"><code>&lt;dithered-glitch-gradient 
+  color-a="#1a0a2e" 
+  color-b="#7209b7"
+  pattern="bayer"
+  direction="diagonal"
+&gt;
+  &lt;div&gt;Content goes here&lt;/div&gt;
+&lt;/dithered-glitch-gradient&gt;</code></pre>
+      
+      <h3>Corruption Spreading</h3>
+      <pre style="background: rgba(0, 0, 0, 0.5); padding: 20px; overflow-x: auto;"><code>&lt;dither-corruption 
+  corruption-level="0.5"
+  primary-color="#1a0a2e"
+  corruption-color="#ff006e"
+&gt;
+  &lt;p&gt;Content being corrupted&lt;/p&gt;
+&lt;/dither-corruption&gt;</code></pre>
+      
+      <h3>Holographic UI</h3>
+      <pre style="background: rgba(0, 0, 0, 0.5); padding: 20px; overflow-x: auto;"><code>&lt;holographic-ui flickering scan-speed="3"&gt;
+  &lt;p&gt;Unstable interface&lt;/p&gt;
+&lt;/holographic-ui&gt;</code></pre>
+    </section>
+    
+    <!-- References -->
+    <section class="section">
+      <h2>References & Inspiration</h2>
+      
+      <div class="grid">
+        <div class="card">
+          <h3>Hyper Light Drifter</h3>
+          <p>Heart Machine (2016)</p>
+          <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">
+            Beautiful corruption. Chromatic aberration on movement. 
+            The glitching drifter gains power—corruption is transformation.
+          </p>
+        </div>
+        
+        <div class="card">
+          <h3>PC-98 Series</h3>
+          <p>NEC (1982-2000)</p>
+          <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">
+            16-color palette limitation requiring extensive dithering.
+            Defined Japanese retro computing aesthetic.
+          </p>
+        </div>
+        
+        <div class="card">
+          <h3>Glitch Feminism</h3>
+          <p>Legacy Russell (2020)</p>
+          <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">
+            Error as liberation. Multiple simultaneous identities.
+            Refusing normative systems through the glitch.
+          </p>
+        </div>
+        
+        <div class="card">
+          <h3>Worldtraveling</h3>
+          <p>Maria Lugones (1987)</p>
+          <p style="font-size: 14px; color: rgba(255, 255, 255, 0.6);">
+            Moving between worlds with different identities.
+            Playful resistance to singular categorization.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+  
+  <script type="module" src="/src/index.ts"></script>
+  
+  <script>
+    // Corruption slider control
+    const slider = document.getElementById('corruption-slider');
+    const value = document.getElementById('corruption-value');
+    const demo = document.getElementById('corruption-demo');
+    
+    slider.addEventListener('input', (e) => {
+      const level = parseFloat(e.target.value);
+      value.textContent = `${Math.round(level * 100)}%`;
+      demo.setAttribute('corruption-level', level);
+    });
+  </script>
+</body>
+</html>

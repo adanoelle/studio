@@ -1,0 +1,10 @@
+/**
+ * @glitch/tokens
+ *
+ * Main entry point for all design tokens.
+ * Import this file to get all tokens at once.
+ */
+
+@import './tokens.css';
+@import './overworld.css';
+@import './underworld.css';

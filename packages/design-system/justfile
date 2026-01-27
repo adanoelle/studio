@@ -1,0 +1,96 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                    @GLITCH/DESIGN-SYSTEM - JUSTFILE                          ║
+# ╠══════════════════════════════════════════════════════════════════════════════╣
+# ║                                                                              ║
+# ║  Web component library grounded in feminist theory.                          ║
+# ║                                                                              ║
+# ║  This package provides Lit-based web components that embody concepts from    ║
+# ║  Legacy Russell's "Glitch Feminism" and Maria Lugones' "Worldtraveling".     ║
+# ║                                                                              ║
+# ║  COMPONENTS                                                                  ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║  Core:                                                                       ║
+# ║    • glitch-text              Text that glitches on interaction              ║
+# ║    • glitch-border            Borders that break on hover                    ║
+# ║    • dithered-glitch-gradient Dithered gradient backgrounds                  ║
+# ║                                                                              ║
+# ║  Composite:                                                                  ║
+# ║    • holographic-ui           Holographic container effect                   ║
+# ║    • dither-corruption        Dither-based corruption effect                 ║
+# ║    • dash-trail               Animated dash trail effect                     ║
+# ║                                                                              ║
+# ║  COMMON VERBS                                                                ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║    dev        Start development server                                       ║
+# ║    build      Build library for distribution                                 ║
+# ║    test       Run component tests                                            ║
+# ║    typecheck  Type check TypeScript                                          ║
+# ║    lint       Run ESLint                                                     ║
+# ║    clean      Remove build artifacts                                         ║
+# ║                                                                              ║
+# ║  USAGE                                                                       ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║  From repository root:                                                       ║
+# ║    just packages::design-system::dev                                           ║
+# ║                                                                              ║
+# ║  From this directory:                                                        ║
+# ║    just dev                                                                  ║
+# ║                                                                              ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+# Package name for pnpm filter
+package := "@glitch/design-system"
+
+# Default: show available commands
+default:
+    @just --list
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DEVELOPMENT
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Start development server
+[doc("Start Vite dev server for component development")]
+dev:
+    pnpm --filter {{package}} dev
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BUILDING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Build library for distribution
+[doc("Build the component library (TypeScript + Vite bundle)")]
+build:
+    pnpm --filter {{package}} build
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# QUALITY CHECKS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Type check TypeScript
+[doc("Run TypeScript compiler in check mode")]
+typecheck:
+    pnpm --filter {{package}} typecheck
+
+# Lint code
+[doc("Run ESLint on source files")]
+lint:
+    pnpm --filter {{package}} lint
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# TESTING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Run tests
+[doc("Run component tests with @web/test-runner")]
+test:
+    pnpm --filter {{package}} test
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLEANUP
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Remove build artifacts
+[doc("Remove dist/ and other build artifacts")]
+clean:
+    pnpm --filter {{package}} clean

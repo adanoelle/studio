@@ -1,0 +1,170 @@
+/**
+ * DESIGN TOKENS
+ * 
+ * Core design values for the Glitch Feminist Design System.
+ * All components reference these tokens for consistency.
+ */
+
+:root {
+  /* ============================================ */
+  /* COLORS */
+  /* ============================================ */
+
+  /* --- Base Palette (Farrow & Ball Warm Tones) --- */
+  --color-cream: #dfc8ba; /* Setting Plaster */
+  --color-dark: #3a3632; /* Paean Black */
+  --color-tan: #c9a88a; /* Jitney */
+  --color-pink: #a4656a; /* Sulking Room Pink */
+  --color-muted: #5a4a4a; /* Muted warm */
+
+  /* --- Semantic Colors (Morning - default lighter variant) --- */
+  --bg-primary: var(--color-cream);
+  --bg-secondary: var(--color-tan);
+  --text-primary: var(--color-dark);
+  --text-secondary: var(--color-muted);
+  --accent: var(--color-pink);
+  --border: var(--color-tan);
+
+  /* --- Boundary Frame (HLD Void) --- */
+  --boundary-dark: #1a0a2e; /* Deep purple void */
+  --boundary-mid: #3a1055; /* Mid purple */
+
+  /* --- Glitch (Digital/Chromatic) --- */
+  --glitch-magenta: #ff00ff; /* Cyberspace pink */
+  --glitch-cyan: #00ffff; /* Digital ghost */
+  --glitch-pink: #ff6b9d; /* Riot grrrl */
+  --glitch-lime: #b4ff9f; /* Toxic fem */
+  --glitch-violet: #9d00ff; /* Between pink/blue */
+
+  /* --- Algorave --- */
+  --code-green: #0f0; /* Terminal green */
+  --warning-yellow: #ffcc00; /* Alert */
+
+  /* ============================================ */
+  /* TYPOGRAPHY */
+  /* ============================================ */
+
+  /* --- Font Families --- */
+  --font-primary: 'Berkeley Mono', 'Iosevka', 'JetBrains Mono', 'Courier New', monospace;
+  --font-pixel: 'PxPlus IBM VGA8', 'Courier New', monospace;
+
+  /* --- Font Sizes --- */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-3xl: 48px;
+
+  /* --- Line Heights --- */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* ============================================ */
+  /* SPACING */
+  /* ============================================ */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ============================================ */
+  /* BORDERS */
+  /* ============================================ */
+
+  --border-thin: 1px;
+  --border-normal: 2px;
+  --border-thick: 4px;
+  --border-very-thick: 8px;
+
+  /* ============================================ */
+  /* SHADOWS */
+  /* ============================================ */
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* ============================================ */
+  /* ANIMATION */
+  /* ============================================ */
+
+  --duration-fast: 0.1s;
+  --duration-normal: 0.2s;
+  --duration-slow: 0.3s;
+  --duration-very-slow: 0.5s;
+
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-linear: linear;
+
+  /* ============================================ */
+  /* Z-INDEX */
+  /* ============================================ */
+
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-modal: 200;
+  --z-overlay: 300;
+  --z-toast: 400;
+}
+
+/**
+ * BASE RESETS
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/**
+ * EVENING VARIANT
+ * Darker, warmer palette (same home, different lighting)
+ */
+[data-theme='evening'],
+.theme-evening {
+  --bg-primary: var(--color-dark);
+  --bg-secondary: var(--color-muted);
+  --text-primary: var(--color-cream);
+  --text-secondary: var(--color-tan);
+  --accent: var(--color-tan);
+  --border: var(--color-muted);
+}
+
+/**
+ * UTILITY: Screen Reader Only
+ * For accessibility - visually hidden but available to screen readers
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

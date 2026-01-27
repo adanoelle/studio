@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glitch Feminist Design System - Demo</title>
+  
+  <!-- Design tokens from @glitch/tokens -->
+  <link rel="stylesheet" href="/node_modules/@glitch/tokens/src/index.css">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: var(--space-8);
+      background: #1a1a1a;
+      color: #e5e7eb;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: var(--space-16);
+      padding: var(--space-12);
+      border: var(--border-thick) solid var(--glitch-magenta);
+    }
+    
+    h1 {
+      font-size: var(--text-3xl);
+      margin: 0 0 var(--space-4) 0;
+      color: var(--glitch-cyan);
+    }
+    
+    .subtitle {
+      font-size: var(--text-lg);
+      color: var(--glitch-magenta);
+    }
+    
+    .demo-section {
+      margin-bottom: var(--space-16);
+    }
+    
+    .demo-section h2 {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-6);
+      color: var(--glitch-cyan);
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: var(--space-8);
+    }
+    
+    .demo-card {
+      padding: var(--space-8);
+      background: rgba(255, 255, 255, 0.05);
+      border: var(--border-normal) solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .demo-card h3 {
+      font-size: var(--text-xl);
+      margin: 0 0 var(--space-4) 0;
+      color: var(--glitch-pink);
+    }
+    
+    .demo-card p {
+      margin-bottom: var(--space-4);
+      line-height: var(--leading-relaxed);
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    code {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: var(--font-overworld);
+      color: var(--code-green);
+      font-size: var(--text-sm);
+    }
+    
+    .world-switcher {
+      display: flex;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+      justify-content: center;
+    }
+    
+    .world-button {
+      padding: var(--space-3) var(--space-6);
+      border: var(--border-normal) solid var(--glitch-cyan);
+      background: transparent;
+      color: var(--glitch-cyan);
+      font-family: var(--font-overworld);
+      cursor: pointer;
+      transition: all var(--duration-normal);
+    }
+    
+    .world-button:hover {
+      background: var(--glitch-cyan);
+      color: #000;
+    }
+    
+    .world-button.active {
+      background: var(--glitch-magenta);
+      border-color: var(--glitch-magenta);
+      color: #000;
+    }
+    
+    footer {
+      margin-top: var(--space-16);
+      padding: var(--space-8);
+      text-align: center;
+      border-top: var(--border-normal) solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>
+        <glitch-text text="Glitch Feminist Design System"></glitch-text>
+      </h1>
+      <p class="subtitle">Visual design grounded in feminist theory</p>
+    </header>
+    
+    <!-- Glitch Text Demos -->
+    <section class="demo-section">
+      <h2>Glitch Text Component</h2>
+      <p>Hover over text to see it glitch. Embodies the concept of unstable, multiple identities.</p>
+      
+      <div class="demo-grid">
+        <div class="demo-card">
+          <h3>Mode: All</h3>
+          <p>Glitches every character randomly:</p>
+          <p style="font-size: var(--text-lg);">
+            <glitch-text text="Principal Reliability Engineer" mode="all"></glitch-text>
+          </p>
+          <code>&lt;glitch-text text="..." mode="all"&gt;</code>
+        </div>
+        
+        <div class="demo-card">
+          <h3>Mode: Word</h3>
+          <p>Glitches one random word at a time:</p>
+          <p style="font-size: var(--text-lg);">
+            <glitch-text text="Live coding with TidalCycles" mode="word"></glitch-text>
+          </p>
+          <code>&lt;glitch-text text="..." mode="word"&gt;</code>
+        </div>
+        
+        <div class="demo-card">
+          <h3>Mode: Character (Vowels)</h3>
+          <p>Only glitches vowels:</p>
+          <p style="font-size: var(--text-lg);">
+            <glitch-text 
+              text="Distributed systems engineer" 
+              mode="character" 
+              character-type="vowels"
+            ></glitch-text>
+          </p>
+          <code>&lt;glitch-text mode="character" character-type="vowels"&gt;</code>
+        </div>
+        
+        <div class="demo-card">
+          <h3>Intensity Variation</h3>
+          <p>High intensity (0.8):</p>
+          <p style="font-size: var(--text-lg);">
+            <glitch-text text="Maximum chaos mode" intensity="0.8"></glitch-text>
+          </p>
+          <code>&lt;glitch-text intensity="0.8"&gt;</code>
+        </div>
+      </div>
+    </section>
+    
+    <!-- World Switcher -->
+    <section class="demo-section">
+      <h2>World-Aware Components</h2>
+      <p>Components adapt their aesthetic based on which "world" they're in.</p>
+      
+      <div class="world-switcher">
+        <button class="world-button active" id="ow-btn">Overworld (Professional)</button>
+        <button class="world-button" id="uw-btn">Underworld (Personal)</button>
+      </div>
+      
+      <div id="world-demo" class="overworld" style="padding: var(--space-8);">
+        <glitch-border id="demo-border" world="overworld" break-pattern="shift">
+          <div style="padding: var(--space-6);">
+            <h3>
+              <glitch-text 
+                id="demo-text" 
+                text="Ada - Reliability Engineer" 
+                world="overworld"
+              ></glitch-text>
+            </h3>
+            <p>
+              8 years of experience in distributed systems, cloud infrastructure, 
+              and production reliability engineering. Currently preparing for 
+              technical interviews at major tech companies.
+            </p>
+            <p>
+              <strong>Tech:</strong> Python, Rust, NixOS, Azure, AWS
+            </p>
+          </div>
+        </glitch-border>
+      </div>
+    </section>
+    
+    <!-- Border Glitch Demos -->
+    <section class="demo-section">
+      <h2>Glitch Border Component</h2>
+      <p>Hover over borders to see them break. Represents refusing containment.</p>
+      
+      <div class="demo-grid">
+        <glitch-border world="overworld" break-pattern="shift">
+          <div class="demo-card">
+            <h3>Overworld + Shift</h3>
+            <p>Cool digital aesthetic with shifting borders.</p>
+            <code>break-pattern="shift"</code>
+          </div>
+        </glitch-border>
+        
+        <glitch-border world="overworld" break-pattern="gap">
+          <div class="demo-card">
+            <h3>Overworld + Gap</h3>
+            <p>Borders develop gaps when glitching.</p>
+            <code>break-pattern="gap"</code>
+          </div>
+        </glitch-border>
+        
+        <glitch-border world="underworld" break-pattern="color">
+          <div class="demo-card">
+            <h3>Underworld + Color</h3>
+            <p>Warm organic aesthetic with color shifts.</p>
+            <code>break-pattern="color"</code>
+          </div>
+        </glitch-border>
+        
+        <glitch-border world="underworld" break-pattern="all">
+          <div class="demo-card">
+            <h3>Underworld + All</h3>
+            <p>All glitch effects combined.</p>
+            <code>break-pattern="all"</code>
+          </div>
+        </glitch-border>
+      </div>
+    </section>
+    
+    <!-- Theoretical Framework -->
+    <section class="demo-section">
+      <h2>Theoretical Framework</h2>
+      <p>This design system embodies concepts from feminist theory:</p>
+      
+      <glitch-border world="overworld">
+        <div style="padding: var(--space-6);">
+          <h3>Legacy Russell: Glitch Feminism</h3>
+          <ul>
+            <li>
+              <glitch-text text="The glitch as refusal" mode="word"></glitch-text>
+              - breaking expected patterns
+            </li>
+            <li>
+              <glitch-text text="Multiple simultaneous identities" mode="word"></glitch-text>
+              - chromatic aberration
+            </li>
+            <li>
+              <glitch-text text="Error as liberation" mode="word"></glitch-text>
+              - intentional imperfection
+            </li>
+          </ul>
+        </div>
+      </glitch-border>
+      
+      <br>
+      
+      <glitch-border world="underworld">
+        <div style="padding: var(--space-6);">
+          <h3>Maria Lugones: Worldtraveling</h3>
+          <ul>
+            <li>
+              <glitch-text text="Overworld vs Underworld" mode="word"></glitch-text>
+              - public vs personal spaces
+            </li>
+            <li>
+              <glitch-text text="Moving between worlds" mode="word"></glitch-text>
+              - explicit transitions
+            </li>
+            <li>
+              <glitch-text text="Playful resistance" mode="word"></glitch-text>
+              - refusing single identity
+            </li>
+          </ul>
+        </div>
+      </glitch-border>
+    </section>
+    
+    <footer>
+      <p>Glitch Feminist Design System v0.1.0</p>
+      <p>Built with theory, code, and care by Ada</p>
+    </footer>
+  </div>
+  
+  <!-- Load components from @glitch/design-system -->
+  <script type="module" src="/src/main.ts"></script>
+  
+  <!-- World switcher functionality -->
+  <script>
+    const owBtn = document.getElementById('ow-btn');
+    const uwBtn = document.getElementById('uw-btn');
+    const worldDemo = document.getElementById('world-demo');
+    const demoBorder = document.getElementById('demo-border');
+    const demoText = document.getElementById('demo-text');
+    
+    owBtn.addEventListener('click', () => {
+      worldDemo.className = 'overworld';
+      demoBorder.setAttribute('world', 'overworld');
+      demoText.setAttribute('world', 'overworld');
+      owBtn.classList.add('active');
+      uwBtn.classList.remove('active');
+    });
+    
+    uwBtn.addEventListener('click', () => {
+      worldDemo.className = 'underworld';
+      demoBorder.setAttribute('world', 'underworld');
+      demoText.setAttribute('world', 'underworld');
+      uwBtn.classList.add('active');
+      owBtn.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

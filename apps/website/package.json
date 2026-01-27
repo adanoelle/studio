@@ -1,0 +1,26 @@
+{
+  "name": "@glitch/website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal website built with the Glitch design system",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@glitch/design-system": "workspace:*",
+    "@glitch/tokens": "workspace:*",
+    "lit": "^3.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^5.0.11"
+  }
+}

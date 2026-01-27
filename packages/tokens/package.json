@@ -1,0 +1,29 @@
+{
+  "name": "@glitch/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens for the Glitch design system",
+  "type": "module",
+  "main": "./src/index.css",
+  "exports": {
+    ".": "./src/index.css",
+    "./tokens": "./src/tokens.css",
+    "./overworld": "./src/overworld.css",
+    "./underworld": "./src/underworld.css",
+    "./*.css": "./src/*.css"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "echo 'No build step needed for CSS tokens'",
+    "clean": "echo 'No clean step needed'"
+  },
+  "keywords": [
+    "design-tokens",
+    "css",
+    "custom-properties",
+    "design-system"
+  ],
+  "author": "Ada",
+  "license": "MIT"
+}
