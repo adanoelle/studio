@@ -1,13 +1,35 @@
 /**
  * UNDERWORLD THEME
- * 
+ *
  * Personal, authentic, playful presentation.
  * Warm palette, organic textures, experimental structure.
- * 
+ *
  * THEORETICAL GROUNDING:
  * Represents Lugones' "underworld" - marginalized spaces where
  * different aspects of identity can fully exist and play.
  */
+
+:root {
+  /* ============================================ */
+  /* UNDERWORLD COLOR TOKENS */
+  /* ============================================ */
+
+  /* --- Backgrounds --- */
+  --uw-bg-warm: #2e1a1a;      /* Deep warm brown-red */
+  --uw-bg-medium: #3d2828;    /* Mid warm brown */
+  --uw-bg-light: #4a3535;     /* Lighter warm brown */
+
+  /* --- Text --- */
+  --uw-text-primary: #e8e0d8;  /* Warm off-white */
+  --uw-text-secondary: #b0a090; /* Warm muted tan */
+
+  /* --- Accent & Border --- */
+  --uw-accent: #d19b6b;       /* Warm orange-tan */
+  --uw-border: #6a4a4a;       /* Warm brown border */
+
+  /* --- Typography --- */
+  --font-underworld: 'Georgia', 'Times New Roman', serif;
+}
 
 .underworld {
   /* Base colors */

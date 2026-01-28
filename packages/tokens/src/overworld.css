@@ -1,13 +1,36 @@
 /**
  * OVERWORLD THEME
- * 
+ *
  * Professional, public, "expected" presentation.
  * Cool palette, pixel precision, formal structure.
- * 
+ *
  * THEORETICAL GROUNDING:
  * Represents Lugones' "overworld" - the dominant culture where
  * certain identities are validated and visible.
  */
+
+:root {
+  /* ============================================ */
+  /* OVERWORLD COLOR TOKENS */
+  /* ============================================ */
+
+  /* --- Backgrounds --- */
+  --ow-bg-dark: #1a1a2e;      /* Deep blue-black */
+  --ow-bg-medium: #252540;    /* Mid blue-gray */
+  --ow-bg-light: #3a3a5c;     /* Lighter blue-gray */
+
+  /* --- Text --- */
+  --ow-text-primary: #e0e0e8;  /* Off-white with blue tint */
+  --ow-text-secondary: #a0a0b0; /* Muted gray-blue */
+
+  /* --- Accent & Border --- */
+  --ow-accent: #6b9bd1;       /* Professional blue */
+  --ow-border: #4a4a6a;       /* Blue-gray border */
+
+  /* --- Typography --- */
+  --font-overworld: 'Berkeley Mono', 'Iosevka', 'JetBrains Mono', 'Courier New', monospace;
+  --font-overworld-pixel: 'PxPlus IBM VGA8', 'Courier New', monospace;
+}
 
 .overworld {
   /* Base colors */
