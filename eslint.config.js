@@ -6,5 +6,17 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   {
     ignores: ['dist/', 'node_modules/'],
+  },
+  {
+    rules: {
+      // Allow unused vars with underscore prefix (common pattern for interface compliance)
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+    },
   }
 );
