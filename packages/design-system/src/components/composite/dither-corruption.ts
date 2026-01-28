@@ -1,5 +1,7 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { html, css, PropertyValues } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { GlitchBase } from '../base/glitch-base.js';
 
 /**
  * DITHER-CORRUPTION COMPONENT
@@ -16,6 +18,16 @@ import { customElement, property } from 'lit/decorators.js';
  * but applied to the dithering technique itself - the constraint
  * AND the adaptation both become sites of glitching.
  *
+ * PERFORMANCE:
+ * - Memoizes pattern generation to prevent flickering
+ * - Only regenerates pattern when corruption level changes
+ * - Uses IntersectionObserver to pause animations when off-screen
+ * - Respects prefers-reduced-motion preference
+ *
+ * ACCESSIBILITY:
+ * - Respects prefers-reduced-motion by disabling pulse animation
+ * - Corruption spread animation disabled for reduced motion
+ *
  * @example
  * ```html
  * <dither-corruption
@@ -28,21 +40,109 @@ import { customElement, property } from 'lit/decorators.js';
  * ```
  */
 @customElement('dither-corruption')
-export class DitherCorruption extends LitElement {
-  @property({ type: Number, attribute: 'corruption-level' })
-  corruptionLevel = 0; // 0-1
+export class DitherCorruption extends GlitchBase {
+  // ============================================
+  // PUBLIC API
+  // ============================================
 
+  /** Corruption level from 0 (none) to 1 (maximum) */
+  @property({ type: Number, attribute: 'corruption-level' })
+  corruptionLevel = 0;
+
+  /** Base color for the dither pattern */
   @property({ type: String, attribute: 'primary-color' })
   primaryColor = '#1a0a2e';
 
+  /** Color of the corruption effect */
   @property({ type: String, attribute: 'corruption-color' })
   corruptionColor = '#ff006e';
+
+  // ============================================
+  // INTERNAL STATE
+  // ============================================
+
+  /** Cached SVG pattern data URL */
+  @state()
+  private cachedPattern = '';
+
+  /** Cached spread positions (memoized) */
+  @state()
+  private spreadPositions: Array<{ x: number; y: number; delay: number }> = [];
+
+  /** Last corruption level used for pattern generation */
+  private lastCorruptionLevel = -1;
+
+  /** Random seed for deterministic pattern generation */
+  private patternSeed = 0;
+
+  // ============================================
+  // LIFECYCLE
+  // ============================================
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    // Generate initial seed
+    this.patternSeed = Math.random() * 10000;
+
+    // Generate initial pattern
+    this.updatePattern();
+    this.updateSpreadPositions();
+  }
+
+  updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+
+    // Only regenerate pattern when relevant properties change
+    if (
+      changedProperties.has('corruptionLevel') ||
+      changedProperties.has('primaryColor') ||
+      changedProperties.has('corruptionColor')
+    ) {
+      this.updatePattern();
+    }
+
+    if (changedProperties.has('corruptionLevel')) {
+      this.updateSpreadPositions();
+    }
+  }
+
+  // ============================================
+  // PATTERN GENERATION
+  // ============================================
+
+  /**
+   * Seeded random number generator for deterministic patterns
+   * Same seed + same inputs = same pattern (no flickering)
+   */
+  private seededRandom(seed: number): number {
+    const x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+  }
+
+  /**
+   * Update the cached pattern
+   * Only regenerates if corruption level has changed significantly
+   */
+  private updatePattern() {
+    // Quantize corruption level to reduce regeneration frequency
+    const quantizedLevel = Math.round(this.corruptionLevel * 20) / 20;
+
+    if (quantizedLevel === this.lastCorruptionLevel) {
+      return;
+    }
+
+    this.lastCorruptionLevel = quantizedLevel;
+    this.cachedPattern = this.generateCorruptingPattern(quantizedLevel);
+  }
 
   /**
    * Generate corrupting Bayer pattern
    * As corruption increases, pattern becomes chaotic
+   *
+   * @param level - Quantized corruption level
    */
-  private generateCorruptingPattern(): string {
+  private generateCorruptingPattern(level: number): string {
     const size = 8;
     const matrix = [
       [0, 32, 8, 40, 2, 34, 10, 42],
@@ -61,15 +161,17 @@ export class DitherCorruption extends LitElement {
       for (let x = 0; x < size; x++) {
         const originalValue = matrix[y][x] / 64;
 
-        // Corruption: randomize pattern based on corruption level
-        const randomness = Math.random() * this.corruptionLevel;
+        // Use seeded random for deterministic corruption
+        const cellSeed = this.patternSeed + y * size + x;
+        const randomness = this.seededRandom(cellSeed) * level;
         const corruptedValue = Math.max(
           0,
-          Math.min(1, originalValue + randomness - this.corruptionLevel / 2)
+          Math.min(1, originalValue + randomness - level / 2)
         );
 
         // Color: blend between primary and corruption color
-        const useCorruptionColor = Math.random() < this.corruptionLevel;
+        const colorSeed = this.patternSeed + y * size + x + 1000;
+        const useCorruptionColor = this.seededRandom(colorSeed) < level;
         const color = useCorruptionColor ? this.corruptionColor : this.primaryColor;
 
         svg += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}" opacity="${corruptedValue}"/>`;
@@ -81,7 +183,30 @@ export class DitherCorruption extends LitElement {
     return `data:image/svg+xml,${encodeURIComponent(svg)}`;
   }
 
-  static styles = css`
+  /**
+   * Update spread positions based on corruption level
+   * Memoized to prevent constant regeneration
+   */
+  private updateSpreadPositions() {
+    const spreadCount = Math.floor(this.corruptionLevel * 5);
+
+    // Only regenerate if count changed
+    if (spreadCount === this.spreadPositions.length) {
+      return;
+    }
+
+    this.spreadPositions = Array.from({ length: spreadCount }, (_, i) => ({
+      x: this.seededRandom(this.patternSeed + i * 100) * 100,
+      y: this.seededRandom(this.patternSeed + i * 100 + 50) * 100,
+      delay: this.seededRandom(this.patternSeed + i * 100 + 25) * 3,
+    }));
+  }
+
+  // ============================================
+  // STYLES
+  // ============================================
+
+  static override styles = css`
     :host {
       display: block;
       position: relative;
@@ -127,6 +252,7 @@ export class DitherCorruption extends LitElement {
       mix-blend-mode: screen;
       animation: spread 3s ease-out infinite;
       pointer-events: none;
+      will-change: transform, opacity;
     }
 
     @keyframes spread {
@@ -142,35 +268,54 @@ export class DitherCorruption extends LitElement {
         opacity: 0;
       }
     }
+
+    /**
+     * ACCESSIBILITY: Reduced Motion
+     * Disable animations for users who prefer reduced motion
+     */
+    @media (prefers-reduced-motion: reduce) {
+      .dither-overlay {
+        animation: none;
+        opacity: 0.9;
+      }
+
+      .corruption-spread {
+        animation: none;
+        transform: scale(1);
+        opacity: 0.3;
+      }
+    }
   `;
 
-  render() {
-    const pattern = this.generateCorruptingPattern();
+  // ============================================
+  // RENDER
+  // ============================================
 
-    const spreadCount = Math.floor(this.corruptionLevel * 5);
-    const spreads = Array.from({ length: spreadCount }, () => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 3,
-    }));
+  render() {
+    const containerStyles = styleMap({
+      '--primary-color': this.primaryColor,
+    });
+
+    const overlayStyles = styleMap({
+      '--dither-pattern': `url('${this.cachedPattern}')`,
+    });
 
     return html`
-      <div class="corruption-container" style="--primary-color: ${this.primaryColor}">
-        <div class="dither-overlay" style="--dither-pattern: url('${pattern}')"></div>
+      <div class="corruption-container" style=${containerStyles}>
+        <div class="dither-overlay" style=${overlayStyles}></div>
 
-        ${spreads.map(
-          (spread) => html`
-            <div
-              class="corruption-spread"
-              style="
-              --corruption-color: ${this.corruptionColor};
-              left: ${spread.x}%;
-              top: ${spread.y}%;
-              animation-delay: ${spread.delay}s;
-            "
-            ></div>
-          `
-        )}
+        ${this.spreadPositions.map((spread) => {
+          const spreadStyles = styleMap({
+            '--corruption-color': this.corruptionColor,
+            left: `${spread.x}%`,
+            top: `${spread.y}%`,
+            animationDelay: `${spread.delay}s`,
+          });
+
+          return html`
+            <div class="corruption-spread" style=${spreadStyles}></div>
+          `;
+        })}
 
         <slot></slot>
       </div>
