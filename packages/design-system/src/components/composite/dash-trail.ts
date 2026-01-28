@@ -1,5 +1,7 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { GlitchBase } from '../base/glitch-base.js';
 
 /**
  * DASH-TRAIL COMPONENT
@@ -15,6 +17,16 @@ import { customElement, property, state } from 'lit/decorators.js';
  * Identity exists in motion, not static position.
  * Each afterimage is equally "you" - all versions coexist.
  *
+ * PERFORMANCE:
+ * - Uses IntersectionObserver to only track when visible
+ * - Throttles position tracking to 20fps
+ * - Caches position and only updates on significant movement
+ * - Respects prefers-reduced-motion preference
+ *
+ * ACCESSIBILITY:
+ * - Completely disabled when prefers-reduced-motion is set
+ * - Visual-only effect with no semantic meaning
+ *
  * @example
  * ```html
  * <dash-trail trail-length="8">
@@ -23,51 +35,136 @@ import { customElement, property, state } from 'lit/decorators.js';
  * ```
  */
 @customElement('dash-trail')
-export class DashTrail extends LitElement {
+export class DashTrail extends GlitchBase {
+  // ============================================
+  // PUBLIC API
+  // ============================================
+
+  /** Number of trail ghosts to display */
   @property({ type: Number, attribute: 'trail-length' })
   trailLength = 5;
+
+  /** Minimum movement distance to create new trail position (pixels) */
+  @property({ type: Number, attribute: 'threshold' })
+  threshold = 5;
+
+  // ============================================
+  // INTERNAL STATE
+  // ============================================
 
   @state()
   private positions: Array<{ x: number; y: number; age: number }> = [];
 
-  private rafId?: number;
+  /** Last tracked position to detect movement */
   private lastPos = { x: 0, y: 0 };
+
+  /** Cached bounding rect to avoid repeated queries */
+  private cachedRect: DOMRect | null = null;
+  private rectCacheTime = 0;
+  private readonly RECT_CACHE_DURATION = 50; // ms
+
+  // ============================================
+  // LIFECYCLE
+  // ============================================
 
   connectedCallback() {
     super.connectedCallback();
-    this.trackMovement();
+
+    // Initialize position after component renders
+    this.updateComplete.then(() => {
+      this.initializePosition();
+    });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    if (this.rafId) cancelAnimationFrame(this.rafId);
+    this.positions = [];
   }
 
-  private trackMovement() {
-    const track = () => {
-      const rect = this.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
+  // ============================================
+  // VISIBILITY HANDLING
+  // ============================================
 
-      const distance = Math.hypot(x - this.lastPos.x, y - this.lastPos.y);
+  protected override onVisibilityChange(visible: boolean) {
+    if (visible && this.shouldAnimate()) {
+      this.startTracking();
+    } else {
+      this.stopTracking();
+    }
+  }
 
-      if (distance > 5) {
-        this.positions = [
-          { x, y, age: 0 },
-          ...this.positions.map((p) => ({ ...p, age: p.age + 1 })),
-        ].slice(0, this.trailLength);
+  // ============================================
+  // POSITION TRACKING
+  // ============================================
 
-        this.lastPos = { x, y };
-        this.requestUpdate();
-      }
-
-      this.rafId = requestAnimationFrame(track);
+  private initializePosition() {
+    const rect = this.getBoundingClientRect();
+    this.lastPos = {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
     };
-
-    track();
   }
 
-  static styles = css`
+  private startTracking() {
+    if (this.rafId !== undefined) return;
+    if (this.prefersReducedMotion) return;
+
+    this.startAnimationLoop((timestamp) => {
+      this.trackMovement(timestamp);
+      return this.isVisible; // Continue while visible
+    }, 20); // 20fps is sufficient for trail effect
+  }
+
+  private stopTracking() {
+    this.stopAnimationLoop();
+    // Fade out trails gradually
+    this.fadeTrails();
+  }
+
+  private trackMovement(timestamp: number) {
+    // Use cached rect if available and fresh
+    const now = timestamp;
+    if (!this.cachedRect || now - this.rectCacheTime > this.RECT_CACHE_DURATION) {
+      this.cachedRect = this.getBoundingClientRect();
+      this.rectCacheTime = now;
+    }
+
+    const rect = this.cachedRect;
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    const distance = Math.hypot(x - this.lastPos.x, y - this.lastPos.y);
+
+    if (distance > this.threshold) {
+      this.positions = [
+        { x, y, age: 0 },
+        ...this.positions.map((p) => ({ ...p, age: p.age + 1 })),
+      ].slice(0, this.trailLength);
+
+      this.lastPos = { x, y };
+    }
+  }
+
+  private fadeTrails() {
+    // Gradually age out existing trails
+    if (this.positions.length === 0) return;
+
+    const fadeInterval = setInterval(() => {
+      this.positions = this.positions
+        .map((p) => ({ ...p, age: p.age + 1 }))
+        .filter((p) => p.age < this.trailLength);
+
+      if (this.positions.length === 0) {
+        clearInterval(fadeInterval);
+      }
+    }, 100);
+  }
+
+  // ============================================
+  // STYLES
+  // ============================================
+
+  static override styles = css`
     :host {
       position: fixed;
       inset: 0;
@@ -83,8 +180,8 @@ export class DashTrail extends LitElement {
       position: absolute;
       width: 16px;
       height: 16px;
-      transform: translate(-50%, -50%);
       mix-blend-mode: screen;
+      will-change: transform, opacity;
     }
 
     .trail-ghost::before {
@@ -111,24 +208,42 @@ export class DashTrail extends LitElement {
       background: white;
       border-radius: 50%;
     }
+
+    /**
+     * ACCESSIBILITY: Reduced Motion
+     * Hide trails entirely for users who prefer reduced motion
+     */
+    @media (prefers-reduced-motion: reduce) {
+      :host {
+        display: none;
+      }
+    }
   `;
 
+  // ============================================
+  // RENDER
+  // ============================================
+
   render() {
+    // Don't render anything if reduced motion is preferred
+    if (this.prefersReducedMotion) {
+      return html``;
+    }
+
     return html`
       ${this.positions.map((pos) => {
         const opacity = 1 - pos.age / this.trailLength;
         const scale = 1 - (pos.age / this.trailLength) * 0.5;
 
+        const styles = styleMap({
+          left: `${pos.x}px`,
+          top: `${pos.y}px`,
+          opacity: String(opacity),
+          transform: `translate(-50%, -50%) scale(${scale})`,
+        });
+
         return html`
-          <div
-            class="trail-ghost"
-            style="
-              left: ${pos.x}px;
-              top: ${pos.y}px;
-              opacity: ${opacity};
-              transform: translate(-50%, -50%) scale(${scale});
-            "
-          >
+          <div class="trail-ghost" style=${styles}>
             <div class="trail-ghost-base"></div>
           </div>
         `;
