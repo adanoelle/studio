@@ -4,15 +4,23 @@ import { resolve } from 'path';
 export default defineConfig({
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        visualization: resolve(__dirname, 'visualization-demo.html'),
+        dithering: resolve(__dirname, 'dithering-demo.html'),
+        journal: resolve(__dirname, 'journal-entry-demo.html'),
+      },
+    },
   },
   server: {
     port: 3000,
-    open: true
+    open: '/visualization-demo.html',
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
-    }
-  }
+      '@': resolve(__dirname, 'src'),
+    },
+  },
 });
