@@ -1,10 +1,10 @@
-//! Error types for the Glitch backend
+//! Error types for the Studio backend
 
 use thiserror::Error;
 
-/// Main error type for Glitch services
+/// Main error type for Studio services
 #[derive(Error, Debug)]
-pub enum GlitchError {
+pub enum StudioError {
     /// Configuration error
     #[error("configuration error: {0}")]
     Config(String),
@@ -34,22 +34,22 @@ pub enum GlitchError {
     Serialization(#[from] serde_json::Error),
 }
 
-impl GlitchError {
+impl StudioError {
     /// Returns the HTTP status code for this error
     pub fn status_code(&self) -> u16 {
         match self {
-            GlitchError::Config(_) => 500,
-            GlitchError::Validation(_) => 400,
-            GlitchError::NotFound(_) => 404,
-            GlitchError::Internal(_) => 500,
-            GlitchError::Aws { .. } => 502,
-            GlitchError::Serialization(_) => 400,
+            StudioError::Config(_) => 500,
+            StudioError::Validation(_) => 400,
+            StudioError::NotFound(_) => 404,
+            StudioError::Internal(_) => 500,
+            StudioError::Aws { .. } => 502,
+            StudioError::Serialization(_) => 400,
         }
     }
 
     /// Create an AWS error from a message
     pub fn aws(message: impl Into<String>) -> Self {
-        GlitchError::Aws {
+        StudioError::Aws {
             message: message.into(),
             source: None,
         }
@@ -60,7 +60,7 @@ impl GlitchError {
         message: impl Into<String>,
         source: impl std::error::Error + Send + Sync + 'static,
     ) -> Self {
-        GlitchError::Aws {
+        StudioError::Aws {
             message: message.into(),
             source: Some(Box::new(source)),
         }

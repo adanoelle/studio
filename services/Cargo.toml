@@ -1,6 +1,6 @@
 [workspace]
 members = [
-  "shared/glitch-core",
+  "shared/studio-core",
   "lambdas/media-upload",
   "lambdas/api"
 ]
@@ -11,7 +11,7 @@ version = "0.1.0"
 edition = "2021"
 authors = ["Ada"]
 license = "MIT"
-repository = "https://github.com/ada/glitch"
+repository = "https://github.com/adanoelle/studio"
 
 [workspace.dependencies]
 # AWS SDK - pinned to specific minor versions to prevent mismatches
@@ -39,7 +39,7 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
 
 # Internal crates
-glitch-core = { path = "shared/glitch-core" }
+studio-core = { path = "shared/studio-core" }
 
 [workspace.lints.rust]
 unsafe_code = "deny"

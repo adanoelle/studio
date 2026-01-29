@@ -13,7 +13,7 @@ name = "bootstrap"
 path = "src/main.rs"
 
 [dependencies]
-glitch-core = { workspace = true }
+studio-core = { workspace = true }
 
 aws-config = { workspace = true }
 aws-sdk-dynamodb = { workspace = true }

@@ -1,6 +1,6 @@
 //! Media Upload Lambda Function
 //!
-//! Handles file uploads to S3 for the Glitch website.
+//! Handles file uploads to S3 for the Studio website.
 
 use aws_sdk_s3::Client as S3Client;
 use lambda_http::{run, service_fn, Body, Error, Request, Response};

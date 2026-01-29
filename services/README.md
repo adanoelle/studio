@@ -1,107 +1,101 @@
-# Glitch Services
+# Studio Services
 
-Rust Lambda functions for the Glitch platform.
+Rust Lambda functions.
+
+---
 
 ## Structure
 
 ```
 services/
-├── shared/
-│   └── glitch-core/      # Shared library (error types, utilities)
-└── lambdas/
-    ├── api/              # API Gateway Lambda
-    └── media-upload/     # S3 media upload handler
+  shared/
+    studio-core/         Shared library (error types, utilities)
+  lambdas/
+    api/                 API Gateway handler
+    media-upload/        S3 media processing
 ```
+
+---
 
 ## Prerequisites
 
-- Rust toolchain (via [rustup](https://rustup.rs))
+- Rust toolchain via [rustup](https://rustup.rs)
 - [cargo-lambda](https://www.cargo-lambda.info/) for Lambda development
 
-```bash
-# Install cargo-lambda
+```
 cargo install cargo-lambda
 ```
 
+---
+
 ## Development
 
-### Building
+Build:
 
-```bash
-# From repo root
-just build-rust
-
-# Or from this directory
+```
 just build
 ```
 
-### Running Locally
+Run locally:
 
-```bash
-# Start local Lambda runtime
+```
 just watch
-
-# In another terminal, invoke the function
-cargo lambda invoke api --data-ascii '{"httpMethod": "GET", "path": "/health"}'
 ```
 
-### Testing
+Test:
 
-```bash
-# From repo root
-just test-rust
-
-# Or from this directory
+```
 just test
 ```
 
+---
+
 ## Building for Deployment
 
-Lambda functions must be built with `cargo-lambda` for the correct target:
-
-```bash
-# From repo root
+```
 just build-lambdas
-
-# Outputs to services/target/lambda/
 ```
 
-The build produces `bootstrap` binaries compatible with AWS Lambda's `provided.al2023` runtime.
+Outputs `bootstrap` binaries to `services/target/lambda/`, compatible with AWS
+Lambda's `provided.al2023` runtime.
+
+---
 
 ## Code Guidelines
 
 ### Error Handling
 
-Use the error types from `glitch-core`:
+Use types from `studio-core`:
 
 ```rust
-use glitch_core::error::{GlitchError, Result};
+use studio_core::error::{StudioError, Result};
 
 async fn handler() -> Result<Response> {
     let data = fetch_data()
-        .map_err(|e| GlitchError::External(e.to_string()))?;
+        .map_err(|e| StudioError::External(e.to_string()))?;
     Ok(Response::new(data))
 }
 ```
 
 ### No Panics
 
-The workspace is configured with `clippy::unwrap_used = "deny"` and `clippy::expect_used = "deny"`. Use proper error handling:
+Workspace configured with `clippy::unwrap_used = "deny"` and
+`clippy::expect_used = "deny"`. Handle errors properly:
 
 ```rust
-// Bad - will fail clippy
+// Will fail clippy
 let value = map.get("key").unwrap();
 
-// Good
-let value = map.get("key").ok_or(GlitchError::NotFound("key"))?;
+// Correct
+let value = map.get("key").ok_or(StudioError::NotFound("key"))?;
 ```
 
 ### Logging
 
-Use `tracing` for structured logging:
+Use `tracing` for structured logs:
 
 ```rust
-use tracing::{info, error, instrument};
+use tracing::{info, instrument};
 
 #[instrument(skip(event))]
 async fn handler(event: Request) -> Result<Response> {
@@ -110,31 +104,6 @@ async fn handler(event: Request) -> Result<Response> {
 }
 ```
 
-## Workspace Configuration
-
-The `Cargo.toml` at the services root configures:
-
-- Workspace members and shared dependencies
-- Strict lints (`unsafe_code = "deny"`, `unwrap_used = "deny"`)
-- Release profile optimized for Lambda (LTO, single codegen unit, stripped)
-
-## Architecture
-
-### glitch-core
-
-Shared library containing:
-- Error types (`GlitchError`)
-- Common utilities
-- Shared configuration
-
-### api Lambda
-
-Handles API Gateway requests. Entry point for the web API.
-
-### media-upload Lambda
-
-Handles S3 event triggers for media processing.
-
-## License
+---
 
 MIT

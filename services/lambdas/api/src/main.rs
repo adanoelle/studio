@@ -1,6 +1,6 @@
 //! API Lambda Function
 //!
-//! Main API handler for the Glitch website backend.
+//! Main API handler for the Studio website backend.
 
 use aws_sdk_dynamodb::Client as DynamoClient;
 use lambda_http::{run, service_fn, Body, Error, Request, Response};
