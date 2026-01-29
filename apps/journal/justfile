@@ -1,0 +1,81 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                      @STUDIO/JOURNAL - JUSTFILE                             ║
+# ╠══════════════════════════════════════════════════════════════════════════════╣
+# ║                                                                              ║
+# ║  Music learning journal built with the Studio design system (analog theme). ║
+# ║                                                                              ║
+# ║  This is a Vite-powered TypeScript application that consumes:               ║
+# ║    • @studio/design-system  - Lit web components                            ║
+# ║    • @studio/tokens         - CSS custom properties (analog palette)        ║
+# ║                                                                              ║
+# ║  COMMON VERBS                                                                ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║    dev        Start development server with hot reload                      ║
+# ║    build      Build for production                                          ║
+# ║    preview    Preview production build locally                              ║
+# ║    typecheck  Type check TypeScript                                         ║
+# ║    lint       Run ESLint                                                    ║
+# ║    clean      Remove build artifacts                                        ║
+# ║                                                                              ║
+# ║  USAGE                                                                       ║
+# ║  ────────────────────────────────────────────────────────────────────────    ║
+# ║  From repository root:                                                       ║
+# ║    just apps::journal::dev                                                   ║
+# ║                                                                              ║
+# ║  From this directory:                                                        ║
+# ║    just dev                                                                  ║
+# ║                                                                              ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+# Package name for pnpm filter
+package := "@studio/journal"
+
+# Default: show available commands
+default:
+    @just --list
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# DEVELOPMENT
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Start development server with hot reload
+[doc("Start Vite dev server with hot module replacement")]
+dev:
+    pnpm --filter {{package}} dev
+
+# Preview production build locally
+[doc("Serve the production build locally for testing")]
+preview:
+    pnpm --filter {{package}} preview
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# BUILDING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Build for production
+[doc("Build optimized production bundle")]
+build:
+    pnpm --filter {{package}} build
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# QUALITY CHECKS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Type check TypeScript
+[doc("Run TypeScript compiler in check mode")]
+typecheck:
+    pnpm --filter {{package}} typecheck
+
+# Lint code
+[doc("Run ESLint on source files")]
+lint:
+    pnpm --filter {{package}} lint
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CLEANUP
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Remove build artifacts
+[doc("Remove dist/ and other build artifacts")]
+clean:
+    pnpm --filter {{package}} clean
