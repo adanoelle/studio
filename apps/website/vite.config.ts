@@ -10,7 +10,6 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         visualization: resolve(__dirname, 'visualization-demo.html'),
         dithering: resolve(__dirname, 'dithering-demo.html'),
-        journal: resolve(__dirname, 'journal-entry-demo.html'),
       },
     },
   },
