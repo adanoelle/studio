@@ -1,29 +1,35 @@
 /**
- * GLITCH FEMINIST DESIGN SYSTEM
+ * STUDIO DESIGN SYSTEM
  *
  * Main entry point for the component library.
+ * Unified design system for creative practice - glitch + analog aesthetics.
  *
  * Usage:
- * import 'glitch-feminist-design-system';
+ * import '@studio/design-system';
  *
- * Or import specific components:
- * import 'glitch-feminist-design-system/dist/components/core/glitch-text.js';
+ * Or import from specific submodules:
+ * import { GlitchText } from '@studio/design-system/glitch';
+ * import { HydraCanvas } from '@studio/design-system/audio';
  */
 
-// Export core components
-export { GlitchText } from './components/core/glitch-text.js';
-export { GlitchBorder } from './components/core/glitch-border.js';
-export { DitheredGlitchGradient } from './components/core/dithered-glitch-gradient.js';
+// Re-export all glitch components
+export {
+  GlitchText,
+  GlitchBorder,
+  DitheredGlitchGradient,
+  HolographicUI,
+  DitherCorruption,
+  DashTrail,
+  GlitchBase,
+} from './glitch/index.js';
 
-// Export composite components
-export { HolographicUI } from './components/composite/holographic-ui.js';
-export { DitherCorruption } from './components/composite/dither-corruption.js';
-export { DashTrail } from './components/composite/dash-trail.js';
-
-// Export audio/visualization components
-export { VisualizationCanvas } from './components/audio/visualization-canvas.js';
-export { HydraCanvas } from './components/audio/hydra-canvas.js';
-export { StrudelBridge, createStrudelBridge } from './components/audio/strudel-bridge.js';
+// Re-export all audio/visualization components
+export {
+  VisualizationCanvas,
+  HydraCanvas,
+  StrudelBridge,
+  createStrudelBridge,
+} from './audio/index.js';
 
 // Re-export audio types
 export type {
@@ -34,9 +40,12 @@ export type {
   VisualizationState,
   StrudelBridgeConfig,
   VisualizationConfig,
-} from './components/audio/types.js';
+} from './audio/types.js';
 
 export {
   STRUDEL_EVENTS,
   VISUALIZATION_COLORS,
-} from './components/audio/types.js';
+} from './audio/types.js';
+
+// Analog components will be added as they're built
+// export { FretboardDiagram } from './analog/index.js';

@@ -9,7 +9,7 @@
  *   VisualizationCanvas,
  *   StrudelBridge,
  *   createStrudelBridge,
- * } from '@glitch/design-system/audio';
+ * } from '@studio/design-system/audio';
  *
  * // Components auto-register as custom elements
  * // <visualization-canvas></visualization-canvas>

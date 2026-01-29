@@ -1,6 +1,6 @@
 import { html, css, PropertyValues } from 'lit';
 import { customElement, property, state, query } from 'lit/decorators.js';
-import { GlitchBase } from '../base/glitch-base.js';
+import { GlitchBase } from '../glitch/glitch-base.js';
 import {
   type Hap,
   type AudioAnalysis,

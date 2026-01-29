@@ -1,7 +1,7 @@
 {
-  "name": "@glitch/design-system",
+  "name": "@studio/design-system",
   "version": "0.1.0",
-  "description": "Web components grounded in feminist theory",
+  "description": "Web components for creative practice - grounded in feminist theory",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -11,45 +11,29 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./glitch-text": {
-      "types": "./dist/components/core/glitch-text.d.ts",
-      "import": "./dist/components/core/glitch-text.js"
-    },
-    "./glitch-border": {
-      "types": "./dist/components/core/glitch-border.d.ts",
-      "import": "./dist/components/core/glitch-border.js"
-    },
-    "./dithered-glitch-gradient": {
-      "types": "./dist/components/core/dithered-glitch-gradient.d.ts",
-      "import": "./dist/components/core/dithered-glitch-gradient.js"
-    },
-    "./holographic-ui": {
-      "types": "./dist/components/composite/holographic-ui.d.ts",
-      "import": "./dist/components/composite/holographic-ui.js"
-    },
-    "./dither-corruption": {
-      "types": "./dist/components/composite/dither-corruption.d.ts",
-      "import": "./dist/components/composite/dither-corruption.js"
-    },
-    "./dash-trail": {
-      "types": "./dist/components/composite/dash-trail.d.ts",
-      "import": "./dist/components/composite/dash-trail.js"
-    },
-    "./visualization-canvas": {
-      "types": "./dist/components/audio/visualization-canvas.d.ts",
-      "import": "./dist/components/audio/visualization-canvas.js"
-    },
-    "./strudel-bridge": {
-      "types": "./dist/components/audio/strudel-bridge.d.ts",
-      "import": "./dist/components/audio/strudel-bridge.js"
+    "./glitch": {
+      "types": "./dist/glitch/index.d.ts",
+      "import": "./dist/glitch/index.js"
     },
     "./audio": {
-      "types": "./dist/components/audio/index.d.ts",
-      "import": "./dist/components/audio/index.js"
+      "types": "./dist/audio/index.d.ts",
+      "import": "./dist/audio/index.js"
     },
-    "./components/*": {
-      "types": "./dist/components/*.d.ts",
-      "import": "./dist/components/*.js"
+    "./analog": {
+      "types": "./dist/analog/index.d.ts",
+      "import": "./dist/analog/index.js"
+    },
+    "./glitch/*": {
+      "types": "./dist/glitch/*.d.ts",
+      "import": "./dist/glitch/*.js"
+    },
+    "./audio/*": {
+      "types": "./dist/audio/*.d.ts",
+      "import": "./dist/audio/*.js"
+    },
+    "./analog/*": {
+      "types": "./dist/analog/*.d.ts",
+      "import": "./dist/analog/*.js"
     }
   },
   "sideEffects": [
@@ -90,7 +74,7 @@
     "vite": "^5.0.11"
   },
   "dependencies": {
-    "@glitch/tokens": "workspace:*",
+    "@studio/tokens": "workspace:*",
     "hydra-synth": "^1.4.0",
     "lit": "^3.1.0"
   },
