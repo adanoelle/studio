@@ -1,155 +1,141 @@
 # @studio/design-system
 
-Web components grounded in feminist theory. Part of the Glitch monorepo.
+Web components grounded in feminist theory.
+
+Each component embodies concepts from Legacy Russell's glitch feminism: the glitch as
+refusal, error as liberation, identity as multiple and unstable. Text that scrambles
+refuses singular meaning. Borders that break refuse containment.
+
+---
 
 ## Installation
 
-```bash
+```
 pnpm add @studio/design-system
 ```
 
+---
+
 ## Usage
 
-### Import All Components
+Import from submodules:
+
+```typescript
+// Glitch components
+import { GlitchText, GlitchBorder } from '@studio/design-system/glitch';
+
+// Audio/visualization
+import { HydraCanvas, StrudelBridge } from '@studio/design-system/audio';
+
+// Analog components (planned)
+import { FretboardDiagram } from '@studio/design-system/analog';
+```
+
+Or import everything:
 
 ```typescript
 import '@studio/design-system';
 ```
 
-### Import Individual Components
-
-```typescript
-// Core components
-import '@studio/design-system/glitch-text';
-import '@studio/design-system/glitch-border';
-import '@studio/design-system/dithered-glitch-gradient';
-
-// Composite components
-import '@studio/design-system/holographic-ui';
-import '@studio/design-system/dither-corruption';
-import '@studio/design-system/dash-trail';
-```
+---
 
 ## Components
 
-### Core Components
+### Glitch
 
-#### `<glitch-text>`
-
-Text with glitch effects on hover and idle.
+**glitch-text** — Text with chromatic aberration on hover, rare idle glitches
 
 ```html
-<glitch-text
-  text="Hello World"
-  intensity="0.3"
-  idle-glitch
-></glitch-text>
+<glitch-text text="Principal Engineer" intensity="0.3"></glitch-text>
 ```
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `text` | `string` | `''` | The text to display |
-| `intensity` | `number` | `0.3` | Glitch effect intensity (0-1) |
-| `idle-glitch` | `boolean` | `true` | Enable random idle glitches |
-
-#### `<glitch-border>`
-
-Container with glitching border effects.
+**glitch-border** — Container with borders that shift, gap, or pixelate on
+interaction
 
 ```html
-<glitch-border world="overworld" break-pattern="shift">
-  <div>Content here</div>
+<glitch-border break-pattern="shift">
+  <p>Content refuses containment</p>
 </glitch-border>
 ```
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `world` | `'overworld' \| 'underworld'` | `'overworld'` | Visual world context |
-| `break-pattern` | `'shift' \| 'gap' \| 'pixel'` | `'shift'` | Border break style |
+**dithered-glitch-gradient** — PC-98 style dithering with glitch corruption
 
-#### `<dithered-glitch-gradient>`
+**holographic-ui** — Hyper Light Drifter-inspired translucent panels
 
-PC-98 style dithered gradient with glitch effects.
+**dither-corruption** — Dither patterns that degrade and reform
 
-```html
-<dithered-glitch-gradient
-  pattern="bayer"
-  density="0.5"
-></dithered-glitch-gradient>
-```
+**dash-trail** — Movement traces with chromatic separation
 
-### Composite Components
+### Audio
 
-#### `<holographic-ui>`
+**hydra-canvas** — Live-coding visuals via Hydra Synth
 
-Holographic UI panel inspired by Hyper Light Drifter.
+**visualization-canvas** — Audio-reactive background rendering
 
-```html
-<holographic-ui variant="panel">
-  <p>Holographic content</p>
-</holographic-ui>
-```
+**strudel-bridge** — Service connecting Strudel patterns to visualizations
 
-#### `<dither-corruption>`
+### Analog
 
-Dither pattern with corruption effects.
+Components for the music journal. Planned:
 
-#### `<dash-trail>`
+- fretboard-diagram
+- practice-entry
+- audio-player
+- strudel-embed
 
-Movement trail effect with chromatic aberration.
+---
 
-## Design Tokens
+## Tokens
 
-Components use CSS custom properties from `@studio/tokens`. Include the tokens CSS:
-
-```html
-<link rel="stylesheet" href="@studio/tokens/tokens.css">
-```
-
-Or import in your CSS:
+Components require design tokens. Import base plus your palette:
 
 ```css
-@import '@studio/tokens/tokens.css';
+@import '@studio/tokens/base.css';
+@import '@studio/tokens/glitch.css';
 ```
+
+Or for the analog aesthetic:
+
+```css
+@import '@studio/tokens/base.css';
+@import '@studio/tokens/analog.css';
+```
+
+---
 
 ## Accessibility
 
 All components:
 
-- Respect `prefers-reduced-motion` (disables idle glitches, simplifies animations)
-- Meet WCAG AA color contrast requirements
+- Respect `prefers-reduced-motion` — idle glitches disabled, animations simplified
+- Meet WCAG AA contrast requirements
 - Support keyboard navigation
-- Include appropriate ARIA attributes
+- Include ARIA attributes where appropriate
+
+---
 
 ## Performance
 
-Components are optimized for performance:
-
-- Use `IntersectionObserver` to pause animations when off-screen
+- IntersectionObserver pauses off-screen animations
 - GPU-accelerated transforms only
-- Throttled animation loops
+- Throttled animation loops (20fps for glitch effects)
 - Mobile-specific simplifications
 
-## Theoretical Grounding
+---
 
-Each component embodies concepts from feminist theory:
+## Theoretical Framework
 
-- **Glitch as refusal** (Legacy Russell): Errors are intentional acts of resistance
-- **Worldtraveling** (Maria Lugones): Moving between different identity contexts
-- **Cyborg identity** (Donna Haraway): Hybrid human-machine existence
+See `docs/glitch/THEORETICAL-FRAMEWORK.md` for the philosophical grounding, and
+`docs/glitch/COMPONENT-API.md` for detailed component documentation.
 
-See the [Theoretical Framework](../../docs/THEORETICAL-FRAMEWORK.md) for details.
+---
 
 ## Development
 
-```bash
-# From repo root
-just dev-design-system
-
-# Or from this directory
-just dev
+```
+pnpm dev
 ```
 
-## License
+---
 
 MIT

@@ -6,6 +6,7 @@ agents) working on this design system.
 ## Quick Start for AI Agents
 
 1. **Read these files first** (in order):
+
    - `docs/glitch/DESIGN-SUMMARY.md` - Primary source of truth for glitch aesthetic
    - `docs/glitch/THEORETICAL-FRAMEWORK.md` - Learn the feminist theory
    - `docs/glitch/DESIGN-SYSTEM.md` - Visual language specification
@@ -13,12 +14,15 @@ agents) working on this design system.
    - `docs/analog/` - Music journal design specs
 
 2. **Understand the core principle**:
+
    - This is NOT just a design system
    - It's a **visual argument** about identity, multiplicity, and resistance
    - Every design choice must map to feminist theory
 
 3. **Follow existing patterns**:
-   - Look at `packages/design-system/src/glitch/glitch-text.ts` as the reference implementation
+
+   - Look at `packages/design-system/src/glitch/glitch-text.ts` as the reference
+     implementation
    - All components follow the same structure
 
 4. **Two aesthetics, one philosophy**:
@@ -32,6 +36,7 @@ agents) working on this design system.
 ### Step-by-Step Process
 
 1. **Identify the theoretical grounding**
+
    - What concept from Russell/Lugones/Haraway does this embody?
    - How does it visually represent that concept?
    - Document this in code comments
@@ -39,8 +44,8 @@ agents) working on this design system.
 2. **Start from the template**:
 
 ```typescript
-import { LitElement, html, css } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { LitElement, html, css } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 
 /**
  * COMPONENT-NAME COMPONENT
@@ -51,7 +56,7 @@ import { customElement, property, state } from "lit/decorators.js";
  * VISUAL METAPHOR:
  * [Explain the visual design choices]
  */
-@customElement("component-name")
+@customElement('component-name')
 export class ComponentName extends LitElement {
   // Properties (public API)
   @property({ type: Number })
@@ -101,6 +106,7 @@ export class ComponentName extends LitElement {
 ```
 
 3. **Design for warm palette**:
+
    - Use the Farrow & Ball warm tones for base styling
    - Glitch effects (magenta/cyan) at boundary and on interaction
    - Content area stays readable and calm
@@ -146,19 +152,21 @@ export class ComponentName extends LitElement {
 When creating new files, follow this structure:
 
 ```
-src/components/
-├── core/              # Atomic components
-│   └── component.ts   # Single-purpose, highly reusable
-├── composite/         # Molecular components
-│   └── component.ts   # Combined functionality
-└── layout/            # Organism components
-    └── component.ts   # Page structure
+packages/design-system/src/
+├── glitch/            # Glitch aesthetic components
+│   └── component.ts   # glitch-text, glitch-border, etc.
+├── audio/             # Audio/visualization components
+│   └── component.ts   # hydra-canvas, strudel-bridge, etc.
+└── analog/            # Analog aesthetic components
+    └── component.ts   # fretboard-diagram, practice-entry, etc.
 
 docs/
-├── DESIGN-SUMMARY.md  # Source of truth
-├── COMPONENT-API.md   # API reference
-├── DESIGN-SYSTEM.md   # Tokens & visual language
-├── THEORETICAL-FRAMEWORK.md
+├── glitch/            # Glitch aesthetic documentation
+│   ├── DESIGN-SUMMARY.md
+│   ├── COMPONENT-API.md
+│   ├── DESIGN-SYSTEM.md
+│   └── THEORETICAL-FRAMEWORK.md
+├── analog/            # Music journal documentation
 └── archive/           # Deferred features (don't read unless needed)
 ```
 
@@ -208,7 +216,7 @@ private updateGlitch() {
 ### Glitch Text with Idle Animation
 
 ```typescript
-@customElement("glitch-text")
+@customElement('glitch-text')
 export class GlitchText extends LitElement {
   @property({ type: String }) text = '';
   @property({ type: Number }) intensity = 0.3;
@@ -338,12 +346,14 @@ private handleKeyboard(e: KeyboardEvent) {
 Every component must have:
 
 1. **Unit tests**:
+
    - Renders correctly
    - Props work
    - Methods work
    - Events fire
 
 2. **Accessibility tests**:
+
    - Keyboard navigation
    - Screen reader compatibility
    - Reduced motion respected
@@ -454,7 +464,7 @@ if (import.meta.env.DEV) {
 
   if (duration > 16.67) {
     // Exceeds 60fps budget
-    console.warn("Performance issue:", duration, "ms");
+    console.warn('Performance issue:', duration, 'ms');
   }
 }
 ```
@@ -505,14 +515,15 @@ Before committing new components:
 
 ### Code References
 
-- `glitch-text.ts` - Reference implementation
-- `glitch-border.ts` - Border patterns
-- `tokens.css` - Design tokens
+- `src/glitch/glitch-text.ts` - Reference implementation
+- `src/glitch/glitch-border.ts` - Border patterns
+- `@studio/tokens` - Design tokens (base.css + glitch.css or analog.css)
 
 ### Documentation
 
-- `docs/DESIGN-SUMMARY.md` - Current design direction
-- `docs/COMPONENT-API.md` - Component APIs
+- `docs/glitch/DESIGN-SUMMARY.md` - Current design direction
+- `docs/glitch/COMPONENT-API.md` - Component APIs
+- `docs/analog/` - Music journal documentation
 - `docs/archive/` - Deferred features (world-switching, guide character)
 
 ### Theory References

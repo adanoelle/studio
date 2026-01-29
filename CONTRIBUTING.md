@@ -35,7 +35,7 @@ studio/
 │   ├── design-system/    # Web components (Lit)
 │   └── tokens/           # Design tokens
 ├── services/             # Rust Lambda functions
-│   ├── shared/glitch-core/
+│   ├── shared/studio-core/
 │   └── lambdas/
 └── docs/                 # Documentation
     ├── glitch/           # Theoretical framework
@@ -84,7 +84,7 @@ just build-rust
 
 - Run `cargo clippy` before committing
 - No `unwrap()` or `expect()` in production code (use proper error handling)
-- Follow the error types defined in `glitch-core`
+- Follow the error types defined in `studio-core`
 
 ### Formatting
 
@@ -107,6 +107,7 @@ type(scope): description
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation only
@@ -117,6 +118,7 @@ Types:
 - `chore`: Build process or auxiliary tool changes
 
 Examples:
+
 ```
 feat(design-system): add glitch-button component
 fix(tokens): correct warm palette contrast ratios
@@ -141,7 +143,8 @@ docs: update component API reference
 
 ## For AI Agents
 
-If you're a Claude Code agent working on this codebase, see [CLAUDE.md](CLAUDE.md) for detailed instructions including:
+If you're a Claude Code agent working on this codebase, see [CLAUDE.md](CLAUDE.md)
+for detailed instructions including:
 
 - Theoretical grounding requirements
 - Component patterns and templates
@@ -166,4 +169,5 @@ If you can't explain how a design decision embodies the theory, reconsider it.
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the MIT License.
+By contributing, you agree that your contributions will be licensed under the MIT
+License.

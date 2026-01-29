@@ -1,43 +1,97 @@
 # Studio
 
-**Collection**: Design systems · Creative practice · Music journal<br>
-**Format**: Web components (Lit) · Design tokens · Rust Lambda<br>
-**Foundations**: Russell (2020) · Lugones (1987) · Haraway (1985)
+A design system for creative practice, grounded in feminist theory.
+
+Two aesthetics from one philosophical foundation: glitch and analog. Both explore
+refusal, multiplicity, and boundaries as permeable membranes rather than walls.
 
 ---
 
-A unified design system for creative practice. Two aesthetics—glitch + analog—from the same philosophical foundation: refusal, multiplicity, boundaries as permeable.
+## Foundations
 
-Visual language draws from Hyper Light Drifter's chromatic aberration, PC-98 dithering, and Farrow & Ball's warm palette.
+This work draws from:
 
-```
-┌────────────────────────────────────────────────────────────────────┐
-│                                                                    │
-│  Components ─────────────────── packages/design-system/            │
-│    └── glitch/                 Glitch text, borders, dithering     │
-│    └── audio/                  Hydra/Strudel visualization         │
-│    └── analog/                 Fretboard, practice entries         │
-│                                                                    │
-│  Tokens ─────────────────────── packages/tokens/                   │
-│    └── base.css                Spacing, typography, animation      │
-│    └── glitch.css              Warm F&B + chromatic aberration     │
-│    └── analog.css              Grayscale + rose/teal               │
-│                                                                    │
-│  Apps ───────────────────────── apps/                              │
-│    └── website/                Personal site (glitch aesthetic)    │
-│    └── journal/                Music journal (analog aesthetic)    │
-│                                                                    │
-│  Docs ───────────────────────── docs/                              │
-│    └── glitch/                 Theoretical framework, component API│
-│    └── analog/                 Journal format, study plan          │
-│                                                                    │
-│  Services ───────────────────── services/                          │
-│                                                                    │
-└────────────────────────────────────────────────────────────────────┘
-```
+- Legacy Russell, _Glitch Feminism_ (2020) — error as liberation, refusal of
+  categorization
+- Maria Lugones, "Worldtraveling" (1987) — moving between contexts, plural identity
+- Donna Haraway, "A Cyborg Manifesto" (1985) — hybrid existence, boundary dissolution
+
+Visual language references Hyper Light Drifter's chromatic aberration, PC-98
+dithering constraints, and Farrow & Ball's warm material palette.
+
+---
+
+## Structure
 
 ```
-just setup && just dev
+packages/
+  design-system/         Web components (Lit)
+    src/glitch/          Glitch text, borders, dithering
+    src/audio/           Hydra canvas, Strudel bridge
+    src/analog/          Journal components (planned)
+
+  tokens/                CSS custom properties
+    src/base.css         Spacing, typography, timing
+    src/glitch.css       Warm palette + chromatic aberration
+    src/analog.css       Grayscale + rose/teal
+
+apps/
+  website/               Personal site — glitch aesthetic
+  journal/               Music practice journal — analog aesthetic
+
+services/                Rust Lambda functions
+
+docs/
+  glitch/                Theoretical framework, component API
+  analog/                Journal format, study plan
 ```
 
-*Built with theory by Ada*
+---
+
+## Commands
+
+This repository uses [just](https://github.com/casey/just) as a unified command
+interface. All commands work from the repository root.
+
+```
+just doctor     Check your environment has required tools
+just setup      Install all dependencies
+just dev        Start development servers
+just build      Build everything for production
+just check      Run all quality checks (typecheck, lint, test)
+just ci         Simulate the full CI pipeline locally
+```
+
+Every package uses consistent verbs: `dev`, `build`, `test`, `lint`, `typecheck`,
+`fmt`, `clean`. Run them from root or within a package directory.
+
+Target specific packages:
+
+```
+just dev-website              Start only the website
+just dev-design-system        Start only the design system
+just apps::journal::dev       Start the journal app
+just pkg design-system test   Run tests for design-system
+```
+
+---
+
+## Development
+
+```
+just setup
+just dev
+```
+
+Website runs on port 3000, journal on 3001.
+
+---
+
+## Documentation
+
+Start with `docs/glitch/DESIGN-SUMMARY.md` for the current design direction, then
+`THEORETICAL-FRAMEWORK.md` for the philosophical grounding.
+
+---
+
+_Built with care by Ada_

@@ -1,134 +1,117 @@
 # @studio/tokens
 
-Design tokens for the Glitch design system, delivered as CSS custom properties.
+Design tokens as CSS custom properties. Three files, two palettes.
+
+---
 
 ## Installation
 
-```bash
+```
 pnpm add @studio/tokens
 ```
 
+---
+
 ## Usage
 
-### In HTML
-
-```html
-<link rel="stylesheet" href="node_modules/@studio/tokens/dist/tokens.css">
-```
-
-### In CSS
+Import base tokens plus your palette:
 
 ```css
-@import '@studio/tokens/tokens.css';
+/* For glitch aesthetic (website) */
+@import '@studio/tokens/base.css';
+@import '@studio/tokens/glitch.css';
 
-.my-element {
-  background: var(--color-warm-cream);
-  color: var(--color-warm-text);
-  font-family: var(--font-mono);
+/* For analog aesthetic (journal) */
+@import '@studio/tokens/base.css';
+@import '@studio/tokens/analog.css';
+```
+
+Then use the properties:
+
+```css
+.element {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: var(--space-4);
+  font-family: var(--font-primary);
 }
 ```
 
-### In JavaScript/TypeScript
+---
 
-```typescript
-import '@studio/tokens/tokens.css';
-```
+## Files
 
-## Token Categories
+### base.css
 
-### Colors
-
-#### Warm Palette (Underworld)
+Shared foundation. Spacing, typography scale, z-index layers, animation timing.
 
 ```css
---color-warm-cream      /* Background base */
---color-warm-paper      /* Slightly darker background */
---color-warm-terracotta /* Accent color */
---color-warm-text       /* Primary text */
---color-warm-muted      /* Secondary text */
+/* Spacing */
+--space-1 through --space-24
+
+/* Typography */
+--text-xs through --text-4xl
+--font-primary, --font-mono
+--leading-tight, --leading-relaxed
+
+/* Animation */
+--duration-fast, --duration-normal, --duration-slow
+
+/* Borders */
+--border-thin, --border-normal, --border-thick
 ```
 
-#### Cool Palette (Overworld)
+### glitch.css
+
+Warm Farrow & Ball palette with chromatic aberration accents.
 
 ```css
---color-cool-bg         /* Background base */
---color-cool-surface    /* Card/panel backgrounds */
---color-cool-border     /* Borders */
---color-cool-text       /* Primary text */
---color-cool-muted      /* Secondary text */
+/* Backgrounds */
+--bg-primary          /* Warm dark */
+--bg-secondary        /* Slightly lighter */
+
+/* Text */
+--text-primary        /* High contrast cream */
+--text-secondary      /* Muted */
+--text-tertiary       /* Subtle */
+
+/* Glitch colors */
+--glitch-magenta      /* Chromatic shift */
+--glitch-cyan         /* Chromatic shift */
+--glitch-pink         /* Accent */
 ```
 
-#### Glitch Colors
+### analog.css
+
+Grayscale foundation with rose and teal accents. Quieter, more archival.
 
 ```css
---color-glitch-magenta  /* Chromatic aberration */
---color-glitch-cyan     /* Chromatic aberration */
---color-glitch-error    /* Error states */
+/* Backgrounds */
+--bg-primary          /* Near black */
+--bg-secondary        /* Dark gray */
+
+/* Text */
+--text-primary        /* Off-white */
+--text-secondary      /* Gray */
+--text-tertiary       /* Muted gray */
+
+/* Accent */
+--accent              /* Dusty rose */
+--accent-secondary    /* Muted teal */
 ```
 
-### Typography
+---
 
-```css
---font-mono             /* Monospace/code font */
---font-body             /* Body text font */
---font-display          /* Headings/display font */
+## Semantic naming
 
---font-size-xs          /* 0.75rem */
---font-size-sm          /* 0.875rem */
---font-size-base        /* 1rem */
---font-size-lg          /* 1.125rem */
---font-size-xl          /* 1.25rem */
---font-size-2xl         /* 1.5rem */
---font-size-3xl         /* 1.875rem */
-```
+Both palettes define the same semantic properties (`--bg-primary`, `--text-primary`,
+`--accent`), so components work with either aesthetic without modification.
 
-### Spacing
+---
 
-```css
---space-1               /* 0.25rem */
---space-2               /* 0.5rem */
---space-3               /* 0.75rem */
---space-4               /* 1rem */
---space-6               /* 1.5rem */
---space-8               /* 2rem */
---space-12              /* 3rem */
---space-16              /* 4rem */
-```
+## Reduced motion
 
-### Animation
-
-```css
---duration-fast         /* 100ms */
---duration-normal       /* 200ms */
---duration-slow         /* 400ms */
---ease-out              /* Deceleration curve */
---ease-in-out           /* Symmetric curve */
-```
-
-### Borders
-
-```css
---radius-sm             /* Small border radius */
---radius-md             /* Medium border radius */
---radius-lg             /* Large border radius */
---border-width          /* Standard border width */
-```
-
-## World-Specific Tokens
-
-The design system supports two "worlds" with distinct visual languages:
-
-### Overworld (Professional/Public)
-
-Cool, precise, formal aesthetic. Use `--color-cool-*` tokens.
-
-### Underworld (Personal/Authentic)
-
-Warm, organic, intimate aesthetic. Use `--color-warm-*` tokens.
-
-## Reduced Motion
-
-Tokens respect `prefers-reduced-motion`:
+Animation durations respect user preferences:
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -140,16 +123,6 @@ Tokens respect `prefers-reduced-motion`:
 }
 ```
 
-## Development
-
-```bash
-# From repo root
-just packages::tokens::build
-
-# Or from this directory
-just build
-```
-
-## License
+---
 
 MIT
