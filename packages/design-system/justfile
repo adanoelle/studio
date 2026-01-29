@@ -1,5 +1,5 @@
 # ╔══════════════════════════════════════════════════════════════════════════════╗
-# ║                    @GLITCH/DESIGN-SYSTEM - JUSTFILE                          ║
+# ║                    @STUDIO/DESIGN-SYSTEM - JUSTFILE                          ║
 # ╠══════════════════════════════════════════════════════════════════════════════╣
 # ║                                                                              ║
 # ║  Web component library grounded in feminist theory.                          ║
@@ -39,7 +39,7 @@
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 # Package name for pnpm filter
-package := "@glitch/design-system"
+package := "@studio/design-system"
 
 # Default: show available commands
 default:

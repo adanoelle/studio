@@ -1,11 +1,11 @@
-# @glitch/design-system
+# @studio/design-system
 
 Web components grounded in feminist theory. Part of the Glitch monorepo.
 
 ## Installation
 
 ```bash
-pnpm add @glitch/design-system
+pnpm add @studio/design-system
 ```
 
 ## Usage
@@ -13,21 +13,21 @@ pnpm add @glitch/design-system
 ### Import All Components
 
 ```typescript
-import '@glitch/design-system';
+import '@studio/design-system';
 ```
 
 ### Import Individual Components
 
 ```typescript
 // Core components
-import '@glitch/design-system/glitch-text';
-import '@glitch/design-system/glitch-border';
-import '@glitch/design-system/dithered-glitch-gradient';
+import '@studio/design-system/glitch-text';
+import '@studio/design-system/glitch-border';
+import '@studio/design-system/dithered-glitch-gradient';
 
 // Composite components
-import '@glitch/design-system/holographic-ui';
-import '@glitch/design-system/dither-corruption';
-import '@glitch/design-system/dash-trail';
+import '@studio/design-system/holographic-ui';
+import '@studio/design-system/dither-corruption';
+import '@studio/design-system/dash-trail';
 ```
 
 ## Components
@@ -100,16 +100,16 @@ Movement trail effect with chromatic aberration.
 
 ## Design Tokens
 
-Components use CSS custom properties from `@glitch/tokens`. Include the tokens CSS:
+Components use CSS custom properties from `@studio/tokens`. Include the tokens CSS:
 
 ```html
-<link rel="stylesheet" href="@glitch/tokens/tokens.css">
+<link rel="stylesheet" href="@studio/tokens/tokens.css">
 ```
 
 Or import in your CSS:
 
 ```css
-@import '@glitch/tokens/tokens.css';
+@import '@studio/tokens/tokens.css';
 ```
 
 ## Accessibility

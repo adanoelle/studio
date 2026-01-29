@@ -1,8 +1,8 @@
 # ╔══════════════════════════════════════════════════════════════════════════════╗
-# ║                       @GLITCH/TOKENS - JUSTFILE                              ║
+# ║                       @STUDIO/TOKENS - JUSTFILE                              ║
 # ╠══════════════════════════════════════════════════════════════════════════════╣
 # ║                                                                              ║
-# ║  Design tokens for the Glitch design system.                                 ║
+# ║  Design tokens for the Studio design system.                                 ║
 # ║                                                                              ║
 # ║  This package provides CSS custom properties (variables) that define the     ║
 # ║  visual language of the design system:                                       ║
@@ -17,18 +17,18 @@
 # ║  USAGE IN CONSUMING APPS                                                     ║
 # ║  ────────────────────────────────────────────────────────────────────────    ║
 # ║  Import all tokens:                                                          ║
-# ║    @import '@glitch/tokens';                                                 ║
+# ║    @import '@studio/tokens';                                                 ║
 # ║                                                                              ║
 # ║  Import specific token files:                                                ║
-# ║    @import '@glitch/tokens/tokens';                                          ║
-# ║    @import '@glitch/tokens/overworld';                                       ║
+# ║    @import '@studio/tokens/tokens';                                          ║
+# ║    @import '@studio/tokens/overworld';                                       ║
 # ║                                                                              ║
 # ║  NOTE: This package has no build step - CSS files are served directly.       ║
 # ║                                                                              ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 # Package name for pnpm filter
-package := "@glitch/tokens"
+package := "@studio/tokens"
 
 # Default: show available commands
 default:
@@ -41,7 +41,7 @@ default:
 # Build (no-op for CSS-only package)
 [doc("No build step needed - CSS files are served directly")]
 build:
-    @echo "ℹ️  @glitch/tokens has no build step (CSS files served directly)"
+    @echo "ℹ️  @studio/tokens has no build step (CSS files served directly)"
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # CLEANUP
@@ -50,4 +50,4 @@ build:
 # Clean (no-op for CSS-only package)
 [doc("No clean step needed - no build artifacts")]
 clean:
-    @echo "ℹ️  @glitch/tokens has no build artifacts to clean"
+    @echo "ℹ️  @studio/tokens has no build artifacts to clean"

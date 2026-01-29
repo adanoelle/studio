@@ -18,12 +18,37 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  apps/website:
+  apps/journal:
     dependencies:
-      '@glitch/design-system':
+      '@studio/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
-      '@glitch/tokens':
+      '@studio/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
+      lit:
+        specifier: ^3.1.0
+        version: 3.3.2
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.0.0
+        version: 9.39.2
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.2
+      typescript-eslint:
+        specifier: ^8.0.0
+        version: 8.54.0(eslint@9.39.2)(typescript@5.9.3)
+      vite:
+        specifier: ^5.0.11
+        version: 5.4.21(@types/node@25.0.10)
+
+  apps/website:
+    dependencies:
+      '@studio/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
+      '@studio/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
       lit:
@@ -45,7 +70,7 @@ importers:
 
   packages/design-system:
     dependencies:
-      '@glitch/tokens':
+      '@studio/tokens':
         specifier: workspace:*
         version: link:../tokens
       hydra-synth:

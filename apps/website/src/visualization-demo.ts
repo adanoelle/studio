@@ -7,14 +7,14 @@
  */
 
 // Import design system components
-import '@glitch/design-system';
+import '@studio/design-system';
 
 import {
   type Hap,
   type FrequencyBands,
   STRUDEL_EVENTS,
   HydraCanvas,
-} from '@glitch/design-system';
+} from '@studio/design-system';
 
 // ============================================
 // SIMPLE SYNTH (Web Audio)

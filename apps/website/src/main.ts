@@ -5,7 +5,7 @@
  */
 
 // Import all design system components - this registers the custom elements
-import '@glitch/design-system';
+import '@studio/design-system';
 
 // Any website-specific code can go here
-console.log('Glitch website loaded');
+console.log('Studio website loaded');

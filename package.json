@@ -1,8 +1,8 @@
 {
-  "name": "glitch-monorepo",
+  "name": "studio",
   "private": true,
   "type": "module",
-  "description": "Glitch design system monorepo - web components grounded in feminist theory",
+  "description": "Studio monorepo - unified design system for creative practice",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -19,7 +19,8 @@
     "design-system",
     "feminist-theory",
     "glitch-feminism",
-    "monorepo"
+    "monorepo",
+    "music-journal"
   ],
   "author": "Ada",
   "license": "MIT",
@@ -31,10 +32,10 @@
   "packageManager": "pnpm@9.15.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ada/glitch"
+    "url": "https://github.com/ada/studio"
   },
   "bugs": {
-    "url": "https://github.com/ada/glitch/issues"
+    "url": "https://github.com/ada/studio/issues"
   },
-  "homepage": "https://github.com/ada/glitch#readme"
+  "homepage": "https://github.com/ada/studio#readme"
 }

@@ -1,8 +1,8 @@
 # ╔══════════════════════════════════════════════════════════════════════════════╗
-# ║                        GLITCH MONOREPO - ROOT JUSTFILE                       ║
+# ║                        STUDIO MONOREPO - ROOT JUSTFILE                       ║
 # ╠══════════════════════════════════════════════════════════════════════════════╣
 # ║                                                                              ║
-# ║  This is the SINGLE ENTRY POINT for all development tasks in the Glitch     ║
+# ║  This is the SINGLE ENTRY POINT for all development tasks in the Studio     ║
 # ║  monorepo. Use `just <command>` rather than invoking tools directly.         ║
 # ║                                                                              ║
 # ║  ARCHITECTURE                                                                ║
@@ -298,17 +298,17 @@ reset: clean
 # Run a command in a specific TypeScript package
 [doc("Run a pnpm command in a specific package (e.g., just pkg design-system add lodash)")]
 pkg package *args:
-    pnpm --filter @glitch/{{package}} {{args}}
+    pnpm --filter @studio/{{package}} {{args}}
 
 # Add a dependency to a package
 [doc("Add a dependency to a package (e.g., just add website lodash)")]
 add package dep:
-    pnpm --filter @glitch/{{package}} add {{dep}}
+    pnpm --filter @studio/{{package}} add {{dep}}
 
 # Add a dev dependency to a package
 [doc("Add a dev dependency to a package")]
 add-dev package dep:
-    pnpm --filter @glitch/{{package}} add -D {{dep}}
+    pnpm --filter @studio/{{package}} add -D {{dep}}
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # CI/CD

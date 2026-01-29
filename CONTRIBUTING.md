@@ -1,6 +1,6 @@
-# Contributing to Glitch
+# Contributing to Studio
 
-Thank you for your interest in contributing to the Glitch Feminist Design System.
+Thank you for your interest in contributing to the Studio design system.
 
 ## Development Setup
 
@@ -27,8 +27,10 @@ just dev
 ## Project Structure
 
 ```
-glitch/
-├── apps/website/         # Main website (TypeScript/Vite)
+studio/
+├── apps/
+│   ├── website/          # Personal website (glitch aesthetic)
+│   └── journal/          # Learning journal (analog aesthetic)
 ├── packages/
 │   ├── design-system/    # Web components (Lit)
 │   └── tokens/           # Design tokens
@@ -36,6 +38,8 @@ glitch/
 │   ├── shared/glitch-core/
 │   └── lambdas/
 └── docs/                 # Documentation
+    ├── glitch/           # Theoretical framework
+    └── analog/           # Journal format, study plan
 ```
 
 ## Development Workflow
@@ -74,7 +78,7 @@ just build-rust
 - Follow existing component patterns (see `glitch-text.ts` as reference)
 - Document theoretical grounding in component JSDoc
 - Include accessibility features (keyboard nav, ARIA, reduced motion)
-- Use CSS custom properties from `@glitch/tokens`
+- Use CSS custom properties from `@studio/tokens`
 
 ### Rust
 

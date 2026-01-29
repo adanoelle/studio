@@ -6,10 +6,11 @@ agents) working on this design system.
 ## Quick Start for AI Agents
 
 1. **Read these files first** (in order):
-   - `docs/DESIGN-SUMMARY.md` - Primary source of truth for current design direction
-   - `docs/THEORETICAL-FRAMEWORK.md` - Learn the feminist theory
-   - `docs/DESIGN-SYSTEM.md` - Visual language specification
-   - `docs/COMPONENT-API.md` - Component reference
+   - `docs/glitch/DESIGN-SUMMARY.md` - Primary source of truth for glitch aesthetic
+   - `docs/glitch/THEORETICAL-FRAMEWORK.md` - Learn the feminist theory
+   - `docs/glitch/DESIGN-SYSTEM.md` - Visual language specification
+   - `docs/glitch/COMPONENT-API.md` - Component reference
+   - `docs/analog/` - Music journal design specs
 
 2. **Understand the core principle**:
    - This is NOT just a design system
@@ -17,13 +18,14 @@ agents) working on this design system.
    - Every design choice must map to feminist theory
 
 3. **Follow existing patterns**:
-   - Look at `src/components/core/glitch-text.ts` as the reference implementation
+   - Look at `packages/design-system/src/glitch/glitch-text.ts` as the reference implementation
    - All components follow the same structure
 
-4. **Know what's deferred**:
-   - World-switching (overworld/underworld) is in `docs/archive/`
-   - Guide character sprite is in `docs/archive/`
-   - Focus on the single warm palette with glitch effects at the boundary
+4. **Two aesthetics, one philosophy**:
+   - **Glitch** (`src/glitch/`): Warm F&B palette + chromatic aberration for website
+   - **Analog** (`src/analog/`): Grayscale + rose/teal for music journal
+   - Audio/visualization components (`src/audio/`) work with both
+   - Focus on warm palettes with glitch effects at boundaries
 
 ## Creating New Components
 

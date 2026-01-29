@@ -1,12 +1,12 @@
 # ╔══════════════════════════════════════════════════════════════════════════════╗
-# ║                      @GLITCH/WEBSITE - JUSTFILE                              ║
+# ║                      @STUDIO/WEBSITE - JUSTFILE                              ║
 # ╠══════════════════════════════════════════════════════════════════════════════╣
 # ║                                                                              ║
-# ║  Personal website built with the Glitch design system.                       ║
+# ║  Personal website built with the Studio design system.                       ║
 # ║                                                                              ║
 # ║  This is a Vite-powered TypeScript application that consumes:                ║
-# ║    • @glitch/design-system  - Lit web components                             ║
-# ║    • @glitch/tokens         - CSS custom properties                          ║
+# ║    • @studio/design-system  - Lit web components                             ║
+# ║    • @studio/tokens         - CSS custom properties                          ║
 # ║                                                                              ║
 # ║  COMMON VERBS                                                                ║
 # ║  ────────────────────────────────────────────────────────────────────────    ║
@@ -27,13 +27,13 @@
 # ║                                                                              ║
 # ║  DEPENDENCIES                                                                ║
 # ║  ────────────────────────────────────────────────────────────────────────    ║
-# ║  Building this package requires @glitch/design-system to be built first.     ║
+# ║  Building this package requires @studio/design-system to be built first.     ║
 # ║  Turborepo handles this automatically when running from the root.            ║
 # ║                                                                              ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 # Package name for pnpm filter
-package := "@glitch/website"
+package := "@studio/website"
 
 # Default: show available commands
 default:

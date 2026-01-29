@@ -6,17 +6,20 @@
 # ║                                                                              ║
 # ║  APPLICATIONS                                                                ║
 # ║  ────────────────────────────────────────────────────────────────────────    ║
-# ║    website     Personal website built with the Glitch design system          ║
+# ║    website     Personal website (glitch aesthetic)                           ║
+# ║    journal     Music learning journal (analog aesthetic)                     ║
 # ║                                                                              ║
 # ║  USAGE                                                                       ║
 # ║  ────────────────────────────────────────────────────────────────────────    ║
 # ║  From the repository root:                                                   ║
-# ║    just apps::website::dev      Start website dev server                       ║
-# ║    just apps::website::build    Build website for production                   ║
+# ║    just apps::website::dev      Start website dev server                     ║
+# ║    just apps::journal::dev      Start journal dev server                     ║
 # ║                                                                              ║
 # ║  From this directory (apps/):                                                ║
-# ║    just website::dev           Start website dev server                       ║
+# ║    just website::dev            Start website dev server                     ║
+# ║    just journal::dev            Start journal dev server                     ║
 # ║                                                                              ║
 # ╚══════════════════════════════════════════════════════════════════════════════╝
 
 mod website
+mod journal

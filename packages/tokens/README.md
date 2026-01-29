@@ -1,11 +1,11 @@
-# @glitch/tokens
+# @studio/tokens
 
 Design tokens for the Glitch design system, delivered as CSS custom properties.
 
 ## Installation
 
 ```bash
-pnpm add @glitch/tokens
+pnpm add @studio/tokens
 ```
 
 ## Usage
@@ -13,13 +13,13 @@ pnpm add @glitch/tokens
 ### In HTML
 
 ```html
-<link rel="stylesheet" href="node_modules/@glitch/tokens/dist/tokens.css">
+<link rel="stylesheet" href="node_modules/@studio/tokens/dist/tokens.css">
 ```
 
 ### In CSS
 
 ```css
-@import '@glitch/tokens/tokens.css';
+@import '@studio/tokens/tokens.css';
 
 .my-element {
   background: var(--color-warm-cream);
@@ -31,7 +31,7 @@ pnpm add @glitch/tokens
 ### In JavaScript/TypeScript
 
 ```typescript
-import '@glitch/tokens/tokens.css';
+import '@studio/tokens/tokens.css';
 ```
 
 ## Token Categories

@@ -1,8 +1,8 @@
 {
-  "name": "@glitch/website",
+  "name": "@studio/website",
   "version": "0.1.0",
   "private": true,
-  "description": "Personal website built with the Glitch design system",
+  "description": "Personal website built with the Studio design system",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,8 +13,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@glitch/design-system": "workspace:*",
-    "@glitch/tokens": "workspace:*",
+    "@studio/design-system": "workspace:*",
+    "@studio/tokens": "workspace:*",
     "lit": "^3.1.0"
   },
   "devDependencies": {
