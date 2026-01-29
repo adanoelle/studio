@@ -35,19 +35,33 @@
       "types": "./dist/components/composite/dash-trail.d.ts",
       "import": "./dist/components/composite/dash-trail.js"
     },
+    "./visualization-canvas": {
+      "types": "./dist/components/audio/visualization-canvas.d.ts",
+      "import": "./dist/components/audio/visualization-canvas.js"
+    },
+    "./strudel-bridge": {
+      "types": "./dist/components/audio/strudel-bridge.d.ts",
+      "import": "./dist/components/audio/strudel-bridge.js"
+    },
+    "./audio": {
+      "types": "./dist/components/audio/index.d.ts",
+      "import": "./dist/components/audio/index.js"
+    },
     "./components/*": {
       "types": "./dist/components/*.d.ts",
       "import": "./dist/components/*.js"
     }
   },
-  "sideEffects": ["./dist/**/*.js"],
+  "sideEffects": [
+    "./dist/**/*.js"
+  ],
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && rm -f tsconfig.tsbuildinfo && tsc --emitDeclarationOnly",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "test": "web-test-runner \"src/**/*.test.ts\" --node-resolve",
@@ -77,6 +91,7 @@
   },
   "dependencies": {
     "@glitch/tokens": "workspace:*",
+    "hydra-synth": "^1.4.0",
     "lit": "^3.1.0"
   },
   "peerDependencies": {

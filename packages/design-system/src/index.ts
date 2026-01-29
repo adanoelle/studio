@@ -19,3 +19,24 @@ export { DitheredGlitchGradient } from './components/core/dithered-glitch-gradie
 export { HolographicUI } from './components/composite/holographic-ui.js';
 export { DitherCorruption } from './components/composite/dither-corruption.js';
 export { DashTrail } from './components/composite/dash-trail.js';
+
+// Export audio/visualization components
+export { VisualizationCanvas } from './components/audio/visualization-canvas.js';
+export { HydraCanvas } from './components/audio/hydra-canvas.js';
+export { StrudelBridge, createStrudelBridge } from './components/audio/strudel-bridge.js';
+
+// Re-export audio types
+export type {
+  Hap,
+  HapValue,
+  AudioAnalysis,
+  FrequencyBands,
+  VisualizationState,
+  StrudelBridgeConfig,
+  VisualizationConfig,
+} from './components/audio/types.js';
+
+export {
+  STRUDEL_EVENTS,
+  VISUALIZATION_COLORS,
+} from './components/audio/types.js';
