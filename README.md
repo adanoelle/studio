@@ -1,6 +1,9 @@
-# Studio
-
-A design system for creative practice, grounded in feminist theory.
+<table width="100%">
+<tr>
+<td><h1>Studio</h1></td>
+<td align="right"><sub>A design system for creative practice,<br>grounded in feminist theory.</sub></td>
+</tr>
+</table>
 
 Two aesthetics from one philosophical foundation: glitch and analog. Both explore
 refusal, multiplicity, and boundaries as permeable membranes rather than walls.
