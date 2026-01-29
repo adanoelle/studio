@@ -1,0 +1,85 @@
+/**
+ * GLITCH PALETTE
+ *
+ * Warm Farrow & Ball tones for content, chromatic glitch colors for effects.
+ * Use this palette for the personal website and glitch-heavy aesthetics.
+ *
+ * THEORETICAL GROUNDING:
+ * The warm palette creates home/intimacy, while glitch colors create
+ * digital disruption at boundaries. Content stays readable; borders glitch.
+ */
+
+:root {
+  /* ============================================ */
+  /* BASE PALETTE (Farrow & Ball Warm Tones) */
+  /* ============================================ */
+
+  --color-cream: #dfc8ba; /* Setting Plaster */
+  --color-dark: #3a3632; /* Paean Black */
+  --color-tan: #c9a88a; /* Jitney */
+  --color-pink: #a4656a; /* Sulking Room Pink */
+  --color-muted: #5a4a4a; /* Muted warm */
+
+  /* ============================================ */
+  /* SEMANTIC COLORS (Morning - lighter variant) */
+  /* ============================================ */
+
+  --bg-primary: var(--color-cream);
+  --bg-secondary: var(--color-tan);
+  --text-primary: var(--color-dark);
+  --text-secondary: var(--color-muted);
+  --text-tertiary: #8a7a7a;
+  --accent: var(--color-pink);
+  --border: var(--color-tan);
+
+  /* ============================================ */
+  /* GLITCH COLORS (Digital/Chromatic) */
+  /* ============================================ */
+
+  --glitch-magenta: #ff00ff; /* Cyberspace pink */
+  --glitch-cyan: #00ffff; /* Digital ghost */
+  --glitch-pink: #ff6b9d; /* Riot grrrl */
+  --glitch-lime: #b4ff9f; /* Toxic fem */
+  --glitch-violet: #9d00ff; /* Between pink/blue */
+
+  /* ============================================ */
+  /* BOUNDARY FRAME (HLD Void) */
+  /* ============================================ */
+
+  --boundary-dark: #1a0a2e; /* Deep purple void */
+  --boundary-mid: #3a1055; /* Mid purple */
+
+  /* ============================================ */
+  /* ALGORAVE / CODE */
+  /* ============================================ */
+
+  --code-green: #0f0; /* Terminal green */
+  --warning-yellow: #ffcc00; /* Alert */
+}
+
+/**
+ * BODY DEFAULTS FOR GLITCH THEME
+ */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/**
+ * EVENING VARIANT
+ * Darker, warmer palette (same home, different lighting)
+ */
+[data-theme='evening'],
+.theme-evening {
+  --bg-primary: var(--color-dark);
+  --bg-secondary: var(--color-muted);
+  --text-primary: var(--color-cream);
+  --text-secondary: var(--color-tan);
+  --accent: var(--color-tan);
+  --border: var(--color-muted);
+}

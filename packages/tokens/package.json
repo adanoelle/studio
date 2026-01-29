@@ -1,11 +1,14 @@
 {
-  "name": "@glitch/tokens",
+  "name": "@studio/tokens",
   "version": "0.1.0",
-  "description": "Design tokens for the Glitch design system",
+  "description": "Design tokens for the Studio design system",
   "type": "module",
   "main": "./src/index.css",
   "exports": {
     ".": "./src/index.css",
+    "./base": "./src/base.css",
+    "./glitch": "./src/glitch.css",
+    "./analog": "./src/analog.css",
     "./tokens": "./src/tokens.css",
     "./overworld": "./src/overworld.css",
     "./underworld": "./src/underworld.css",

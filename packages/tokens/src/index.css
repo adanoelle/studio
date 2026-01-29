@@ -1,10 +1,13 @@
 /**
- * @glitch/tokens
+ * @studio/tokens
  *
  * Main entry point for all design tokens.
- * Import this file to get all tokens at once.
+ * Imports base tokens plus the glitch palette (default).
+ *
+ * For apps, prefer importing specific palettes:
+ *   @import '@studio/tokens/base.css';
+ *   @import '@studio/tokens/glitch.css';  // OR analog.css
  */
 
-@import './tokens.css';
-@import './overworld.css';
-@import './underworld.css';
+@import './base.css';
+@import './glitch.css';
