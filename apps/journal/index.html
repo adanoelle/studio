@@ -25,37 +25,9 @@
     }
 
     /* ============================================
-       COLLAGE LAYOUT
-       Elements positioned off-axis with negative space
+       COLLAGE CONTENT STYLES
+       Styles for content within collage items
        ============================================ */
-
-    .journal-page {
-      position: relative;
-      z-index: 10;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: var(--space-8);
-      min-height: 100vh;
-    }
-
-    /* Header - default left-aligned (when first essay is right) */
-    .journal-header {
-      max-width: 500px;
-      margin-left: 5%;
-      margin-bottom: 15vh;
-      padding-top: 8vh;
-    }
-
-    /* Right-aligned header (when first essay is left) */
-    .journal-header.header-right {
-      margin-left: auto;
-      margin-right: 5%;
-      text-align: right;
-    }
-
-    .journal-header.header-right .journal-tags {
-      justify-content: flex-end;
-    }
 
     .journal-date {
       font-size: var(--text-xs);
@@ -96,13 +68,8 @@
     }
 
     /* ============================================
-       ESSAY BLOCKS - Scattered positions
+       ESSAY BLOCKS
        ============================================ */
-
-    .essay {
-      max-width: 480px;
-      margin-bottom: 12vh;
-    }
 
     .essay p {
       margin: 0 0 var(--space-5) 0;
@@ -119,26 +86,11 @@
       color: var(--accent);
     }
 
-    /* First essay block - right side */
-    .essay-1 {
-      margin-left: auto;
-      margin-right: 8%;
-    }
-
-    /* Second essay block - left side, lower */
-    .essay-2 {
-      margin-left: 12%;
-      margin-right: auto;
-    }
-
     /* ============================================
-       CODE BLOCK - Centered but tilted
+       CODE BLOCK
        ============================================ */
 
     .code-section {
-      max-width: 580px;
-      margin: 8vh auto 15vh;
-      margin-left: 25%;
       background: var(--bg-secondary);
       border: var(--border-thin) solid var(--border);
     }
@@ -208,12 +160,10 @@
     .code-content .number { color: #f08d49; }
 
     /* ============================================
-       REFLECTION - Right side, boxed
+       REFLECTION
        ============================================ */
 
     .reflection {
-      max-width: 420px;
-      margin: 10vh 5% 15vh auto;
       padding: var(--space-8);
       background: var(--bg-secondary);
       border-left: 3px solid var(--accent);
@@ -238,17 +188,20 @@
     }
 
     /* ============================================
-       FOOTNOTES - Bottom left, small
+       COLLAGE CANVAS OVERRIDES
        ============================================ */
 
+    collage-canvas {
+      padding-bottom: 10vh;
+    }
+
     /* ============================================
-       FOOTER - Full width, grounded
+       FOOTER
        ============================================ */
 
     .journal-footer {
       position: relative;
       z-index: 10;
-      margin-top: 15vh;
       padding: var(--space-8) var(--space-8);
       background: var(--bg-primary);
     }
@@ -339,7 +292,7 @@
     }
 
     /* ============================================
-       PLAYING STATE - Solid backgrounds when vis active
+       PLAYING STATE - Enhanced visibility when active
        ============================================ */
 
     /* Hide Hydra by default */
@@ -353,32 +306,10 @@
       opacity: 1;
     }
 
-    /* Text areas get solid backgrounds + borders when playing */
-    body.playing .journal-header {
-      background: var(--bg-primary);
-      padding: var(--space-6);
-      border: var(--border-thin) solid var(--border);
-      margin-bottom: 12vh;
-    }
-
-    body.playing .essay {
-      background: var(--bg-primary);
-      padding: var(--space-6);
-      border: var(--border-thin) solid var(--border);
-    }
-
+    /* Code section gets enhanced emphasis when playing */
     body.playing .code-section {
       border-width: 2px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    body.playing .reflection {
-      border: var(--border-thin) solid var(--border);
-      border-left: 3px solid var(--accent);
-    }
-
-    body.playing .journal-footer {
-      /* Footer already has solid background, just ensure it's visible */
     }
 
     body.playing .journal-footer::before {
@@ -461,29 +392,10 @@
     }
 
     /* ============================================
-       RESPONSIVE - Stack on mobile
+       RESPONSIVE
        ============================================ */
 
-    @media (max-width: 900px) {
-      .journal-page {
-        padding: var(--space-6);
-      }
-
-      .journal-header,
-      .essay,
-      .code-section,
-      .reflection {
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-      .essay-1,
-      .essay-2 {
-        margin-left: 0;
-        margin-right: 0;
-      }
-
+    @media (max-width: 899px) {
       .journal-footer {
         padding: var(--space-6) var(--space-4);
       }
@@ -534,57 +446,66 @@
   <!-- Hydra canvas (renders behind content) -->
   <hydra-canvas id="hydra" auto-connect preset="minimal"></hydra-canvas>
 
-  <article class="journal-page">
+  <article>
     <div class="reduced-motion-notice">
       Reduced motion is enabled. Background visuals are simplified.
     </div>
 
-    <header class="journal-header">
-      <div class="journal-date">January 29, 2026 — Session #48</div>
-      <h1 class="journal-title">
-        <glitch-text text="Listening While Playing"></glitch-text>
-      </h1>
-      <p class="journal-subtitle">On the feedback loop between ear and fingers</p>
-      <div class="journal-tags">
-        <span class="tag">blues</span>
-        <span class="tag">practice</span>
-        <span class="tag">listening</span>
-        <span class="tag">guitar</span>
-      </div>
-    </header>
+    <collage-canvas min-height="260vh">
+      <!-- Header: top-left with offset -->
+      <collage-item x="5%" y="8vh" max-width="500px" mobile-order="0" playing-reveal>
+        <header>
+          <div class="journal-date">January 29, 2026 — Session #48</div>
+          <h1 class="journal-title">
+            <glitch-text text="Listening While Playing"></glitch-text>
+          </h1>
+          <p class="journal-subtitle">On the feedback loop between ear and fingers</p>
+          <div class="journal-tags">
+            <span class="tag">blues</span>
+            <span class="tag">practice</span>
+            <span class="tag">listening</span>
+            <span class="tag">guitar</span>
+          </div>
+        </header>
+      </collage-item>
 
-    <section class="essay essay-1">
-      <p>
-        There's a particular kind of listening that only happens when you're playing. Not the
-        analytical listening of studying a record, not the passive listening of background music,
-        but something more immediate—a feedback loop where what you hear shapes what you play,
-        and what you play changes what you hear. Vijay Iyer calls this "embodied cognition,"<a href="#fn1" class="footnote-ref">1</a>
-        the idea that musical understanding lives in the body as much as the mind.
-      </p>
+      <!-- First essay block: right side -->
+      <collage-item anchor="top-right" offset-x="8%" offset-y="35vh" max-width="480px" mobile-order="1" playing-reveal>
+        <section class="essay">
+          <p>
+            There's a particular kind of listening that only happens when you're playing. Not the
+            analytical listening of studying a record, not the passive listening of background music,
+            but something more immediate—a feedback loop where what you hear shapes what you play,
+            and what you play changes what you hear. Vijay Iyer calls this "embodied cognition,"<a href="#fn1" class="footnote-ref">1</a>
+            the idea that musical understanding lives in the body as much as the mind.
+          </p>
 
-      <p>
-        Tonight I wanted to practice this loop explicitly. I built a simple A minor blues backing
-        track—shuffle drums, arpeggiated chords—and tried to really <em>listen</em> to it while
-        playing over it. Not just keeping time, but hearing where the chord tones land, feeling
-        the pull of the dominant chord, noticing how the shuffle creates space between the beats.
-      </p>
+          <p>
+            Tonight I wanted to practice this loop explicitly. I built a simple A minor blues backing
+            track—shuffle drums, arpeggiated chords—and tried to really <em>listen</em> to it while
+            playing over it. Not just keeping time, but hearing where the chord tones land, feeling
+            the pull of the dominant chord, noticing how the shuffle creates space between the beats.
+          </p>
 
-      <p>
-        The pattern below outlines the changes: Am for four bars, Dm for two, back to Am, then
-        the E7 that wants to resolve. The arpeggios are sparse on purpose—they leave room for
-        the guitar to fill in, to respond, to have a conversation.
-      </p>
-    </section>
+          <p>
+            The pattern below outlines the changes: Am for four bars, Dm for two, back to Am, then
+            the E7 that wants to resolve. The arpeggios are sparse on purpose—they leave room for
+            the guitar to fill in, to respond, to have a conversation.
+          </p>
+        </section>
+      </collage-item>
 
-    <div class="code-section">
-      <div class="code-header">
-        <span class="code-label">Strudel Pattern</span>
-        <div class="code-actions">
-          <button class="code-btn" id="play-pattern">Play</button>
-          <button class="code-btn" id="stop-pattern" disabled>Stop</button>
-        </div>
-      </div>
-      <pre class="code-content"><code><span class="comment">// A minor blues - shuffle feel</span>
+      <!-- Code block: offset left of center -->
+      <collage-item x="20%" y="95vh" max-width="580px" z="2" mobile-order="2">
+        <div class="code-section">
+          <div class="code-header">
+            <span class="code-label">Strudel Pattern</span>
+            <div class="code-actions">
+              <button class="code-btn" id="play-pattern">Play</button>
+              <button class="code-btn" id="stop-pattern" disabled>Stop</button>
+            </div>
+          </div>
+          <pre class="code-content"><code><span class="comment">// A minor blues - shuffle feel</span>
 <span class="function">stack</span>(
   <span class="comment">// drums: shuffle groove</span>
   <span class="function">s</span>(<span class="string">"bd ~ ~ bd:1 ~ bd ~ ~"</span>),
@@ -601,45 +522,52 @@
     .<span class="function">decay</span>(<span class="number">.4</span>).<span class="function">sustain</span>(<span class="number">.1</span>)
     .<span class="function">gain</span>(<span class="number">.35</span>)
 ).<span class="function">slow</span>(<span class="number">4</span>).<span class="function">cpm</span>(<span class="number">45</span>)</code></pre>
-    </div>
+        </div>
+      </collage-item>
 
-    <section class="essay essay-2">
-      <p>
-        The hardest part isn't playing the right notes—it's listening while you play. Kenny
-        Werner writes about this in <em>Effortless Mastery</em>:<a href="#fn2" class="footnote-ref">2</a>
-        the goal is to play from a place of stillness, where the hands move but the mind stays
-        quiet enough to hear. Most of my practice, I realize, is the opposite. I'm so focused
-        on what I'm doing that I stop hearing what's happening.
-      </p>
+      <!-- Second essay block: left side, lower -->
+      <collage-item x="12%" y="145vh" max-width="480px" mobile-order="3" playing-reveal>
+        <section class="essay">
+          <p>
+            The hardest part isn't playing the right notes—it's listening while you play. Kenny
+            Werner writes about this in <em>Effortless Mastery</em>:<a href="#fn2" class="footnote-ref">2</a>
+            the goal is to play from a place of stillness, where the hands move but the mind stays
+            quiet enough to hear. Most of my practice, I realize, is the opposite. I'm so focused
+            on what I'm doing that I stop hearing what's happening.
+          </p>
 
-      <p>
-        The visual feedback helps, surprisingly. When the kick hits and the screen pulses, it
-        gives my eyes something to track so my ears can relax. The arpeggios become visible—I
-        can see the chord change coming before I hear it. This might be a crutch, but for now
-        it's helping me sync up.
-      </p>
-    </section>
+          <p>
+            The visual feedback helps, surprisingly. When the kick hits and the screen pulses, it
+            gives my eyes something to track so my ears can relax. The arpeggios become visible—I
+            can see the chord change coming before I hear it. This might be a crutch, but for now
+            it's helping me sync up.
+          </p>
+        </section>
+      </collage-item>
 
-    <section class="reflection">
-      <div class="reflection-header">Reflection</div>
-      <p>
-        Something clicked tonight around the E7 chord. That's the V in A minor—the tension point,
-        the moment that wants to resolve. When I actually <em>heard</em> it coming, my fingers
-        knew what to do. Not because I thought "E7, play G#," but because the sound pulled me
-        there. This is what people mean by "playing the changes," I think.
-      </p>
-      <p>
-        Derek Bailey talks about improvisation as "the celebration of the moment."<a href="#fn3" class="footnote-ref">3</a>
-        But you can't celebrate a moment you're not present for. The backing track forces presence—
-        it keeps moving whether I'm ready or not. There's no pausing to think. Either I'm
-        listening and responding, or I'm just making noise over someone else's music.
-      </p>
-      <p>
-        Next session I want to try singing the chord tones before playing them. If I can hear
-        them in my head first, maybe my hands will follow more naturally.
-      </p>
-    </section>
-
+      <!-- Reflection: right side -->
+      <collage-item anchor="top-right" offset-x="5%" offset-y="180vh" max-width="420px" mobile-order="4" playing-reveal>
+        <section class="reflection">
+          <div class="reflection-header">Reflection</div>
+          <p>
+            Something clicked tonight around the E7 chord. That's the V in A minor—the tension point,
+            the moment that wants to resolve. When I actually <em>heard</em> it coming, my fingers
+            knew what to do. Not because I thought "E7, play G#," but because the sound pulled me
+            there. This is what people mean by "playing the changes," I think.
+          </p>
+          <p>
+            Derek Bailey talks about improvisation as "the celebration of the moment."<a href="#fn3" class="footnote-ref">3</a>
+            But you can't celebrate a moment you're not present for. The backing track forces presence—
+            it keeps moving whether I'm ready or not. There's no pausing to think. Either I'm
+            listening and responding, or I'm just making noise over someone else's music.
+          </p>
+          <p>
+            Next session I want to try singing the chord tones before playing them. If I can hear
+            them in my head first, maybe my hands will follow more naturally.
+          </p>
+        </section>
+      </collage-item>
+    </collage-canvas>
   </article>
 
   <footer class="journal-footer">
