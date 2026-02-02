@@ -1,4 +1,5 @@
-import { defineConfig } from 'vite';
+/// <reference types="vitest/config" />
+import { defineConfig } from 'vitest/config';
 import { resolve } from 'path';
 import { readdirSync, statSync } from 'fs';
 import { join } from 'path';
@@ -54,5 +55,10 @@ export default defineConfig({
   },
   server: {
     port: 3001
+  },
+  test: {
+    environment: 'jsdom',
+    include: ['src/**/*.test.ts'],
+    setupFiles: ['./src/test-setup.ts'],
   }
 });

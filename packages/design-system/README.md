@@ -68,6 +68,12 @@ interaction
 
 ### Audio
 
+Audio components require the `hydra-synth` peer dependency:
+
+```
+pnpm add hydra-synth
+```
+
 **hydra-canvas** — Live-coding visuals via Hydra Synth
 
 **visualization-canvas** — Audio-reactive background rendering

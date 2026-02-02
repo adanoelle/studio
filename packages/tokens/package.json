@@ -9,9 +9,6 @@
     "./base": "./src/base.css",
     "./glitch": "./src/glitch.css",
     "./analog": "./src/analog.css",
-    "./tokens": "./src/tokens.css",
-    "./overworld": "./src/overworld.css",
-    "./underworld": "./src/underworld.css",
     "./*.css": "./src/*.css"
   },
   "files": [
