@@ -1,5 +1,7 @@
 # @studio/tokens
 
+## 0.1.1
+
 ## 0.1.0
 
 Initial release of Studio design tokens.
