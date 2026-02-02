@@ -58,9 +58,9 @@ export class CollageCanvas extends LitElement {
   private _isLinearized = false;
 
   /**
-   * ResizeObserver for responsive behavior
+   * Bound resize handler for cleanup
    */
-  private _resizeObserver?: ResizeObserver;
+  private _boundResizeHandler = this._checkLinearization.bind(this);
 
   // ============================================
   // LIFECYCLE
@@ -68,13 +68,15 @@ export class CollageCanvas extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this._setupResizeObserver();
+    window.addEventListener('resize', this._boundResizeHandler);
     this._checkLinearization();
+    // Defer initial notification to ensure children are connected
+    requestAnimationFrame(() => this._notifyChildren());
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    this._resizeObserver?.disconnect();
+    window.removeEventListener('resize', this._boundResizeHandler);
   }
 
   updated(changedProperties: PropertyValues) {
@@ -89,17 +91,6 @@ export class CollageCanvas extends LitElement {
   // ============================================
   // RESPONSIVE HANDLING
   // ============================================
-
-  /**
-   * Set up ResizeObserver to detect size changes
-   */
-  private _setupResizeObserver() {
-    this._resizeObserver = new ResizeObserver(() => {
-      this._checkLinearization();
-    });
-
-    this._resizeObserver.observe(this);
-  }
 
   /**
    * Check if we should be in linearized mode based on viewport width
@@ -119,12 +110,13 @@ export class CollageCanvas extends LitElement {
    * Notify child collage-items of linearization state
    */
   private _notifyChildren() {
-    const event = new CustomEvent('collage-mode-change', {
-      detail: { linearized: this._isLinearized },
-      bubbles: true,
-      composed: true,
+    const items = this.querySelectorAll('collage-item');
+    items.forEach((item) => {
+      const event = new CustomEvent('collage-mode-change', {
+        detail: { linearized: this._isLinearized },
+      });
+      item.dispatchEvent(event);
     });
-    this.dispatchEvent(event);
   }
 
   /**
