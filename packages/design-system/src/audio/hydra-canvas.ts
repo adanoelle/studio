@@ -171,23 +171,21 @@ export class HydraCanvas extends GlitchBase {
 
   private _setupHydraGlobals(): void {
     // Make audio values available as functions Hydra can call
-    const self = this;
-
     // These functions return current audio values for use in Hydra patches
-    (window as any).bass = () => self._audio.bass * self.intensity;
-    (window as any).mid = () => self._audio.mid * self.intensity;
-    (window as any).treble = () => self._audio.treble * self.intensity;
-    (window as any).average = () => self._audio.average * self.intensity;
+    window.bass = () => this._audio.bass * this.intensity;
+    window.mid = () => this._audio.mid * this.intensity;
+    window.treble = () => this._audio.treble * this.intensity;
+    window.average = () => this._audio.average * this.intensity;
 
     // Pattern event values
-    (window as any).note = () => (self._events.lastNote - 40) / 60; // Normalize to ~0-1
-    (window as any).gain = () => self._events.lastGain;
-    (window as any).pan = () => self._events.lastPan;
-    (window as any).beat = () => self._events.beatPulse;
-    (window as any).events = () => self._events.eventCount;
+    window.note = () => (this._events.lastNote - 40) / 60; // Normalize to ~0-1
+    window.gain = () => this._events.lastGain;
+    window.pan = () => this._events.lastPan;
+    window.beat = () => this._events.beatPulse;
+    window.events = () => this._events.eventCount;
 
     // Time value
-    (window as any).t = () => self._time;
+    window.t = () => this._time;
   }
 
   private _startAudioUpdateLoop(): void {
@@ -214,7 +212,6 @@ export class HydraCanvas extends GlitchBase {
     if (code) {
       try {
         // Hydra evaluates code in its global context
-        // eslint-disable-next-line no-eval
         eval(code);
       } catch (e) {
         console.error('Hydra preset error:', e);
@@ -226,7 +223,6 @@ export class HydraCanvas extends GlitchBase {
   evalCode(code: string): void {
     if (!this._hydra) return;
     try {
-      // eslint-disable-next-line no-eval
       eval(code);
     } catch (e) {
       console.error('Hydra eval error:', e);
@@ -542,6 +538,20 @@ const HYDRA_PRESETS: Record<HydraPreset, string> = {
 // ============================================
 
 declare global {
+  interface Window {
+    // Audio-reactive functions for Hydra patches
+    bass: () => number;
+    mid: () => number;
+    treble: () => number;
+    average: () => number;
+    note: () => number;
+    gain: () => number;
+    pan: () => number;
+    beat: () => number;
+    events: () => number;
+    t: () => number;
+  }
+
   interface HTMLElementTagNameMap {
     'hydra-canvas': HydraCanvas;
   }

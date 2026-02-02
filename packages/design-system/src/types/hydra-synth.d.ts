@@ -7,10 +7,19 @@ declare module 'hydra-synth' {
     makeGlobal?: boolean;
     detectAudio?: boolean;
     enableStreamCapture?: boolean;
-    pb?: any;
+    pb?: unknown;
     precision?: 'highp' | 'mediump' | 'lowp';
-    extendTransforms?: any[];
+    extendTransforms?: unknown[];
   }
+
+  /**
+   * Hydra's output/source buffers are dynamic objects used in feedback loops
+   * (e.g., src(o0)) and have a complex, untyped API from the upstream library.
+   * Using `any` is intentional here as these are passed directly to Hydra's
+   * eval-based code execution.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  type HydraBuffer = any;
 
   class Hydra {
     constructor(options?: HydraOptions);
@@ -18,19 +27,19 @@ declare module 'hydra-synth' {
     setResolution(width: number, height: number): void;
     tick(dt: number): void;
 
-    // Output buffers
-    o0: any;
-    o1: any;
-    o2: any;
-    o3: any;
+    // Output buffers (used in feedback loops like src(o0))
+    o0: HydraBuffer;
+    o1: HydraBuffer;
+    o2: HydraBuffer;
+    o3: HydraBuffer;
 
     // Source buffers
-    s0: any;
-    s1: any;
-    s2: any;
-    s3: any;
+    s0: HydraBuffer;
+    s1: HydraBuffer;
+    s2: HydraBuffer;
+    s3: HydraBuffer;
 
-    synth: any;
+    synth: HydraBuffer;
   }
 
   export default Hydra;
