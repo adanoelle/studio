@@ -111,6 +111,7 @@ export class GlitchText extends LitElement {
   private lastUpdate = 0;
   private hoverTimeout?: number;
   private idleTimer?: number;
+  private briefGlitchTimer?: number;
   private intersectionObserver?: IntersectionObserver;
   private isVisible = false;
   private prefersReducedMotion = false;
@@ -219,8 +220,11 @@ export class GlitchText extends LitElement {
       { threshold: 0.1, rootMargin: '50px' }
     );
 
+    // Guard against component being disconnected before updateComplete resolves
     this.updateComplete.then(() => {
-      this.intersectionObserver?.observe(this);
+      if (this.isConnected) {
+        this.intersectionObserver?.observe(this);
+      }
     });
   }
 
@@ -394,10 +398,16 @@ export class GlitchText extends LitElement {
   private triggerBriefGlitch() {
     this.startGlitch();
 
+    // Clear any existing brief glitch timer
+    if (this.briefGlitchTimer) {
+      clearTimeout(this.briefGlitchTimer);
+    }
+
     // Brief duration: 200-500ms randomized
     const duration = 200 + Math.random() * 300;
-    setTimeout(() => {
+    this.briefGlitchTimer = window.setTimeout(() => {
       this.stopGlitch();
+      this.briefGlitchTimer = undefined;
     }, duration);
   }
 
@@ -426,6 +436,10 @@ export class GlitchText extends LitElement {
     if (this.idleTimer) {
       clearTimeout(this.idleTimer);
       this.idleTimer = undefined;
+    }
+    if (this.briefGlitchTimer) {
+      clearTimeout(this.briefGlitchTimer);
+      this.briefGlitchTimer = undefined;
     }
   }
 
@@ -457,6 +471,29 @@ export class GlitchText extends LitElement {
     this.stopGlitch();
   }
 
+  private handleFocus() {
+    this.startGlitch();
+  }
+
+  private handleBlur() {
+    this.stopGlitch();
+  }
+
+  private handleKeyDown(e: KeyboardEvent) {
+    // Trigger glitch on Enter or Space
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.startGlitch();
+    }
+  }
+
+  private handleKeyUp(e: KeyboardEvent) {
+    // Stop glitch when key released
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.stopGlitch();
+    }
+  }
+
   // ============================================
   // STYLES
   // ============================================
@@ -471,6 +508,16 @@ export class GlitchText extends LitElement {
       transition: color var(--duration-normal, 0.2s) ease;
       user-select: none;
       -webkit-user-select: none;
+      outline: none;
+      border-radius: 2px;
+    }
+
+    /**
+     * ACCESSIBILITY: Focus indicator for keyboard navigation
+     */
+    .glitch-text:focus-visible {
+      outline: 2px solid var(--glitch-cyan, #00ffff);
+      outline-offset: 2px;
     }
 
     /**
@@ -593,10 +640,16 @@ export class GlitchText extends LitElement {
       <span
         class="glitch-text ${this.isGlitching ? 'active' : ''}"
         data-text=${this.text}
+        tabindex="0"
+        role="text"
         @mouseenter=${this.handleMouseEnter}
         @mouseleave=${this.handleMouseLeave}
         @touchstart=${this.handleTouchStart}
         @touchend=${this.handleTouchEnd}
+        @focus=${this.handleFocus}
+        @blur=${this.handleBlur}
+        @keydown=${this.handleKeyDown}
+        @keyup=${this.handleKeyUp}
         aria-label=${this.text}
       >
         ${this.displayText}

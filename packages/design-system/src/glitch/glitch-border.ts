@@ -136,7 +136,9 @@ export class GlitchBorder extends LitElement {
     );
 
     this.updateComplete.then(() => {
-      this.intersectionObserver?.observe(this);
+      if (this.isConnected) {
+        this.intersectionObserver?.observe(this);
+      }
     });
   }
 

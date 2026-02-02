@@ -111,8 +111,11 @@ export class GlitchBase extends LitElement {
     );
 
     // Observe after first render completes
+    // Guard against component being disconnected before updateComplete resolves
     this.updateComplete.then(() => {
-      this.intersectionObserver?.observe(this);
+      if (this.isConnected) {
+        this.intersectionObserver?.observe(this);
+      }
     });
   }
 
