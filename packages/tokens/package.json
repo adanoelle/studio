@@ -9,6 +9,7 @@
     "./base": "./src/base.css",
     "./glitch": "./src/glitch.css",
     "./analog": "./src/analog.css",
+    "./patterns": "./src/patterns.css",
     "./*.css": "./src/*.css"
   },
   "files": [
