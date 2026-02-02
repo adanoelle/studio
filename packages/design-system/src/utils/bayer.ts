@@ -55,10 +55,7 @@ export type BayerMatrix = typeof BAYER_MATRIX_4 | typeof BAYER_MATRIX_8;
  * element.style.backgroundImage = `url("${pattern}")`;
  * ```
  */
-export function generateBayerSVG(
-  color: string,
-  matrix: BayerMatrix = BAYER_MATRIX_4
-): string {
+export function generateBayerSVG(color: string, matrix: BayerMatrix = BAYER_MATRIX_4): string {
   const size = matrix.length;
   const maxValue = size === 4 ? 16 : 64;
 
@@ -127,10 +124,7 @@ export function generateCorruptedBayerSVG(
       // Deterministic corruption using seeded random
       const cellSeed = seed + y * size + x;
       const randomness = seededRandom(cellSeed) * level;
-      const corruptedValue = Math.max(
-        0,
-        Math.min(1, originalValue + randomness - level / 2)
-      );
+      const corruptedValue = Math.max(0, Math.min(1, originalValue + randomness - level / 2));
 
       // Color: blend between primary and corruption color
       const colorSeed = seed + y * size + x + 1000;

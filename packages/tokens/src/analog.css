@@ -67,9 +67,7 @@
   --collage-gutter: 5%;
   --collage-mobile-divider: 1px solid var(--border-subtle);
   --collage-item-transition:
-    background var(--duration-slow),
-    border var(--duration-slow),
-    box-shadow var(--duration-slow);
+    background var(--duration-slow), border var(--duration-slow), box-shadow var(--duration-slow);
 }
 
 /**

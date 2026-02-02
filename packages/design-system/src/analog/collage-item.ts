@@ -165,7 +165,16 @@ export class CollageItem extends LitElement {
   }
 
   updated(changedProperties: PropertyValues) {
-    const positionProps = ['x', 'y', 'anchor', 'offsetX', 'offsetY', 'maxWidth', 'z', 'mobileOrder'];
+    const positionProps = [
+      'x',
+      'y',
+      'anchor',
+      'offsetX',
+      'offsetY',
+      'maxWidth',
+      'z',
+      'mobileOrder',
+    ];
     if (positionProps.some((prop) => changedProperties.has(prop))) {
       this._applyPositioning();
     }
