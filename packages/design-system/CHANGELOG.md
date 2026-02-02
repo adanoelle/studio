@@ -1,5 +1,14 @@
 # @studio/design-system
 
+## 0.1.1
+
+### Patch Changes
+
+- [`f8f9d59`](https://github.com/adanoelle/studio/commit/f8f9d5934bcdaf3a6496cbfaa917ae03f5899dcb) Thanks [@adanoelle](https://github.com/adanoelle)! - Fix isConnected guard in glitch-border setupIntersectionObserver to prevent observing disconnected elements
+
+- Updated dependencies []:
+  - @studio/tokens@0.1.1
+
 ## 0.1.0
 
 Initial release of the Studio design system.

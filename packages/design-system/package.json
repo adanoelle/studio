@@ -1,6 +1,6 @@
 {
   "name": "@studio/design-system",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Web components for creative practice - grounded in feminist theory",
   "type": "module",
   "main": "./dist/index.js",

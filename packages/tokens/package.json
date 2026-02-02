@@ -1,6 +1,6 @@
 {
   "name": "@studio/tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Design tokens for the Studio design system",
   "type": "module",
   "main": "./src/index.css",
