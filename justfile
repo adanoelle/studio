@@ -311,6 +311,26 @@ add-dev package dep:
     pnpm --filter @studio/{{package}} add -D {{dep}}
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# VERSIONING & RELEASES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Add a changeset for your changes
+[doc("Create a changeset describing your changes")]
+changeset:
+    pnpm changeset
+
+# Check pending changesets
+[doc("Show pending changesets and version bumps")]
+changeset-status:
+    pnpm changeset status --verbose
+
+# Apply changesets and bump versions
+[doc("Apply changesets and update package versions")]
+version:
+    pnpm changeset version
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # CI/CD
 # ═══════════════════════════════════════════════════════════════════════════════
 

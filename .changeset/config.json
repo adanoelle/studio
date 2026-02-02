@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "adanoelle/studio" }],
+  "commit": false,
+  "fixed": [["@studio/design-system", "@studio/tokens"]],
+  "access": "public",
+  "baseBranch": "main",
+  "privatePackages": { "tag": false, "version": false }
+}

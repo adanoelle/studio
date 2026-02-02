@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v4
         with:
@@ -17,3 +19,40 @@ jobs:
       - uses: extractions/setup-just@v2
       - run: pnpm install
       - run: just ci
+
+  changeset-check:
+    name: Changeset Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - run: pnpm install
+      - name: Check for changesets
+        run: |
+          # Get list of changed files in the PR
+          CHANGED_PACKAGES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '^packages/' | cut -d'/' -f1-2 | sort -u || true)
+
+          if [ -n "$CHANGED_PACKAGES" ]; then
+            echo "Changed packages detected:"
+            echo "$CHANGED_PACKAGES"
+            echo ""
+
+            # Check if there are any changeset files
+            CHANGESETS=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '^\.changeset/.*\.md$' | grep -v 'README.md' || true)
+
+            if [ -z "$CHANGESETS" ]; then
+              echo "::warning::No changeset found. If this PR modifies package behavior, please run 'just changeset' to add one."
+            else
+              echo "Changesets found:"
+              echo "$CHANGESETS"
+            fi
+          else
+            echo "No package changes detected."
+          fi
