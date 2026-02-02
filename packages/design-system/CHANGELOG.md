@@ -26,6 +26,7 @@ Initial release of the Studio design system.
 ### Theoretical Foundation
 
 Components are grounded in feminist theory:
+
 - Russell's Glitch Feminism: error as vitality
 - Lugones' World-Traveling: identity fluidity
 - Haraway's Cyborg Manifesto: boundary dissolution

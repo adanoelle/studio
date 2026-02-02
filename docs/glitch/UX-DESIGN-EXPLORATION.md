@@ -5,6 +5,7 @@ combining influences from tiling window managers, RPG dialog systems, PC-98
 aesthetics, and Hyper Light Drifter.
 
 > **Deferred Features**: The following elements from this exploration are deferred:
+>
 > - **Guide character** - See `archive/GUIDE-CHARACTER-DESIGN.md`
 > - **Tiled windows** - Complex multi-pane layouts deferred to future phase
 > - **World-switching** - See `archive/THEORETICAL-FRAMEWORK-WORLDTRAVELING.md`
@@ -359,7 +360,6 @@ For status bar:
    palette? Dark with warm accents? Something else?
 
 2. **Glitch triggers**: When exactly does the boundary glitch intensify?
-
    - Page transitions always?
    - Hover on boundary?
    - Random intervals?
@@ -367,7 +367,6 @@ For status bar:
 
 3. **Mobile experience**: Tiling WM aesthetic doesn't translate well to touch. How
    does this adapt?
-
    - Simpler boundary?
    - Menu via hamburger instead of ⌘K?
    - Status bar becomes bottom nav?

@@ -16,11 +16,13 @@ This design system treats **feminist theory as a design methodology**. Every vis
 #### Key Concepts
 
 **The Glitch as Refusal**
+
 > "The glitch is the digital orgasm, where the machine takes a sigh, a shudder, and with this shudder, it glitches."
 
 The glitch isn't error—it's **resistance to normative systems**. When something glitches, it refuses to behave as expected.
 
 **Visual Implementation**:
+
 ```css
 /* Text that refuses to stay stable */
 .glitch-text:hover {
@@ -40,6 +42,7 @@ The glitch isn't error—it's **resistance to normative systems**. When somethin
 What the system calls "wrong" creates new possibilities. Errors aren't failures—they're opportunities.
 
 **Visual Implementation**:
+
 - Intentional "broken" grids
 - Random glitches that are deliberate choices
 - Chromatic aberration as aesthetic
@@ -50,17 +53,18 @@ What the system calls "wrong" creates new possibilities. Errors aren't failures�
 We don't have one coherent self—we have **many selves existing simultaneously**.
 
 **Visual Implementation**:
+
 ```css
 /* Chromatic aberration = multiple selves visible at once */
 .text::before {
   content: attr(data-text);
-  color: magenta;  /* One identity */
+  color: magenta; /* One identity */
   transform: translateX(-2px);
 }
 
 .text::after {
   content: attr(data-text);
-  color: cyan;     /* Another identity */
+  color: cyan; /* Another identity */
   transform: translateX(2px);
 }
 
@@ -73,12 +77,13 @@ We don't have one coherent self—we have **many selves existing simultaneously*
 Rejecting male/female, online/offline, human/machine binaries.
 
 **Visual Implementation**:
+
 ```css
 /* Not pink OR blue, but magenta (both simultaneously) */
---glitch-magenta: #ff00ff;  /* Red + Blue */
+--glitch-magenta: #ff00ff; /* Red + Blue */
 
 /* Not blue OR green, but cyan (both) */
---glitch-cyan: #00ffff;     /* Blue + Green */
+--glitch-cyan: #00ffff; /* Blue + Green */
 
 /* Colors that refuse binary categorization */
 ```
@@ -96,6 +101,7 @@ While the full world-switching UX is deferred, Lugones' concept still informs th
 Moving between pages is traveling between different spaces—each with its own content, context, and meaning. The glitch during transitions makes this travel **visible**.
 
 **Visual Implementation**:
+
 ```typescript
 // Page transition = traveling between worlds
 function navigateTo(page) {
@@ -116,6 +122,7 @@ function navigateTo(page) {
 Lugones emphasizes the **playful attitude** in worldtraveling—not taking any one world as absolute.
 
 **Visual Implementation**:
+
 - Glitches are playful, not aggressive
 - Rare idle glitches add surprise without annoyance
 - Humor in the effects (the space is alive, not serious)
@@ -131,6 +138,7 @@ Lugones emphasizes the **playful attitude** in worldtraveling—not taking any o
 The cyborg is neither fully human nor fully machine—it's **boundary-crossing**.
 
 **Visual Implementation**:
+
 ```css
 /* Hybrid aesthetic: organic + digital */
 .cyborg-element {
@@ -150,6 +158,7 @@ The cyborg is neither fully human nor fully machine—it's **boundary-crossing**
 Haraway argues that crossing boundaries (human/animal, organism/machine, physical/digital) is politically significant.
 
 **Visual Implementation**:
+
 - The **outer boundary** is the edge between crafted space and the internet
 - Glitch effects on the boundary show it's permeable, not a wall
 - Warm interior (human) surrounded by digital frame (machine)
@@ -170,6 +179,7 @@ All visible simultaneously in RGB split
 ```
 
 **Why this works**:
+
 - Chromatic aberration literally shows multiple images at once
 - They're the same source, just shifted
 - None is "primary"—all are equally real
@@ -186,6 +196,7 @@ Expected grid:        Glitched grid:
 ```
 
 **Why this works**:
+
 - Grids represent imposed structure
 - Breaking them shows **agency**
 - Not chaos, but **selective refusal**
@@ -201,6 +212,7 @@ Stable:              Glitching:
 ```
 
 **Why this works**:
+
 - Borders define and contain
 - Glitching shows they're artificial
 - Content can't be perfectly contained
@@ -223,6 +235,7 @@ Outside (internet)
 ```
 
 **Why this works**:
+
 - The boundary isn't a wall—it's a living membrane
 - It marks the threshold between spaces
 - Glitch shows the boundary is active, responsive
@@ -237,6 +250,7 @@ Outside (internet)
 **Theory**: Error as liberation, glitch as refusal
 
 **Practice**:
+
 - Broken grids are **design choices**
 - Glitches are **features**
 - Grain is **aesthetic**
@@ -247,6 +261,7 @@ Outside (internet)
 **Theory**: Playfulness, loving perception
 
 **Practice**:
+
 - Users trigger glitches (hover/click)
 - Rare idle glitches add life without demanding attention
 - No auto-play, no surprise animations (respects reduced motion)
@@ -256,6 +271,7 @@ Outside (internet)
 **Theory**: Worldtraveling is real work, crossing boundaries matters
 
 **Practice**:
+
 - Don't hide page transitions
 - Make the glitch visible during navigation
 - Acknowledge the act of moving between spaces
@@ -265,6 +281,7 @@ Outside (internet)
 **Theory**: Cyborg hybrid, refusing cold/clinical digital
 
 **Practice**:
+
 - Warm F&B palette for content
 - Glitch colors at the boundary only
 - The interior feels human even in digital space
@@ -286,11 +303,12 @@ if (elementGlitching) {
 **Why wrong**: Glitches are intentional political statements, not bugs.
 
 **Correct**:
+
 ```typescript
 // Glitches are features
 const triggerGlitch = () => {
   this.state = 'glitching'; // Deliberate choice
-}
+};
 ```
 
 ### ❌ Constant Aggressive Animation
@@ -305,6 +323,7 @@ const triggerGlitch = () => {
 **Why wrong**: Exhausting, inaccessible, loses meaning.
 
 **Correct**:
+
 ```css
 /* Glitches are rare, meaningful */
 .element:hover {
@@ -329,6 +348,7 @@ body {
 **Why wrong**: Loses the human, the warm, the embodied.
 
 **Correct**:
+
 ```css
 /* Warm interior, digital boundary */
 body {
@@ -352,6 +372,7 @@ When implementing new components:
    - How does it relate to Russell/Lugones/Haraway?
 
 2. **Document in code**
+
    ```typescript
    /**
     * THEORETICAL GROUNDING:
@@ -378,16 +399,19 @@ When implementing new components:
 ## Further Reading
 
 ### Primary Sources
-- Russell, Legacy. *Glitch Feminism: A Manifesto*. Verso Books, 2020.
-- Lugones, Maria. "Playfulness, 'World'-Travelling, and Loving Perception." *Hypatia* 2.2 (1987): 3-19.
-- Haraway, Donna J. "A Cyborg Manifesto: Science, Technology, and Socialist-Feminism in the Late Twentieth Century." *Simians, Cyborgs, and Women*. Routledge, 1991.
+
+- Russell, Legacy. _Glitch Feminism: A Manifesto_. Verso Books, 2020.
+- Lugones, Maria. "Playfulness, 'World'-Travelling, and Loving Perception." _Hypatia_ 2.2 (1987): 3-19.
+- Haraway, Donna J. "A Cyborg Manifesto: Science, Technology, and Socialist-Feminism in the Late Twentieth Century." _Simians, Cyborgs, and Women_. Routledge, 1991.
 
 ### Secondary Sources
-- Nakamura, Lisa. *Cybertypes: Race, Ethnicity, and Identity on the Internet*. 2002.
-- Halberstam, Jack. *The Queer Art of Failure*. Duke University Press, 2011.
-- Ahmed, Sara. *Queer Phenomenology*. Duke University Press, 2006.
+
+- Nakamura, Lisa. _Cybertypes: Race, Ethnicity, and Identity on the Internet_. 2002.
+- Halberstam, Jack. _The Queer Art of Failure_. Duke University Press, 2011.
+- Ahmed, Sara. _Queer Phenomenology_. Duke University Press, 2006.
 
 ### Related Aesthetics
+
 - Girl photo movement (Hiromix, Ninagawa Mika)
 - Glitch art (Rosa Menkman, Jon Satrom)
 - Cyberfeminism (VNS Matrix, Old Boys Network)

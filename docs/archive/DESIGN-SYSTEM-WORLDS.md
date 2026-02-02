@@ -12,31 +12,31 @@ This document preserves the original two-world design system with separate overw
 :root {
   /* === OVERWORLD (Professional/Public) === */
 
-  --ow-bg-dark: #0a0e1a;      /* Terminal black */
-  --ow-bg-medium: #1f2937;    /* Dark blue-gray */
-  --ow-bg-light: #374151;     /* Medium gray */
+  --ow-bg-dark: #0a0e1a; /* Terminal black */
+  --ow-bg-medium: #1f2937; /* Dark blue-gray */
+  --ow-bg-light: #374151; /* Medium gray */
   --ow-text-primary: #e5e7eb; /* Crisp white */
   --ow-text-secondary: #9ca3af; /* Muted gray */
-  --ow-border: #4a9eff;       /* Digital blue */
-  --ow-accent: #60a5fa;       /* Cool blue */
+  --ow-border: #4a9eff; /* Digital blue */
+  --ow-accent: #60a5fa; /* Cool blue */
 
   /* === UNDERWORLD (Personal/Authentic) === */
 
-  --uw-bg-warm: #f5f1e8;      /* Film paper white */
-  --uw-bg-medium: #e8d5c4;    /* Warm highlight */
-  --uw-bg-dark: #d4cfc3;      /* Faded shadow */
+  --uw-bg-warm: #f5f1e8; /* Film paper white */
+  --uw-bg-medium: #e8d5c4; /* Warm highlight */
+  --uw-bg-dark: #d4cfc3; /* Faded shadow */
   --uw-text-primary: #5a5347; /* Faded black */
   --uw-text-secondary: #8b8076; /* Warm gray */
-  --uw-border: #c9a88a;       /* Warm terracotta */
-  --uw-accent: #b89b7f;       /* Muted clay */
+  --uw-border: #c9a88a; /* Warm terracotta */
+  --uw-accent: #b89b7f; /* Muted clay */
 
   /* === GLITCH (Transition/Between) === */
 
-  --glitch-magenta: #ff00ff;  /* Cyberspace pink */
-  --glitch-cyan: #00ffff;     /* Digital ghost */
-  --glitch-pink: #ff6b9d;     /* Riot grrrl */
-  --glitch-lime: #b4ff9f;     /* Toxic fem */
-  --glitch-violet: #9d00ff;   /* Between pink/blue */
+  --glitch-magenta: #ff00ff; /* Cyberspace pink */
+  --glitch-cyan: #00ffff; /* Digital ghost */
+  --glitch-pink: #ff6b9d; /* Riot grrrl */
+  --glitch-lime: #b4ff9f; /* Toxic fem */
+  --glitch-violet: #9d00ff; /* Between pink/blue */
 }
 ```
 
@@ -217,7 +217,7 @@ enum ComponentState {
   Idle = 'idle',
   Hovering = 'hovering',
   Glitching = 'glitching',
-  Transitioning = 'transitioning'
+  Transitioning = 'transitioning',
 }
 ```
 
@@ -225,12 +225,14 @@ enum ComponentState {
 
 ```typescript
 // Custom events follow this pattern
-this.dispatchEvent(new CustomEvent('world-changed', {
-  detail: {
-    from: 'overworld',
-    to: 'underworld'
-  }
-}));
+this.dispatchEvent(
+  new CustomEvent('world-changed', {
+    detail: {
+      from: 'overworld',
+      to: 'underworld',
+    },
+  })
+);
 ```
 
 ---

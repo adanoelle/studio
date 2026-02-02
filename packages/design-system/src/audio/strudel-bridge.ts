@@ -119,9 +119,7 @@ export class StrudelBridge {
 
     // Dispatch each hap
     for (const hap of haps) {
-      const duration = hap.whole
-        ? hap.whole.end - hap.whole.begin
-        : hap.part.end - hap.part.begin;
+      const duration = hap.whole ? hap.whole.end - hap.whole.begin : hap.part.end - hap.part.begin;
 
       this._dispatchHapEvent(hap, 0, duration);
     }
@@ -172,10 +170,7 @@ export class StrudelBridge {
    * @param audioContext - The audio context
    * @param sourceNode - Node to analyze (usually destination or a gain node before it)
    */
-  connectAudio(
-    audioContext: AudioContext,
-    sourceNode: AudioNode
-  ): void {
+  connectAudio(audioContext: AudioContext, sourceNode: AudioNode): void {
     this._audioContext = audioContext;
 
     // Create analyser
@@ -305,7 +300,7 @@ export class StrudelBridge {
         sum += frequencyData[i];
       }
 
-      return (sum / (highBin - lowBin + 1)) / 255;
+      return sum / (highBin - lowBin + 1) / 255;
     };
 
     // Compute bands
@@ -321,7 +316,7 @@ export class StrudelBridge {
     for (let i = 0; i < binCount; i++) {
       total += frequencyData[i];
     }
-    const average = (total / binCount) / 255;
+    const average = total / binCount / 255;
 
     return { sub, bass, lowMid, mid, highMid, treble, average };
   }
@@ -360,10 +355,7 @@ export class StrudelBridge {
     }
   }
 
-  private _dispatchAudioEvent(
-    analysis: AudioAnalysis,
-    bands: FrequencyBands
-  ): void {
+  private _dispatchAudioEvent(analysis: AudioAnalysis, bands: FrequencyBands): void {
     const event = new CustomEvent(STRUDEL_EVENTS.AUDIO, {
       detail: { analysis, bands },
       bubbles: false,
@@ -378,8 +370,6 @@ export class StrudelBridge {
 /**
  * Create a pre-configured bridge instance
  */
-export function createStrudelBridge(
-  config?: StrudelBridgeConfig
-): StrudelBridge {
+export function createStrudelBridge(config?: StrudelBridgeConfig): StrudelBridge {
   return new StrudelBridge(config);
 }

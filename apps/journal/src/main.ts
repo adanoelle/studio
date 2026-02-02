@@ -7,12 +7,7 @@
 
 import '@studio/design-system';
 
-import {
-  type Hap,
-  type FrequencyBands,
-  STRUDEL_EVENTS,
-  HydraCanvas,
-} from '@studio/design-system';
+import { type Hap, type FrequencyBands, STRUDEL_EVENTS, HydraCanvas } from '@studio/design-system';
 
 // ============================================
 // SIMPLE SYNTH (Web Audio)
@@ -214,7 +209,7 @@ const JOURNAL_PATTERN: PatternEvent[] = [
   // Kick: beats 1 and 3, plus shuffle hits
   // Bar 1
   { time: 0, type: 'kick', gain: 0.85 },
-  { time: 0.0625, type: 'kick', gain: 0.5 },  // shuffle "and"
+  { time: 0.0625, type: 'kick', gain: 0.5 }, // shuffle "and"
   // Bar 2
   { time: 0.125, type: 'kick', gain: 0.8 },
   { time: 0.1875, type: 'kick', gain: 0.45 },
@@ -238,22 +233,22 @@ const JOURNAL_PATTERN: PatternEvent[] = [
   { time: 0.9375, type: 'kick', gain: 0.45 },
 
   // Snare: beats 2 and 4 of each bar
-  { time: 0.03125, type: 'snare', gain: 0.7 },   // Bar 1 beat 2
-  { time: 0.09375, type: 'snare', gain: 0.7 },   // Bar 1 beat 4
-  { time: 0.15625, type: 'snare', gain: 0.7 },   // Bar 2 beat 2
-  { time: 0.21875, type: 'snare', gain: 0.7 },   // Bar 2 beat 4
-  { time: 0.28125, type: 'snare', gain: 0.7 },   // Bar 3 beat 2
-  { time: 0.34375, type: 'snare', gain: 0.7 },   // Bar 3 beat 4
-  { time: 0.40625, type: 'snare', gain: 0.7 },   // Bar 4 beat 2
-  { time: 0.46875, type: 'snare', gain: 0.7 },   // Bar 4 beat 4
-  { time: 0.53125, type: 'snare', gain: 0.7 },   // Bar 5 beat 2
-  { time: 0.59375, type: 'snare', gain: 0.7 },   // Bar 5 beat 4
-  { time: 0.65625, type: 'snare', gain: 0.7 },   // Bar 6 beat 2
-  { time: 0.71875, type: 'snare', gain: 0.7 },   // Bar 6 beat 4
-  { time: 0.78125, type: 'snare', gain: 0.75 },  // Bar 7 beat 2 (E7 - tension)
-  { time: 0.84375, type: 'snare', gain: 0.75 },  // Bar 7 beat 4
-  { time: 0.90625, type: 'snare', gain: 0.7 },   // Bar 8 beat 2
-  { time: 0.96875, type: 'snare', gain: 0.7 },   // Bar 8 beat 4
+  { time: 0.03125, type: 'snare', gain: 0.7 }, // Bar 1 beat 2
+  { time: 0.09375, type: 'snare', gain: 0.7 }, // Bar 1 beat 4
+  { time: 0.15625, type: 'snare', gain: 0.7 }, // Bar 2 beat 2
+  { time: 0.21875, type: 'snare', gain: 0.7 }, // Bar 2 beat 4
+  { time: 0.28125, type: 'snare', gain: 0.7 }, // Bar 3 beat 2
+  { time: 0.34375, type: 'snare', gain: 0.7 }, // Bar 3 beat 4
+  { time: 0.40625, type: 'snare', gain: 0.7 }, // Bar 4 beat 2
+  { time: 0.46875, type: 'snare', gain: 0.7 }, // Bar 4 beat 4
+  { time: 0.53125, type: 'snare', gain: 0.7 }, // Bar 5 beat 2
+  { time: 0.59375, type: 'snare', gain: 0.7 }, // Bar 5 beat 4
+  { time: 0.65625, type: 'snare', gain: 0.7 }, // Bar 6 beat 2
+  { time: 0.71875, type: 'snare', gain: 0.7 }, // Bar 6 beat 4
+  { time: 0.78125, type: 'snare', gain: 0.75 }, // Bar 7 beat 2 (E7 - tension)
+  { time: 0.84375, type: 'snare', gain: 0.75 }, // Bar 7 beat 4
+  { time: 0.90625, type: 'snare', gain: 0.7 }, // Bar 8 beat 2
+  { time: 0.96875, type: 'snare', gain: 0.7 }, // Bar 8 beat 4
 
   // Hi-hats: shuffle pattern (triplet feel approximated)
   // 2 hats per beat, swung
@@ -270,23 +265,23 @@ const JOURNAL_PATTERN: PatternEvent[] = [
   // E7: E2(40), G#2(44), B2(47), D3(50)
 
   // Bars 1-4: Am arpeggios (sparse - leave room for guitar)
-  { time: 0, type: 'note', note: 45, gain: 0.4, duration: 0.4 },      // A2
-  { time: 0.02, type: 'note', note: 52, gain: 0.3, duration: 0.3 },   // E3
+  { time: 0, type: 'note', note: 45, gain: 0.4, duration: 0.4 }, // A2
+  { time: 0.02, type: 'note', note: 52, gain: 0.3, duration: 0.3 }, // E3
   { time: 0.125, type: 'note', note: 48, gain: 0.35, duration: 0.35 }, // C3
-  { time: 0.25, type: 'note', note: 45, gain: 0.4, duration: 0.4 },   // A2
-  { time: 0.27, type: 'note', note: 52, gain: 0.3, duration: 0.3 },   // E3
+  { time: 0.25, type: 'note', note: 45, gain: 0.4, duration: 0.4 }, // A2
+  { time: 0.27, type: 'note', note: 52, gain: 0.3, duration: 0.3 }, // E3
   { time: 0.375, type: 'note', note: 48, gain: 0.35, duration: 0.35 }, // C3
 
   // Bars 5-6: Dm arpeggios
-  { time: 0.5, type: 'note', note: 50, gain: 0.4, duration: 0.4 },    // D3
-  { time: 0.52, type: 'note', note: 57, gain: 0.3, duration: 0.3 },   // A3
+  { time: 0.5, type: 'note', note: 50, gain: 0.4, duration: 0.4 }, // D3
+  { time: 0.52, type: 'note', note: 57, gain: 0.3, duration: 0.3 }, // A3
   { time: 0.625, type: 'note', note: 53, gain: 0.35, duration: 0.35 }, // F3
 
   // Bar 7: E7 (the tension - dominant chord)
-  { time: 0.75, type: 'note', note: 40, gain: 0.45, duration: 0.4 },  // E2 (root)
-  { time: 0.77, type: 'note', note: 44, gain: 0.35, duration: 0.3 },  // G#2 (major 3rd - the blue note tension)
-  { time: 0.79, type: 'note', note: 47, gain: 0.3, duration: 0.25 },  // B2 (5th)
-  { time: 0.81, type: 'note', note: 50, gain: 0.25, duration: 0.2 },  // D3 (b7)
+  { time: 0.75, type: 'note', note: 40, gain: 0.45, duration: 0.4 }, // E2 (root)
+  { time: 0.77, type: 'note', note: 44, gain: 0.35, duration: 0.3 }, // G#2 (major 3rd - the blue note tension)
+  { time: 0.79, type: 'note', note: 47, gain: 0.3, duration: 0.25 }, // B2 (5th)
+  { time: 0.81, type: 'note', note: 50, gain: 0.25, duration: 0.2 }, // D3 (b7)
 
   // Bar 8: Am resolution
   { time: 0.875, type: 'note', note: 45, gain: 0.45, duration: 0.5 }, // A2

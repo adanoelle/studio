@@ -273,18 +273,15 @@ The boundary ACTIVATES during transition (not the content dying)
 ### Animation Sequence
 
 1. **Trigger** (click link or menu selection)
-
    - Boundary chromatic aberration increases
    - Scanline speeds up
 
 2. **Growth phase** (200ms)
-
    - Glitch "grows" inward from boundary
    - Current content begins to ghost (opacity, not destruction)
    - Chromatic trails of the old content
 
 3. **Peak** (100ms)
-
    - Maximum glitch intensity
    - Both pages partially visible (multiplicity!)
    - The boundary is most alive here

@@ -31,7 +31,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: entryFiles,
-      formats: ['es']
+      formats: ['es'],
     },
     rollupOptions: {
       external: ['lit', /^lit\//],
@@ -41,7 +41,7 @@ export default defineConfig({
         entryFileNames: '[name].js',
         chunkFileNames: 'chunks/[name]-[hash].js',
         preserveModules: false,
-      }
+      },
     },
     sourcemap: true,
     emptyOutDir: false,
@@ -49,16 +49,16 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true
-      }
-    }
+        drop_debugger: true,
+      },
+    },
   },
   server: {
-    port: 3001
+    port: 3001,
   },
   test: {
     environment: 'jsdom',
     include: ['src/**/*.test.ts'],
     setupFiles: ['./src/test-setup.ts'],
-  }
+  },
 });

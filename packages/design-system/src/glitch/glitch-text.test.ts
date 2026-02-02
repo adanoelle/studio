@@ -168,7 +168,7 @@ describe('GlitchText', () => {
       // Trigger a brief glitch (which sets briefGlitchTimer)
       // We need to simulate visibility first
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
       el.startGlitch();
 
       await aTimeout(10);
@@ -239,7 +239,7 @@ describe('GlitchText', () => {
       );
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
 
@@ -281,7 +281,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
       span?.dispatchEvent(new TouchEvent('touchstart'));
@@ -294,7 +294,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
 
@@ -313,7 +313,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
       span?.dispatchEvent(new FocusEvent('focus'));
@@ -326,7 +326,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
 
@@ -343,7 +343,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
       span?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
@@ -356,7 +356,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
       span?.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
@@ -369,7 +369,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
 
@@ -386,7 +386,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       const span = el.shadowRoot?.querySelector('.glitch-text');
       span?.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
@@ -416,9 +416,7 @@ describe('GlitchText', () => {
     });
 
     it('has aria-label matching text content', async () => {
-      const el = await fixture<GlitchText>(
-        html`<glitch-text text="Important Text"></glitch-text>`
-      );
+      const el = await fixture<GlitchText>(html`<glitch-text text="Important Text"></glitch-text>`);
       const span = el.shadowRoot?.querySelector('.glitch-text');
 
       expect(span?.getAttribute('aria-label')).toBe('Important Text');
@@ -456,7 +454,7 @@ describe('GlitchText', () => {
       );
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       el.startGlitch();
       await aTimeout(100);
@@ -473,7 +471,7 @@ describe('GlitchText', () => {
       );
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       el.startGlitch();
       await aTimeout(100);
@@ -507,7 +505,7 @@ describe('GlitchText', () => {
 
       // Make visible and start glitch
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
       el.startGlitch();
       await el.updateComplete;
 
@@ -544,7 +542,7 @@ describe('GlitchText', () => {
       const el = await fixture<GlitchText>(html`<glitch-text text="Test"></glitch-text>`);
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       // Call multiple times - should not cause issues
       el.startGlitch();
@@ -564,7 +562,7 @@ describe('GlitchText', () => {
       );
 
       // Set private property for testing - TypeScript private is not true runtime private
-(el as unknown as { isVisible: boolean }).isVisible = true;
+      (el as unknown as { isVisible: boolean }).isVisible = true;
 
       el.startGlitch();
       await aTimeout(100);

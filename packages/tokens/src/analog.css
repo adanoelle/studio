@@ -107,7 +107,8 @@ a:hover {
 /**
  * CODE BLOCKS
  */
-code, pre {
+code,
+pre {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
 }

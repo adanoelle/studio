@@ -32,6 +32,7 @@ The `@studio/design-system` and `@studio/tokens` packages are versioned together
 ## Examples
 
 **Bug fix** (patch):
+
 ```
 just changeset
 # Select: @studio/design-system
@@ -40,6 +41,7 @@ just changeset
 ```
 
 **New feature** (minor):
+
 ```
 just changeset
 # Select: @studio/design-system
@@ -48,6 +50,7 @@ just changeset
 ```
 
 **Breaking change** (major):
+
 ```
 just changeset
 # Select: @studio/design-system

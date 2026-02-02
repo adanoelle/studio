@@ -474,7 +474,10 @@ Text floats freely on the page with no visible boundaries. The negative space br
   background: var(--background); /* #fafafa */
   border: 1px solid var(--color-mini-essay); /* subtle, not harsh */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: background 300ms ease, border 300ms ease, box-shadow 300ms ease;
+  transition:
+    background 300ms ease,
+    border 300ms ease,
+    box-shadow 300ms ease;
 }
 ```
 

@@ -21,6 +21,7 @@ Lugones argues we all "travel" between worlds, presenting different aspects of o
 ### Original Visual Implementation
 
 **Overworld Design** (Professional, Public):
+
 ```css
 .overworld {
   /* Cool, technical, "serious" */
@@ -34,6 +35,7 @@ Lugones argues we all "travel" between worlds, presenting different aspects of o
 Content: CV, technical writing, professional work
 
 **Underworld Design** (Personal, Authentic):
+
 ```css
 .underworld {
   /* Warm, organic, playful */
@@ -55,9 +57,7 @@ function switchWorlds() {
   this.state = 'glitching';
 
   // 2. Actual switch
-  this.currentWorld = this.currentWorld === 'overworld'
-    ? 'underworld'
-    : 'overworld';
+  this.currentWorld = this.currentWorld === 'overworld' ? 'underworld' : 'overworld';
 
   // 3. Settle into new world
   this.state = 'stable';
@@ -100,6 +100,7 @@ Lugones emphasizes the **playful attitude** in worldtraveling—not taking any o
 **Theory**: Multiple simultaneous identities, worldtraveling
 
 **Practice**:
+
 - Overworld and underworld are **equally valid**
 - Neither is hidden or deprecated
 - User chooses which to view
@@ -110,6 +111,7 @@ Lugones emphasizes the **playful attitude** in worldtraveling—not taking any o
 **Theory**: Loving perception, playfulness
 
 **Practice**:
+
 - Users choose which world to view
 - Users trigger glitches (hover/click)
 - Users control privacy settings
@@ -120,6 +122,7 @@ Lugones emphasizes the **playful attitude** in worldtraveling—not taking any o
 **Theory**: Different worlds require different presentations
 
 **Practice**:
+
 - Professional content in overworld
 - Personal content in underworld
 - Some content transitions between
@@ -150,6 +153,7 @@ const defaultWorld = 'overworld'; // Professional is "default"
 **Why wrong**: Privileges one world over another.
 
 **Correct approach**:
+
 ```typescript
 // Let user choose, remember preference
 const preferredWorld = localStorage.get('world') || askUser();
@@ -162,6 +166,7 @@ const preferredWorld = localStorage.get('world') || askUser();
 ### About Section
 
 **Overworld version**:
+
 ```html
 <section class="overworld">
   <glitch-border world="overworld">
@@ -172,6 +177,7 @@ const preferredWorld = localStorage.get('world') || askUser();
 ```
 
 **Underworld version**:
+
 ```html
 <section class="underworld">
   <glitch-border world="underworld" break-pattern="gap">
@@ -186,6 +192,7 @@ const preferredWorld = localStorage.get('world') || askUser();
 ### Navigation
 
 **Overworld**: DOS-style menu
+
 ```
 ╔═══════════════╗
 ║ > ABOUT       ║
@@ -195,6 +202,7 @@ const preferredWorld = localStorage.get('world') || askUser();
 ```
 
 **Underworld**: Organic list
+
 ```
 ░▒▓ about
 ░▒▓ creative projects

@@ -164,10 +164,7 @@ export class DitherCorruption extends GlitchBase {
         // Use seeded random for deterministic corruption
         const cellSeed = this.patternSeed + y * size + x;
         const randomness = this.seededRandom(cellSeed) * level;
-        const corruptedValue = Math.max(
-          0,
-          Math.min(1, originalValue + randomness - level / 2)
-        );
+        const corruptedValue = Math.max(0, Math.min(1, originalValue + randomness - level / 2));
 
         // Color: blend between primary and corruption color
         const colorSeed = this.patternSeed + y * size + x + 1000;
@@ -312,9 +309,7 @@ export class DitherCorruption extends GlitchBase {
             animationDelay: `${spread.delay}s`,
           });
 
-          return html`
-            <div class="corruption-spread" style=${spreadStyles}></div>
-          `;
+          return html` <div class="corruption-spread" style=${spreadStyles}></div> `;
         })}
 
         <slot></slot>

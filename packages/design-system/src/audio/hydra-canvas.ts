@@ -260,7 +260,10 @@ export class HydraCanvas extends GlitchBase {
 
   private _disconnectFromStrudelEvents(): void {
     window.removeEventListener(STRUDEL_EVENTS.HAP, this._boundHandlers.hap as EventListener);
-    window.removeEventListener(STRUDEL_EVENTS.PLAYBACK, this._boundHandlers.playback as EventListener);
+    window.removeEventListener(
+      STRUDEL_EVENTS.PLAYBACK,
+      this._boundHandlers.playback as EventListener
+    );
     window.removeEventListener(STRUDEL_EVENTS.AUDIO, this._boundHandlers.audio as EventListener);
   }
 
@@ -342,12 +345,7 @@ export class HydraCanvas extends GlitchBase {
   // ============================================
 
   render() {
-    return html`
-      <canvas
-        aria-hidden="true"
-        role="presentation"
-      ></canvas>
-    `;
+    return html` <canvas aria-hidden="true" role="presentation"></canvas> `;
   }
 }
 

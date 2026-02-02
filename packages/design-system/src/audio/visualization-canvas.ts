@@ -145,8 +145,16 @@ export class VisualizationCanvas extends GlitchBase {
   };
 
   private readonly _colorArray = [
-    '#ff00ff', '#00ffff', '#ff6b9d', '#b4ff9f', '#9d00ff',
-    '#ff5555', '#ff8844', '#ffcc00', '#00ffaa', '#4488ff',
+    '#ff00ff',
+    '#00ffff',
+    '#ff6b9d',
+    '#b4ff9f',
+    '#9d00ff',
+    '#ff5555',
+    '#ff8844',
+    '#ffcc00',
+    '#00ffaa',
+    '#4488ff',
   ];
 
   // ============================================
@@ -318,7 +326,10 @@ export class VisualizationCanvas extends GlitchBase {
 
   private _disconnectFromStrudelEvents(): void {
     window.removeEventListener(STRUDEL_EVENTS.HAP, this._boundHandlers.hap as EventListener);
-    window.removeEventListener(STRUDEL_EVENTS.PLAYBACK, this._boundHandlers.playback as EventListener);
+    window.removeEventListener(
+      STRUDEL_EVENTS.PLAYBACK,
+      this._boundHandlers.playback as EventListener
+    );
     window.removeEventListener(STRUDEL_EVENTS.AUDIO, this._boundHandlers.audio as EventListener);
   }
 
@@ -461,8 +472,12 @@ export class VisualizationCanvas extends GlitchBase {
 
     const avg = this._frequencyBands.average;
     const gradient = ctx.createRadialGradient(
-      this._width / 2, this._height / 2, 0,
-      this._width / 2, this._height / 2, Math.max(this._width, this._height) / 2
+      this._width / 2,
+      this._height / 2,
+      0,
+      this._width / 2,
+      this._height / 2,
+      Math.max(this._width, this._height) / 2
     );
 
     gradient.addColorStop(0, `rgba(255, 0, 255, ${avg * 0.1})`);
@@ -491,21 +506,11 @@ export class VisualizationCanvas extends GlitchBase {
       ctx.fillStyle = `hsla(${hue}, 100%, 60%, ${0.3 + value * 0.5})`;
 
       // Draw from bottom
-      ctx.fillRect(
-        i * barWidth,
-        centerY - barHeight,
-        barWidth - 1,
-        barHeight
-      );
+      ctx.fillRect(i * barWidth, centerY - barHeight, barWidth - 1, barHeight);
 
       // Mirror from top (subtle)
       ctx.fillStyle = `hsla(${hue}, 100%, 60%, ${0.1 + value * 0.2})`;
-      ctx.fillRect(
-        i * barWidth,
-        0,
-        barWidth - 1,
-        barHeight * 0.3
-      );
+      ctx.fillRect(i * barWidth, 0, barWidth - 1, barHeight * 0.3);
     }
   }
 
@@ -513,7 +518,11 @@ export class VisualizationCanvas extends GlitchBase {
   // GEOMETRIC SHAPES
   // ============================================
 
-  private _drawGeometry(ctx: CanvasRenderingContext2D, bands: FrequencyBands | null, _timestamp: number): void {
+  private _drawGeometry(
+    ctx: CanvasRenderingContext2D,
+    bands: FrequencyBands | null,
+    _timestamp: number
+  ): void {
     const cx = this._width / 2;
     const cy = this._height / 2;
     const bass = bands?.bass ?? 0.5;
@@ -546,7 +555,14 @@ export class VisualizationCanvas extends GlitchBase {
     ctx.globalAlpha = 1;
   }
 
-  private _drawPolygon(ctx: CanvasRenderingContext2D, cx: number, cy: number, radius: number, sides: number, rotation: number): void {
+  private _drawPolygon(
+    ctx: CanvasRenderingContext2D,
+    cx: number,
+    cy: number,
+    radius: number,
+    sides: number,
+    rotation: number
+  ): void {
     ctx.beginPath();
     for (let i = 0; i <= sides; i++) {
       const angle = (i / sides) * Math.PI * 2 + rotation;
@@ -650,9 +666,11 @@ export class VisualizationCanvas extends GlitchBase {
       const p = this._particles[i];
 
       // Store trail position
-      if (p.trail.length === 0 ||
-          Math.abs(p.x - p.trail[p.trail.length - 1].x) > 2 ||
-          Math.abs(p.y - p.trail[p.trail.length - 1].y) > 2) {
+      if (
+        p.trail.length === 0 ||
+        Math.abs(p.x - p.trail[p.trail.length - 1].x) > 2 ||
+        Math.abs(p.y - p.trail[p.trail.length - 1].y) > 2
+      ) {
         p.trail.push({ x: p.x, y: p.y, alpha: p.alpha * p.life });
       }
 
@@ -760,7 +778,7 @@ export class VisualizationCanvas extends GlitchBase {
     for (let i = this._rings.length - 1; i >= 0; i--) {
       const r = this._rings[i];
       r.radius += r.growth * dt;
-      r.alpha = 1 - (r.radius / r.maxRadius);
+      r.alpha = 1 - r.radius / r.maxRadius;
       r.lineWidth *= 0.98;
 
       if (r.radius >= r.maxRadius || r.alpha <= 0) {
@@ -962,7 +980,7 @@ export class VisualizationCanvas extends GlitchBase {
     if (depth <= 0 || size < 4) return;
 
     // Draw triangular fractal pattern
-    const h = size * Math.sqrt(3) / 2;
+    const h = (size * Math.sqrt(3)) / 2;
 
     // Rotate the whole pattern slightly per layer for variety
     ctx.save();
@@ -994,20 +1012,41 @@ export class VisualizationCanvas extends GlitchBase {
 
     // Top triangle
     this._drawSierpinskiLayer(
-      ctx, x, y - newH * 0.67,
-      newSize, depth - 1, hue, saturation, lightness, layerOffset
+      ctx,
+      x,
+      y - newH * 0.67,
+      newSize,
+      depth - 1,
+      hue,
+      saturation,
+      lightness,
+      layerOffset
     );
 
     // Bottom-left triangle
     this._drawSierpinskiLayer(
-      ctx, x - newSize / 2, y + newH * 0.33,
-      newSize, depth - 1, hue, saturation, lightness, layerOffset
+      ctx,
+      x - newSize / 2,
+      y + newH * 0.33,
+      newSize,
+      depth - 1,
+      hue,
+      saturation,
+      lightness,
+      layerOffset
     );
 
     // Bottom-right triangle
     this._drawSierpinskiLayer(
-      ctx, x + newSize / 2, y + newH * 0.33,
-      newSize, depth - 1, hue, saturation, lightness, layerOffset
+      ctx,
+      x + newSize / 2,
+      y + newH * 0.33,
+      newSize,
+      depth - 1,
+      hue,
+      saturation,
+      lightness,
+      layerOffset
     );
 
     // Add hexagonal elements for more complexity
@@ -1164,27 +1203,51 @@ export class VisualizationCanvas extends GlitchBase {
 
     // Left branch
     this._drawBranch(
-      ctx, endX, endY,
+      ctx,
+      endX,
+      endY,
       adjustedAngle - branchAngle,
-      newLength, depth + 1, maxDepth,
-      color, branchAngle, lengthRatio, swayPhase, life
+      newLength,
+      depth + 1,
+      maxDepth,
+      color,
+      branchAngle,
+      lengthRatio,
+      swayPhase,
+      life
     );
 
     // Right branch
     this._drawBranch(
-      ctx, endX, endY,
+      ctx,
+      endX,
+      endY,
       adjustedAngle + branchAngle,
-      newLength, depth + 1, maxDepth,
-      color, branchAngle, lengthRatio, swayPhase, life
+      newLength,
+      depth + 1,
+      maxDepth,
+      color,
+      branchAngle,
+      lengthRatio,
+      swayPhase,
+      life
     );
 
     // Sometimes add a middle branch for more organic look
     if (depth < maxDepth - 1 && Math.random() > 0.5) {
       this._drawBranch(
-        ctx, endX, endY,
+        ctx,
+        endX,
+        endY,
         adjustedAngle + (Math.random() - 0.5) * branchAngle * 0.5,
-        newLength * 0.8, depth + 1, maxDepth,
-        color, branchAngle, lengthRatio, swayPhase, life
+        newLength * 0.8,
+        depth + 1,
+        maxDepth,
+        color,
+        branchAngle,
+        lengthRatio,
+        swayPhase,
+        life
       );
     }
   }
@@ -1314,7 +1377,7 @@ export class VisualizationCanvas extends GlitchBase {
 
       // Concentric arcs with varying colors
       for (let j = 3; j >= 0; j--) {
-        const arcRadius = radius * (j + 1) / 4;
+        const arcRadius = (radius * (j + 1)) / 4;
         const colorIndex = (Math.floor(patternOffset) + j + i) % this._colorArray.length;
 
         ctx.beginPath();
@@ -1374,12 +1437,7 @@ export class VisualizationCanvas extends GlitchBase {
   // ============================================
 
   render() {
-    return html`
-      <canvas
-        aria-hidden="true"
-        role="presentation"
-      ></canvas>
-    `;
+    return html` <canvas aria-hidden="true" role="presentation"></canvas> `;
   }
 }
 

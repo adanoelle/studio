@@ -47,15 +47,14 @@ interface WorldAware {
 ### WorldAware Component Pattern
 
 ```typescript
-@customElement("my-component")
+@customElement('my-component')
 export class MyComponent extends LitElement {
   @property({ type: String })
-  world: "overworld" | "underworld" = "overworld";
+  world: 'overworld' | 'underworld' = 'overworld';
 
   // Use world to determine behavior/style
   render() {
-    const palette =
-      this.world === "overworld" ? this.overworldColors : this.underworldColors;
+    const palette = this.world === 'overworld' ? this.overworldColors : this.underworldColors;
 
     return html`...`;
   }
@@ -71,9 +70,7 @@ function switchWorlds() {
   this.state = 'glitching';
 
   // 2. Actual switch
-  this.currentWorld = this.currentWorld === 'overworld'
-    ? 'underworld'
-    : 'overworld';
+  this.currentWorld = this.currentWorld === 'overworld' ? 'underworld' : 'overworld';
 
   // 3. Settle into new world
   this.state = 'stable';
@@ -84,12 +81,14 @@ function switchWorlds() {
 
 ```typescript
 // Custom events for world changes
-this.dispatchEvent(new CustomEvent('world-changed', {
-  detail: {
-    from: 'overworld',
-    to: 'underworld'
-  }
-}));
+this.dispatchEvent(
+  new CustomEvent('world-changed', {
+    detail: {
+      from: 'overworld',
+      to: 'underworld',
+    },
+  })
+);
 ```
 
 ---
@@ -97,12 +96,14 @@ this.dispatchEvent(new CustomEvent('world-changed', {
 ## Responsive Strategy (Original)
 
 **Desktop** (≥1024px):
+
 - Full dual-world interface
 - All glitch effects
 - Chromatic aberration
 - Multiple concurrent animations
 
 **Mobile** (<768px):
+
 - Single world at a time
 - Simplified glitches (reduced animation)
 - Explicit world switching (tap/click)
@@ -113,12 +114,15 @@ this.dispatchEvent(new CustomEvent('world-changed', {
 ## Alternatives Considered
 
 ### Alternative 1: Single Aesthetic
+
 **Rejected at the time**: Would lose the worldtraveling concept entirely. The dual worlds are core to Lugones' theory.
 
 ### Alternative 2: Implicit World Detection
+
 **Rejected**: Removes user agency. Users should explicitly choose their world.
 
 ### Alternative 3: Three+ Worlds
+
 **Rejected**: Adds complexity without theoretical justification. Two worlds maps cleanly to Lugones.
 
 ---
@@ -135,6 +139,7 @@ The current implementation takes a different approach:
 ### Reframing Worldtraveling
 
 The worldtraveling concept is now expressed through:
+
 - **Page transitions** (traveling between content areas)
 - **Morning/evening palette variants** (same home, different lighting)
 - **Boundary glitch effects** (the membrane between crafted space and internet)

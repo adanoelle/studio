@@ -60,7 +60,7 @@ This is more honest and more useful than showing only refined knowledge.
 date: 2024-01-15
 module: 1
 week: 3
-title: "Intervals on the Fretboard"
+title: 'Intervals on the Fretboard'
 concepts:
   - minor thirds
   - major thirds
@@ -74,12 +74,12 @@ strudel:
 
 ## Required Fields
 
-| Field    | Type   | Description              |
-| -------- | ------ | ------------------------ |
-| `date`   | date   | Entry date (YYYY-MM-DD)  |
-| `module` | number | Curriculum module (0-7)  |
-| `week`   | number | Curriculum week (1-14)   |
-| `title`  | string | Descriptive title        |
+| Field    | Type   | Description             |
+| -------- | ------ | ----------------------- |
+| `date`   | date   | Entry date (YYYY-MM-DD) |
+| `module` | number | Curriculum module (0-7) |
+| `week`   | number | Curriculum week (1-14)  |
+| `title`  | string | Descriptive title       |
 
 ## Optional Fields
 
@@ -104,7 +104,7 @@ three semitones, C to Eb - but when I play it on guitar, I'm not sure I'm hearin
 the interval or just recognizing the finger pattern. Is that the same thing?
 
 Maybe the physical and the auditory are more connected than I'm giving credit for.
-The shape *is* the sound, at least for now.
+The shape _is_ the sound, at least for now.
 
 </mini-essay>
 ```
@@ -117,6 +117,7 @@ The shape *is* the sound, at least for now.
 Reading this back after a month with intervals. I was right that "the shape is the
 sound" - this is actually how guitarists often think, and it's valid. But I was
 underestimating my own hearing. <quote>I'm not sure I'm hearing the interval</quote>
+
 - I was, I just didn't trust it yet.
 
 <correction>The real gap wasn't hearing vs. pattern recognition. It was confidence

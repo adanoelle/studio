@@ -74,7 +74,8 @@ Characteristics:
 Keep glitch colors fully saturated (#ff00ff, #00ffff) against F&B base.
 
 ### Rationale
-The glitch is explicitly *digital* - an intrusion from screen-space into the warm, analog F&B world. The clash is intentional: the boundary between your crafted space and the internet.
+
+The glitch is explicitly _digital_ - an intrusion from screen-space into the warm, analog F&B world. The clash is intentional: the boundary between your crafted space and the internet.
 
 ### Palette
 
@@ -114,12 +115,14 @@ The glitch is explicitly *digital* - an intrusion from screen-space into the war
 ```
 
 ### Pros
+
 - Maximum contrast = maximum impact
 - Maintains theoretical integrity (digital intrusion)
 - Connects to HLD's chromatic aberration language
-- Glitch is clearly *other* - not absorbed into the aesthetic
+- Glitch is clearly _other_ - not absorbed into the aesthetic
 
 ### Cons
+
 - Potentially jarring/tiring
 - Might feel "generic glitch" rather than personal
 - F&B sophistication could be overwhelmed
@@ -131,7 +134,8 @@ The glitch is explicitly *digital* - an intrusion from screen-space into the war
 Generate glitch colors by pushing F&B colors to saturated extremes.
 
 ### Rationale
-The glitch emerges *from* the palette, as if the sophisticated colors are being corrupted from within. Like Celeste's Badeline - the Other that comes from the self.
+
+The glitch emerges _from_ the palette, as if the sophisticated colors are being corrupted from within. Like Celeste's Badeline - the Other that comes from the self.
 
 ### Derivation Method
 
@@ -187,12 +191,14 @@ Original F&B          →  Push Saturation  →  Glitch Version
 ```
 
 ### Pros
-- Glitch feels *personal* to your palette
+
+- Glitch feels _personal_ to your palette
 - More Celeste-like (shadow self emerges from self)
 - Sophisticated corruption rather than digital invasion
 - Warmer overall feeling
 
 ### Cons
+
 - Loses the digital signifier (magenta/cyan)
 - Less connected to HLD's specific aesthetic
 - Might feel too harmonious (where's the refusal?)
@@ -204,6 +210,7 @@ Original F&B          →  Push Saturation  →  Glitch Version
 Desaturate glitch colors to feel cohesive with F&B sophistication.
 
 ### Rationale
+
 The glitch is absorbed into the F&B world - still present, but whispered rather than shouted. Like a memory of digital intrusion rather than active disruption.
 
 ### Palette
@@ -235,13 +242,15 @@ The glitch is absorbed into the F&B world - still present, but whispered rather 
 ```
 
 ### Pros
+
 - Maximum sophistication
 - Everything feels of-a-piece
 - Could feel like light leaks on film photography
 - Gentle, not aggressive
 
 ### Cons
-- Loses the *refusal* - glitch becomes decoration
+
+- Loses the _refusal_ - glitch becomes decoration
 - Might be too subtle to notice
 - Doesn't connect to HLD/game aesthetic
 
@@ -252,7 +261,9 @@ The glitch is absorbed into the F&B world - still present, but whispered rather 
 Different glitch intensity/color based on context.
 
 ### Rationale
+
 The glitch adapts to what's being shown:
+
 - **Boundary frame**: Pure digital (always the membrane to internet)
 - **Content hover**: Derived colors (emerges from self)
 - **Page transitions**: Full intensity (moment of instability)
@@ -271,12 +282,14 @@ Item detail          │ Minimal/none        │ Content is primary
 ```
 
 ### Pros
+
 - Best of all worlds
 - Glitch meaning varies by context
 - Content stays primary when needed
 - Boundary stays bold
 
 ### Cons
+
 - More complex to implement
 - Could feel inconsistent
 - Need to design multiple glitch palettes
@@ -288,6 +301,7 @@ Item detail          │ Minimal/none        │ Content is primary
 Taking specific inspiration from both games:
 
 ### From Hyper Light Drifter
+
 - Chromatic aberration as signature effect
 - Magenta/cyan offset on the boundary
 - Deep void purples in dark mode
@@ -295,6 +309,7 @@ Taking specific inspiration from both games:
 - Scanlines and holographic effects
 
 ### From Celeste
+
 - Color tells emotional story
 - Safe spaces feel warmer
 - The shadow self (Badeline) as purple
@@ -319,6 +334,7 @@ The glitch happens at the MEETING POINT
 ```
 
 This reframes the architecture:
+
 - **Boundary**: Always dark/HLD-like (it's the edge to the internet)
 - **Content**: Always warm/F&B (it's your home)
 - **Glitch**: Happens where they meet, in both color languages
@@ -373,7 +389,7 @@ Both are home. Morning is soft and awake. Evening is deep and focused. Neither i
 
 2. For the boundary: Should it always be dark/HLD-like, or also warm?
 
-3. Is the glitch *always* chromatic aberration, or should it include:
+3. Is the glitch _always_ chromatic aberration, or should it include:
    - Dither corruption (PC-98 style)?
    - Scanlines (HLD)?
    - Pattern displacement?

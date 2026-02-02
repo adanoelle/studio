@@ -42,10 +42,7 @@ export type {
   VisualizationConfig,
 } from './audio/types.js';
 
-export {
-  STRUDEL_EVENTS,
-  VISUALIZATION_COLORS,
-} from './audio/types.js';
+export { STRUDEL_EVENTS, VISUALIZATION_COLORS } from './audio/types.js';
 
 // Analog components will be added as they're built
 // export { FretboardDiagram } from './analog/index.js';

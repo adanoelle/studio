@@ -9,12 +9,7 @@
 // Import design system components
 import '@studio/design-system';
 
-import {
-  type Hap,
-  type FrequencyBands,
-  STRUDEL_EVENTS,
-  HydraCanvas,
-} from '@studio/design-system';
+import { type Hap, type FrequencyBands, STRUDEL_EVENTS, HydraCanvas } from '@studio/design-system';
 
 // ============================================
 // SIMPLE SYNTH (Web Audio)
@@ -55,12 +50,7 @@ class SimpleSynth {
   /**
    * Play a note
    */
-  playNote(
-    note: number,
-    gain: number,
-    duration: number,
-    pan: number = 0
-  ): void {
+  playNote(note: number, gain: number, duration: number, pan: number = 0): void {
     if (!this._ctx || !this._masterGain) return;
 
     const now = this._ctx.currentTime;
@@ -230,8 +220,7 @@ class MockAudioAnalyzer {
     let treble = 0.1;
 
     for (const event of nearbyEvents) {
-      const proximity =
-        1 - Math.min(Math.abs(event.time - cyclePosition), 0.15) / 0.15;
+      const proximity = 1 - Math.min(Math.abs(event.time - cyclePosition), 0.15) / 0.15;
       const contribution = event.gain * proximity * 0.5;
 
       if (event.note < 50) {
@@ -361,8 +350,7 @@ class MockScheduler {
       const event = this._pattern.events[i];
 
       // Did we cross this event's time?
-      const lastPosition =
-        ((elapsed - 50) % cycleDuration) / cycleDuration;
+      const lastPosition = ((elapsed - 50) % cycleDuration) / cycleDuration;
 
       if (
         (lastPosition < event.time && cyclePosition >= event.time) ||
@@ -378,10 +366,7 @@ class MockScheduler {
     }
   }
 
-  private _fireHap(
-    event: PatternDef['events'][0],
-    cyclePosition: number
-  ) {
+  private _fireHap(event: PatternDef['events'][0], cyclePosition: number) {
     this._eventCount++;
 
     const duration = event.duration ?? 0.1;
@@ -389,12 +374,7 @@ class MockScheduler {
     const noteDuration = duration * cycleDuration;
 
     // Play the note!
-    synth.playNote(
-      event.note,
-      event.gain,
-      noteDuration,
-      event.pan ?? 0
-    );
+    synth.playNote(event.note, event.gain, noteDuration, event.pan ?? 0);
 
     const hap: Hap = {
       part: { begin: cyclePosition, end: cyclePosition + duration },

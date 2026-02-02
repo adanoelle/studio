@@ -350,10 +350,7 @@ export const VISUALIZATION_COLORS = {
 /**
  * Helper to get color with alpha
  */
-export function colorWithAlpha(
-  hex: string,
-  alpha: number
-): string {
+export function colorWithAlpha(hex: string, alpha: number): string {
   // Handle rgba format
   if (hex.startsWith('rgba')) {
     return hex.replace(/[\d.]+\)$/, `${alpha})`);

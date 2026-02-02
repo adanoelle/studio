@@ -83,7 +83,7 @@ Module 7:  [all layers] + [live coding] + [guitar sampling]
 A soft, musical pulse on the downbeat to play along with:
 
 ```js
-s("bd").slow(2); // kick on 1 and 3
+s('bd').slow(2); // kick on 1 and 3
 ```
 
 #### Strudel Pieces
@@ -114,7 +114,7 @@ s("bd").slow(2); // kick on 1 and 3
 Full drum pattern replaces simple pulse:
 
 ```js
-stack(s("bd*2"), s("~ sd"), s("hh*4"));
+stack(s('bd*2'), s('~ sd'), s('hh*4'));
 ```
 
 #### Strudel Pieces
@@ -146,7 +146,7 @@ stack(s("bd*2"), s("~ sd"), s("hh*4"));
 Static bass note underneath moving parts:
 
 ```js
-note("e2").slow(4); // pedal tone
+note('e2').slow(4); // pedal tone
 ```
 
 #### Strudel Pieces
@@ -178,7 +178,7 @@ note("e2").slow(4); // pedal tone
 Drone evolves into a rhythmic pedal pattern:
 
 ```js
-note("e2 ~ e2 ~").slow(2); // pulsing pedal
+note('e2 ~ e2 ~').slow(2); // pulsing pedal
 ```
 
 #### Strudel Pieces
@@ -205,7 +205,7 @@ note("e2 ~ e2 ~").slow(2); // pulsing pedal
 Bass becomes independent moving voice:
 
 ```js
-note("<e2 a2 d2 g2>").slow(4); // root movement
+note('<e2 a2 d2 g2>').slow(4); // root movement
 ```
 
 #### Strudel Pieces
@@ -238,10 +238,10 @@ Three or more independent voices:
 
 ```js
 stack(
-  note("...").s("piano"), // melody
-  chord("...").s("pad"), // chords
-  note("...").s("bass"), // walking bass
-  s("bd sd hh"), // drums
+  note('...').s('piano'), // melody
+  chord('...').s('pad'), // chords
+  note('...').s('bass'), // walking bass
+  s('bd sd hh') // drums
 );
 ```
 
@@ -272,7 +272,7 @@ Full control over all layers, including captured audio:
 ```js
 stack(
   // all previous voices
-  s("guitar_sample").loopAt(4), // your recorded guitar
+  s('guitar_sample').loopAt(4) // your recorded guitar
 );
 ```
 

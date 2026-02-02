@@ -26,11 +26,11 @@ All design values are defined as CSS custom properties for consistency and easy 
   /* === COLORS === */
 
   /* Base Palette (Farrow & Ball Warm Tones) */
-  --color-cream: #dfc8ba;       /* Setting Plaster */
-  --color-dark: #3a3632;        /* Paean Black */
-  --color-tan: #c9a88a;         /* Jitney */
-  --color-pink: #a4656a;        /* Sulking Room Pink */
-  --color-muted: #5a4a4a;       /* Muted warm */
+  --color-cream: #dfc8ba; /* Setting Plaster */
+  --color-dark: #3a3632; /* Paean Black */
+  --color-tan: #c9a88a; /* Jitney */
+  --color-pink: #a4656a; /* Sulking Room Pink */
+  --color-muted: #5a4a4a; /* Muted warm */
 
   /* Semantic Colors - Morning (lighter) */
   --bg-primary: var(--color-cream);
@@ -41,19 +41,19 @@ All design values are defined as CSS custom properties for consistency and easy 
   --border: var(--color-tan);
 
   /* Glitch Colors (pure digital) */
-  --glitch-magenta: #ff00ff;    /* Cyberspace pink */
-  --glitch-cyan: #00ffff;       /* Digital ghost */
-  --glitch-pink: #ff6b9d;       /* Riot grrrl */
-  --glitch-lime: #b4ff9f;       /* Toxic fem */
-  --glitch-violet: #9d00ff;     /* Between pink/blue */
+  --glitch-magenta: #ff00ff; /* Cyberspace pink */
+  --glitch-cyan: #00ffff; /* Digital ghost */
+  --glitch-pink: #ff6b9d; /* Riot grrrl */
+  --glitch-lime: #b4ff9f; /* Toxic fem */
+  --glitch-violet: #9d00ff; /* Between pink/blue */
 
   /* Boundary Frame (HLD Void) */
-  --boundary-dark: #1a0a2e;     /* Deep purple void */
-  --boundary-mid: #3a1055;      /* Mid purple */
+  --boundary-dark: #1a0a2e; /* Deep purple void */
+  --boundary-mid: #3a1055; /* Mid purple */
 
   /* Algorave */
-  --code-green: #0f0;           /* Terminal green */
-  --warning-yellow: #ffcc00;    /* Alert */
+  --code-green: #0f0; /* Terminal green */
+  --warning-yellow: #ffcc00; /* Alert */
 
   /* === TYPOGRAPHY === */
 
@@ -132,22 +132,24 @@ All design values are defined as CSS custom properties for consistency and easy 
 Two lighting variants (both "home", just different times of day):
 
 **"Morning" (lighter)**:
+
 ```css
 .morning {
-  --bg-primary: #dfc8ba;     /* Setting Plaster */
-  --text-primary: #3a3632;   /* Paean Black */
-  --accent: #a4656a;         /* Sulking Room Pink */
-  --border: #c9a88a;         /* Jitney */
+  --bg-primary: #dfc8ba; /* Setting Plaster */
+  --text-primary: #3a3632; /* Paean Black */
+  --accent: #a4656a; /* Sulking Room Pink */
+  --border: #c9a88a; /* Jitney */
 }
 ```
 
 **"Evening" (darker)**:
+
 ```css
 .evening {
-  --bg-primary: #3a3632;     /* Paean Black */
-  --text-primary: #dfc8ba;   /* Setting Plaster */
-  --accent: #c9a88a;         /* Jitney */
-  --border: #5a4a4a;         /* Muted warm */
+  --bg-primary: #3a3632; /* Paean Black */
+  --text-primary: #dfc8ba; /* Setting Plaster */
+  --accent: #c9a88a; /* Jitney */
+  --border: #5a4a4a; /* Muted warm */
 }
 ```
 
@@ -163,11 +165,13 @@ Pure digital colors for glitch effects:
 ```
 
 **When to use**:
+
 - Outer boundary effects
 - Page transitions
 - Hover states on interactive elements
 
 **Color meanings**:
+
 - **Magenta**: Between pink (fem) and blue (masc) = non-binary
 - **Cyan**: Digital ghost, RGB split, multiplicity
 - **Hot pink**: Riot grrrl, punk feminism
@@ -176,10 +180,7 @@ Pure digital colors for glitch effects:
 
 ```css
 .boundary {
-  background: linear-gradient(
-    var(--boundary-dark),
-    var(--boundary-mid)
-  );
+  background: linear-gradient(var(--boundary-dark), var(--boundary-mid));
 }
 ```
 
@@ -222,13 +223,27 @@ body {
 ### Type Scale
 
 ```css
-.text-xs    { font-size: var(--text-xs);   }  /* 11px - Captions */
-.text-sm    { font-size: var(--text-sm);   }  /* 13px - Small text */
-.text-base  { font-size: var(--text-base); }  /* 15px - Body */
-.text-lg    { font-size: var(--text-lg);   }  /* 18px - Emphasis */
-.text-xl    { font-size: var(--text-xl);   }  /* 24px - H3 */
-.text-2xl   { font-size: var(--text-2xl);  }  /* 32px - H2 */
-.text-3xl   { font-size: var(--text-3xl);  }  /* 48px - H1 */
+.text-xs {
+  font-size: var(--text-xs);
+} /* 11px - Captions */
+.text-sm {
+  font-size: var(--text-sm);
+} /* 13px - Small text */
+.text-base {
+  font-size: var(--text-base);
+} /* 15px - Body */
+.text-lg {
+  font-size: var(--text-lg);
+} /* 18px - Emphasis */
+.text-xl {
+  font-size: var(--text-xl);
+} /* 24px - H3 */
+.text-2xl {
+  font-size: var(--text-2xl);
+} /* 32px - H2 */
+.text-3xl {
+  font-size: var(--text-3xl);
+} /* 48px - H1 */
 ```
 
 ### Typography Rules
@@ -278,10 +293,18 @@ Use consistent spacing multiples of 4px:
 ### Container Widths
 
 ```css
-.container-sm  { max-width: 640px;  }  /* Text content */
-.container-md  { max-width: 768px;  }  /* Forms */
-.container-lg  { max-width: 1024px; }  /* Standard page */
-.container-xl  { max-width: 1280px; }  /* Wide layouts */
+.container-sm {
+  max-width: 640px;
+} /* Text content */
+.container-md {
+  max-width: 768px;
+} /* Forms */
+.container-lg {
+  max-width: 1024px;
+} /* Standard page */
+.container-xl {
+  max-width: 1280px;
+} /* Wide layouts */
 ```
 
 ---
@@ -291,6 +314,7 @@ Use consistent spacing multiples of 4px:
 ### Animation Principles
 
 1. **Use GPU-accelerated properties only**
+
    ```css
    /* ✓ GOOD: transform and opacity */
    .animate {
@@ -306,6 +330,7 @@ Use consistent spacing multiples of 4px:
    ```
 
 2. **Respect reduced motion**
+
    ```css
    @media (prefers-reduced-motion: reduce) {
      .animated {
@@ -326,22 +351,39 @@ Use consistent spacing multiples of 4px:
 ```css
 /* Glitch shake */
 @keyframes glitch-shake {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-1px, 1px); }
-  75% { transform: translate(1px, -1px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1px, 1px);
+  }
+  75% {
+    transform: translate(1px, -1px);
+  }
 }
 
 /* Chromatic split */
 @keyframes chromatic-split {
-  0% { transform: translateX(0); }
-  33% { transform: translateX(-2px); }
-  66% { transform: translateX(2px); }
+  0% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-2px);
+  }
+  66% {
+    transform: translateX(2px);
+  }
 }
 
 /* Fade in */
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Slide up */
@@ -366,10 +408,10 @@ Use consistent spacing multiples of 4px:
 ```css
 /* Mobile first approach */
 :root {
-  --breakpoint-sm: 640px;   /* Landscape phones */
-  --breakpoint-md: 768px;   /* Tablets */
-  --breakpoint-lg: 1024px;  /* Desktop */
-  --breakpoint-xl: 1280px;  /* Large desktop */
+  --breakpoint-sm: 640px; /* Landscape phones */
+  --breakpoint-md: 768px; /* Tablets */
+  --breakpoint-lg: 1024px; /* Desktop */
+  --breakpoint-xl: 1280px; /* Large desktop */
 }
 
 /* Usage */
@@ -446,6 +488,7 @@ Use consistent spacing multiples of 4px:
    - Transparent background
 
 4. **9-Slice technique**:
+
    ```
    For borders that scale:
 
@@ -480,6 +523,7 @@ pngquant --quality=80-90 input.png -o output.png
 ```
 
 **Target sizes**:
+
 - Icon: <1KB
 - Border: <2KB
 - Window chrome: <5KB
@@ -582,6 +626,7 @@ component-name.ts
 ## Deferred Features
 
 For world-specific styling (overworld/underworld), see:
+
 - `docs/archive/DESIGN-SYSTEM-WORLDS.md`
 
 ---

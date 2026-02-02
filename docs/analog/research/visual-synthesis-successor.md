@@ -25,7 +25,6 @@ create.
 ### Secondary Questions
 
 1. **Temporal Semantics Across Modalities**
-
    - TidalCycles represents time through pattern combinators (`fast`, `slow`, `rev`,
      `every`)
    - Hydra represents time implicitly through continuous functions
@@ -33,14 +32,12 @@ create.
    - Can a unified temporal model enable new forms of audiovisual composition?
 
 2. **Type Systems as Creative Constraints**
-
    - Hydra's JavaScript is dynamically typed; anything chains to anything
    - What if transform types (source → coordinate → color → combine) were enforced?
    - Do type errors become creative friction, or do they guide toward valid
      compositions?
 
 3. **Liveness and Feedback Loops**
-
    - Hot reload enables "conversational" programming with the machine
    - How fast must feedback be to feel like improvisation vs. editing?
    - What is lost when compilation takes seconds instead of milliseconds?
@@ -93,20 +90,17 @@ A visual synthesis tool built with awareness of TidalCycles' pattern model could
 The choice of implementation language is itself a research decision:
 
 1. **Performance enables new forms**
-
    - WebGL limits Hydra to simple fragment shaders
    - Compute shaders enable particle systems, fluid dynamics, cellular automata
    - Native performance allows installation-scale work (multi-projector,
      high-resolution)
 
 2. **Type system as design material**
-
    - Rust's type system can encode transform composition rules
    - Invalid chains become compile errors, not runtime glitches
    - The type system becomes part of the creative language
 
 3. **Cross-platform from one codebase**
-
    - Native application for performance (TidalCycles integration)
    - WASM for browser (Strudel integration)
    - Same semantics in both contexts
@@ -194,19 +188,16 @@ technology:
 ### Evaluation Approaches
 
 1. **Autoethnography**
-
    - Document personal creative practice with the tool
    - Compare to practice with existing tools (Hydra, Processing)
    - Identify moments where language design enabled/constrained expression
 
 2. **Community Engagement**
-
    - Release tool as open source
    - Gather feedback from algorave performers
    - Document adoption patterns and unexpected uses
 
 3. **Comparative Analysis**
-
    - Create equivalent compositions in Hydra and the new tool
    - Analyze differences in process, not just output
    - Identify what each language makes easy/hard

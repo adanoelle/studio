@@ -6,7 +6,6 @@ agents) working on this design system.
 ## Quick Start for AI Agents
 
 1. **Read these files first** (in order):
-
    - `docs/glitch/DESIGN-SUMMARY.md` - Primary source of truth for glitch aesthetic
    - `docs/glitch/THEORETICAL-FRAMEWORK.md` - Learn the feminist theory
    - `docs/glitch/DESIGN-SYSTEM.md` - Visual language specification
@@ -14,13 +13,11 @@ agents) working on this design system.
    - `docs/analog/` - Music journal design specs
 
 2. **Understand the core principle**:
-
    - This is NOT just a design system
    - It's a **visual argument** about identity, multiplicity, and resistance
    - Every design choice must map to feminist theory
 
 3. **Follow existing patterns**:
-
    - Look at `packages/design-system/src/glitch/glitch-text.ts` as the reference
      implementation
    - All components follow the same structure
@@ -36,7 +33,6 @@ agents) working on this design system.
 ### Step-by-Step Process
 
 1. **Identify the theoretical grounding**
-
    - What concept from Russell/Lugones/Haraway does this embody?
    - How does it visually represent that concept?
    - Document this in code comments
@@ -106,7 +102,6 @@ export class ComponentName extends LitElement {
 ```
 
 3. **Design for warm palette**:
-
    - Use the Farrow & Ball warm tones for base styling
    - Glitch effects (magenta/cyan) at boundary and on interaction
    - Content area stays readable and calm
@@ -346,14 +341,12 @@ private handleKeyboard(e: KeyboardEvent) {
 Every component must have:
 
 1. **Unit tests**:
-
    - Renders correctly
    - Props work
    - Methods work
    - Events fire
 
 2. **Accessibility tests**:
-
    - Keyboard navigation
    - Screen reader compatibility
    - Reduced motion respected

@@ -389,21 +389,18 @@ device.
 ### Practice-Based Research
 
 1. **Build prototypes** for each interface type
-
    - Desktop REPL (first, for iteration speed)
    - MIDI controller mapping (validates interface abstraction)
    - Hardware pedal (tests embedded constraints)
    - Eurorack module (tests CV/timing requirements)
 
 2. **Use in personal practice** across contexts
-
    - Livecoding sessions (algorave style)
    - Band rehearsals (guitar pedal)
    - Studio sessions (modular integration)
    - DJ sets (MIDI controller)
 
 3. **Document how interface shapes creative choices**
-
    - What patterns emerge with knobs vs code?
    - How does latency affect compositional decisions?
    - What's easy/intuitive in each context?

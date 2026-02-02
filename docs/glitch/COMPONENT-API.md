@@ -24,24 +24,26 @@ Text that glitches on hover with rare idle animations, embodying unstable, multi
 
 #### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `text` | `string` | `""` | The text to display and glitch |
-| `mode` | `'all' \| 'word' \| 'character'` | `'all'` | How characters are glitched |
-| `character-type` | `'vowels' \| 'consonants' \| 'numbers' \| 'punctuation'` | `undefined` | Which characters to glitch (mode='character' only) |
-| `intensity` | `number` | `0.3` | Glitch aggressiveness (0.0-1.0) |
-| `hover-delay` | `number` | `100` | Delay before hover glitch starts (ms) |
-| `idle-glitch` | `boolean` | `true` | Whether to enable rare idle glitches |
-| `idle-interval` | `number` | `45000` | Average time between idle glitches (ms, randomized ±15s) |
+| Property         | Type                                                     | Default     | Description                                              |
+| ---------------- | -------------------------------------------------------- | ----------- | -------------------------------------------------------- |
+| `text`           | `string`                                                 | `""`        | The text to display and glitch                           |
+| `mode`           | `'all' \| 'word' \| 'character'`                         | `'all'`     | How characters are glitched                              |
+| `character-type` | `'vowels' \| 'consonants' \| 'numbers' \| 'punctuation'` | `undefined` | Which characters to glitch (mode='character' only)       |
+| `intensity`      | `number`                                                 | `0.3`       | Glitch aggressiveness (0.0-1.0)                          |
+| `hover-delay`    | `number`                                                 | `100`       | Delay before hover glitch starts (ms)                    |
+| `idle-glitch`    | `boolean`                                                | `true`      | Whether to enable rare idle glitches                     |
+| `idle-interval`  | `number`                                                 | `45000`     | Average time between idle glitches (ms, randomized ±15s) |
 
 #### Behavior
 
 **Hover Glitch (Primary)**:
+
 - Glitch starts after `hover-delay` ms of hovering
 - Continues until mouse leaves
 - Intensity controlled by `intensity` property
 
 **Idle Glitch (Secondary)**:
+
 - Triggers randomly every 30-60 seconds (averaged around `idle-interval`)
 - Duration: 200-500ms, then returns to stable
 - Only fires when element is visible (Intersection Observer)
@@ -65,37 +67,34 @@ None - component is self-contained.
 #### CSS Custom Properties
 
 ```css
---glitch-magenta: #ff00ff;  /* Primary glitch color */
---glitch-cyan: #00ffff;     /* Secondary glitch color */
---duration-fast: 0.1s;      /* Animation speed */
---duration-normal: 0.2s;    /* Transition speed */
+--glitch-magenta: #ff00ff; /* Primary glitch color */
+--glitch-cyan: #00ffff; /* Secondary glitch color */
+--duration-fast: 0.1s; /* Animation speed */
+--duration-normal: 0.2s; /* Transition speed */
 ```
 
 #### Examples
 
 **Basic usage:**
+
 ```html
 <glitch-text text="Hello World"></glitch-text>
 ```
 
 **Word glitching:**
+
 ```html
-<glitch-text
-  text="Principal Reliability Engineer"
-  mode="word"
-></glitch-text>
+<glitch-text text="Principal Reliability Engineer" mode="word"></glitch-text>
 ```
 
 **High intensity, no idle glitch:**
+
 ```html
-<glitch-text
-  text="Maximum chaos"
-  intensity="0.8"
-  idle-glitch="false"
-></glitch-text>
+<glitch-text text="Maximum chaos" intensity="0.8" idle-glitch="false"></glitch-text>
 ```
 
 **Programmatic control:**
+
 ```javascript
 const glitchText = document.querySelector('glitch-text');
 
@@ -128,13 +127,13 @@ Borders that break and shift colors on hover, refusing containment.
 
 #### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `thickness` | `number` | `4` | Border thickness in pixels |
-| `color` | `string` | `auto` | Base border color (auto-selected from palette) |
-| `break-pattern` | `'shift' \| 'gap' \| 'color' \| 'all'` | `'all'` | How the border breaks when glitching |
-| `intensity` | `number` | `0.5` | Glitch aggressiveness (0.0-1.0) |
-| `hover-delay` | `number` | `100` | Delay before glitch starts (ms) |
+| Property        | Type                                   | Default | Description                                    |
+| --------------- | -------------------------------------- | ------- | ---------------------------------------------- |
+| `thickness`     | `number`                               | `4`     | Border thickness in pixels                     |
+| `color`         | `string`                               | `auto`  | Base border color (auto-selected from palette) |
+| `break-pattern` | `'shift' \| 'gap' \| 'color' \| 'all'` | `'all'` | How the border breaks when glitching           |
+| `intensity`     | `number`                               | `0.5`   | Glitch aggressiveness (0.0-1.0)                |
+| `hover-delay`   | `number`                               | `100`   | Delay before glitch starts (ms)                |
 
 #### Break Patterns
 
@@ -146,15 +145,16 @@ Borders that break and shift colors on hover, refusing containment.
 #### CSS Custom Properties
 
 ```css
---border-thickness: 4px;       /* Thickness of border */
---border-color: #c9a88a;       /* Base color (Jitney) */
---glitch-color: #ff00ff;       /* Glitch color */
---duration-normal: 0.2s;       /* Animation speed */
+--border-thickness: 4px; /* Thickness of border */
+--border-color: #c9a88a; /* Base color (Jitney) */
+--glitch-color: #ff00ff; /* Glitch color */
+--duration-normal: 0.2s; /* Animation speed */
 ```
 
 #### Examples
 
 **Basic usage:**
+
 ```html
 <glitch-border>
   <p>Content goes here</p>
@@ -162,17 +162,15 @@ Borders that break and shift colors on hover, refusing containment.
 ```
 
 **Custom thickness and color:**
+
 ```html
-<glitch-border
-  thickness="8"
-  color="#00ffff"
-  break-pattern="shift"
->
+<glitch-border thickness="8" color="#00ffff" break-pattern="shift">
   <div>Professional content</div>
 </glitch-border>
 ```
 
 **Gap pattern:**
+
 ```html
 <glitch-border break-pattern="gap">
   <div>Creative work</div>
@@ -201,13 +199,13 @@ Dithered gradients that glitch into chromatic separation. Synthesizes PC-98 cons
 
 #### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `color-a` | `string` | `#1a0a2e` | Gradient start color |
-| `color-b` | `string` | `#7209b7` | Gradient end color |
-| `pattern` | `'bayer' \| 'floyd-steinberg' \| 'ordered'` | `'bayer'` | Dithering algorithm |
-| `direction` | `'horizontal' \| 'vertical' \| 'diagonal'` | `'vertical'` | Gradient direction |
-| `glitch-intensity` | `number` | `0.5` | How aggressively to glitch (0.0-1.0) |
+| Property           | Type                                        | Default      | Description                          |
+| ------------------ | ------------------------------------------- | ------------ | ------------------------------------ |
+| `color-a`          | `string`                                    | `#1a0a2e`    | Gradient start color                 |
+| `color-b`          | `string`                                    | `#7209b7`    | Gradient end color                   |
+| `pattern`          | `'bayer' \| 'floyd-steinberg' \| 'ordered'` | `'bayer'`    | Dithering algorithm                  |
+| `direction`        | `'horizontal' \| 'vertical' \| 'diagonal'`  | `'vertical'` | Gradient direction                   |
+| `glitch-intensity` | `number`                                    | `0.5`        | How aggressively to glitch (0.0-1.0) |
 
 #### Dither Patterns
 
@@ -218,12 +216,9 @@ Dithered gradients that glitch into chromatic separation. Synthesizes PC-98 cons
 #### Examples
 
 **Basic dithered gradient:**
+
 ```html
-<dithered-glitch-gradient
-  color-a="#1a0a2e"
-  color-b="#7209b7"
-  pattern="bayer"
->
+<dithered-glitch-gradient color-a="#1a0a2e" color-b="#7209b7" pattern="bayer">
   <div style="padding: 40px;">
     <h1>Content over dithered background</h1>
   </div>
@@ -231,6 +226,7 @@ Dithered gradients that glitch into chromatic separation. Synthesizes PC-98 cons
 ```
 
 **High intensity glitch:**
+
 ```html
 <dithered-glitch-gradient
   color-a="#0a0e1a"
@@ -291,11 +287,7 @@ Spreading corruption through dithering patterns. Pattern breaks down organically
 #### Examples
 
 ```html
-<dither-corruption
-  corruption-level="0.5"
-  primary-color="#1a0a2e"
-  corruption-color="#ff006e"
->
+<dither-corruption corruption-level="0.5" primary-color="#1a0a2e" corruption-color="#ff006e">
   <p>Content with corrupting dither overlay</p>
 </dither-corruption>
 ```
@@ -346,10 +338,10 @@ Section wrapper with consistent styling.
 
 The following components are designed but deferred for future implementation:
 
-| Component | Description | Archive Document |
-|-----------|-------------|------------------|
-| `world-switcher` | Toggle between overworld/underworld | `archive/ADR-DEFERRED-WORLDS.md` |
-| `boundary-guide` | Guide character sprite | `archive/GUIDE-CHARACTER-DESIGN.md` |
+| Component        | Description                         | Archive Document                    |
+| ---------------- | ----------------------------------- | ----------------------------------- |
+| `world-switcher` | Toggle between overworld/underworld | `archive/ADR-DEFERRED-WORLDS.md`    |
+| `boundary-guide` | Guide character sprite              | `archive/GUIDE-CHARACTER-DESIGN.md` |
 
 See `docs/archive/` for full documentation on deferred features.
 
@@ -451,8 +443,8 @@ import { GlitchText, GlitchBorder } from 'glitch-feminist-design-system';
 
 // Type-safe property access
 const glitchText = document.querySelector('glitch-text') as GlitchText;
-glitchText.intensity = 0.8;  // ✓ Type-safe
-glitchText.startGlitch();    // ✓ Method autocomplete
+glitchText.intensity = 0.8; // ✓ Type-safe
+glitchText.startGlitch(); // ✓ Method autocomplete
 ```
 
 ---
@@ -504,6 +496,7 @@ When adding new components:
 ---
 
 For more information, see:
+
 - [ADR-001](./ADR-001-architecture.md) - Architecture decisions
 - [Design System](./DESIGN-SYSTEM.md) - Visual language
 - [Theoretical Framework](./THEORETICAL-FRAMEWORK.md) - Feminist theory connections

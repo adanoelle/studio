@@ -18,9 +18,7 @@ Interactive Strudel code editor for embedding patterns in journal entries.
 ### API
 
 ```html
-<strudel-embed readonly autoplay bpm="120">
-  note("c3 e3 g3 c4").s("piano")
-</strudel-embed>
+<strudel-embed readonly autoplay bpm="120"> note("c3 e3 g3 c4").s("piano") </strudel-embed>
 ```
 
 ### Implementation Notes
@@ -167,8 +165,7 @@ Visualize and play chord progressions.
 ### API
 
 ```html
-<chord-progression key="G" progression="I,V,vi,IV" voicings="open">
-</chord-progression>
+<chord-progression key="G" progression="I,V,vi,IV" voicings="open"> </chord-progression>
 ```
 
 ---

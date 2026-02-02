@@ -77,9 +77,7 @@ export class GlitchBase extends LitElement {
     this.isMobile = !hasHover || hasCoarsePointer || window.innerWidth < 768;
 
     // Check reduced motion preference
-    this.prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   // ============================================
@@ -147,10 +145,7 @@ export class GlitchBase extends LitElement {
    * @param callback - Animation callback receiving timestamp
    * @param targetFps - Target frames per second (default 20)
    */
-  protected startAnimationLoop(
-    callback: (timestamp: number) => boolean | void,
-    targetFps = 20
-  ) {
+  protected startAnimationLoop(callback: (timestamp: number) => boolean | void, targetFps = 20) {
     const interval = 1000 / targetFps;
 
     const loop = (timestamp: number) => {

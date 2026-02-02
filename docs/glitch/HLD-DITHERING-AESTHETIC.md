@@ -7,18 +7,21 @@ This document explains the synthesis of Hyper Light Drifter's visual language, P
 Three aesthetics meet at a single theoretical point:
 
 **PC-98 Dithering:**
+
 - Technical constraint (16 colors only)
 - Ordered patterns create gradient illusion
 - Adaptation within imposed limits
 - "We accept the constraint and work beautifully within it"
 
 **Glitch Feminism:**
+
 - Refusing normative systems
 - Error as liberation
 - Multiple simultaneous identities
 - "We break the constraint and show alternatives"
 
 **Hyper Light Drifter:**
+
 - Beautiful corruption
 - Chromatic aberration as aesthetic
 - Glitching drifter gains power
@@ -41,18 +44,20 @@ When the Drifter dashes, they leave cyan/magenta afterimages:
 Movement:  ────────────────────►
            │ │ │ │ │ │ │ │ │ │
            C M C M C M C M C M
-           
+
 C = Cyan afterimage
 M = Magenta afterimage
 ```
 
 **Theoretical meaning:**
+
 - Past selves remain visible
 - You are not just NOW but also THEN
 - Multiple temporal identities simultaneous
 - Movement refuses to be singular
 
 **Our implementation:**
+
 ```html
 <dash-trail trail-length="8">
   <glitch-text text="Content in motion"></glitch-text>
@@ -78,12 +83,14 @@ Stage 4: ▒▓█▓▒░░░    (Full corruption)
 ```
 
 **Theoretical meaning:**
+
 - "Corruption" is transformation, not damage
 - Spreads organically (not geometric)
 - Beautiful in its incorrectness
 - The glitch colonizes space
 
 **Our implementation:**
+
 ```html
 <corruption-spread intensity="0.5" pattern="organic">
   <div>Content being transformed</div>
@@ -104,12 +111,14 @@ Semi-transparent, flickering interface with scan lines:
 ```
 
 **Theoretical meaning:**
+
 - Identity is not solid/permanent
 - Information exists in multiple states
 - Visible yet translucent
 - Stable yet unstable
 
 **Our implementation:**
+
 ```html
 <holographic-ui flickering scan-speed="3">
   <p>Unstable interface content</p>
@@ -128,6 +137,7 @@ Stable:       Glitching:
 ```
 
 **Theoretical meaning:**
+
 - Even smallest units refuse stability
 - Grid breaks down at pixel level
 - Order cannot be maintained
@@ -145,6 +155,7 @@ Using only 4 colors with dithering:
 ```
 
 **Theoretical meaning:**
+
 - Working beautifully within constraint
 - Technical limitation → aesthetic strength
 - Adaptation creates beauty
@@ -169,12 +180,14 @@ Using only 4 colors with dithering:
 ```
 
 **How it works:**
+
 1. For each pixel position, look up threshold value
 2. If gradient value > threshold, use light color
 3. If gradient value < threshold, use dark color
 4. Creates optical illusion of smooth gradient
 
 **Visual result:**
+
 ```
 ████████████████  (100% dark)
 █▓█▓█▓█▓█▓█▓█▓█▓  (75% dark)
@@ -199,6 +212,7 @@ Creates patterns like:
 ```
 
 **Why use this:**
+
 - More natural looking
 - Less visible pattern
 - Better for continuous tones
@@ -276,12 +290,14 @@ Black/White dither   Black/White/Magenta/Cyan dither
 ### The Dither as Overworld
 
 **Characteristics:**
+
 - Technical, ordered, constrained
 - Works within imposed limits
 - Professional adaptation
 - "This is how we make gradients with 16 colors"
 
 **In Lugones' terms:**
+
 - The overworld where we present competently
 - Adapting to dominant systems
 - "Here's how I work within your constraints"
@@ -289,12 +305,14 @@ Black/White dither   Black/White/Magenta/Cyan dither
 ### The Glitch as Underworld
 
 **Characteristics:**
+
 - Chaotic, organic, free
 - Refuses imposed limits
 - Personal expression
 - "But what if we don't accept the constraint?"
 
 **In Lugones' terms:**
+
 - The underworld where full identity exists
 - Rejecting dominant systems
 - "Here's what I actually want"
@@ -311,7 +329,7 @@ You see BOTH:
 
 This IS worldtraveling:
 - Not choosing one or the other
-- Being in both simultaneously  
+- Being in both simultaneously
 - The movement between made visible
 ```
 
@@ -326,31 +344,37 @@ This IS worldtraveling:
 ### Why Not RGB?
 
 Traditional chromatic aberration uses:
+
 - Red, Green, Blue (actual screen channels)
 - Technical reality of displays
 - Binary: pixel is R OR G OR B
 
 We use instead:
+
 - Magenta, Cyan, Pink, Lime
 - Political color choices
 - Non-binary: colors that refuse categorization
 
 **Magenta** = Red + Blue simultaneously
+
 - Not red OR blue
 - Both/and, not either/or
 - Refuses binary gender coding (pink=fem, blue=masc)
 
 **Cyan** = Blue + Green simultaneously
+
 - Not blue OR green
 - Between categories
 - Refuses simple classification
 
 **Hot Pink** (#ff6b9d)
+
 - Riot grrrl, punk feminism
 - Reclaimed from feminine stereotype
 - Aggressive femininity
 
 **Lime Green** (#b4ff9f)
+
 - "Toxic femininity"
 - Unnatural, refusing organic essentialism
 - Digital/synthetic pride
@@ -411,6 +435,7 @@ const bayerMatrix = generateBayerPattern();
 ```
 
 Use for:
+
 - CV sections
 - Professional work
 - Technical documentation
@@ -426,6 +451,7 @@ Use for:
 ```
 
 Use for:
+
 - Creative projects
 - Personal writing
 - Experimental work
@@ -441,6 +467,7 @@ Use for:
 ```
 
 Use for:
+
 - Navigation between sections
 - "About" pages (professional + personal)
 - Portfolio (work + creativity)
@@ -454,17 +481,17 @@ Add HLD-specific colors to our system:
 ```css
 :root {
   /* HLD Deep Backgrounds */
-  --hld-void: #1a0a2e;        /* Deep purple void */
-  --hld-shadow: #240046;      /* Dark purple shadow */
-  
+  --hld-void: #1a0a2e; /* Deep purple void */
+  --hld-shadow: #240046; /* Dark purple shadow */
+
   /* HLD Corruption */
-  --hld-corruption: #ff006e;  /* Hot corruption pink */
+  --hld-corruption: #ff006e; /* Hot corruption pink */
   --hld-corrupt-dark: #7209b7; /* Deep violet */
-  
+
   /* HLD Neon */
-  --hld-neon-cyan: #00f5ff;   /* Bright cyan */
-  --hld-neon-pink: #f72585;   /* Bright magenta */
-  
+  --hld-neon-cyan: #00f5ff; /* Bright cyan */
+  --hld-neon-pink: #f72585; /* Bright magenta */
+
   /* Integration with existing palette */
   --glitch-corruption: var(--hld-corruption);
   --glitch-void: var(--hld-void);
@@ -474,10 +501,7 @@ Add HLD-specific colors to our system:
 Usage:
 
 ```html
-<dithered-glitch-gradient 
-  colorA="var(--hld-void)" 
-  colorB="var(--hld-corrupt-dark)"
->
+<dithered-glitch-gradient colorA="var(--hld-void)" colorB="var(--hld-corrupt-dark)">
   <!-- HLD-style content -->
 </dithered-glitch-gradient>
 ```
@@ -487,19 +511,22 @@ Usage:
 ## References
 
 ### Hyper Light Drifter
+
 - Heart Machine (2016)
 - Art Direction: Teddy Dief
 - Pixel art + chromatic aberration aesthetic
 - Corruption as power, not weakness
 
 ### PC-98 Series
+
 - NEC (1982-2000)
 - 16-color palette limitation
 - Extensive use of dithering for gradients
 - Defined Japanese retro computing aesthetic
 
 ### Theoretical Foundations
-- Russell, Legacy. *Glitch Feminism* (2020)
+
+- Russell, Legacy. _Glitch Feminism_ (2020)
   - Error as liberation
   - Multiple simultaneous identities
 - Lugones, Maria. "Worldtraveling" (1987)
