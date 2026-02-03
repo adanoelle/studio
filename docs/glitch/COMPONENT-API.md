@@ -179,6 +179,110 @@ Borders that break and shift colors on hover, refusing containment.
 
 ---
 
+### glitch-waveform
+
+Audio waveform visualization with warm palette bars, ghost peaks, and chromatic aberration on hover. Designed to fit in a status bar or other compact UI.
+
+#### API
+
+```typescript
+<glitch-waveform
+  bars="number"                    // Number of bars (default: 8)
+  playing="boolean"                // Whether audio is playing (default: false)
+  bar-height="number"              // Height of bars in pixels (default: 24)
+  peak-decay="number"              // Peak decay rate 0-1 (default: 0.02)
+></glitch-waveform>
+```
+
+#### Properties
+
+| Property     | Type      | Default | Description                          |
+| ------------ | --------- | ------- | ------------------------------------ |
+| `bars`       | `number`  | `8`     | Number of visualization bars         |
+| `playing`    | `boolean` | `false` | Whether audio is currently playing   |
+| `bar-height` | `number`  | `24`    | Height of bars in pixels             |
+| `peak-decay` | `number`  | `0.02`  | How fast ghost peaks decay (0-1)     |
+
+#### Methods
+
+```typescript
+// Connect an AnalyserNode for real-time frequency data
+waveform.connectAnalyser(analyser: AnalyserNode);
+
+// Disconnect the analyser
+waveform.disconnectAnalyser();
+
+// Set bar levels manually (for testing or non-analyser use)
+waveform.setLevels(levels: number[]);
+```
+
+#### CSS Custom Properties
+
+```css
+--waveform-height: 24px;        /* Overall height */
+--color-tan: #c9a88a;           /* Bar color (F&B Jitney) */
+--dither-warm: rgba(...);       /* Ghost peak color */
+--glitch-cyan: #00ffff;         /* Chromatic aberration */
+--glitch-magenta: #ff00ff;      /* Chromatic aberration */
+--duration-fast: 0.1s;          /* Animation speed */
+```
+
+#### Behavior
+
+**Visualization**:
+- Bars respond to frequency data from connected AnalyserNode
+- Ghost peaks show previous maximum levels, decaying slowly
+- Without an analyser, generates gentle idle animation
+
+**Chromatic Aberration**:
+- On hover, bars show cyan/magenta offset layers
+- Creates glitch aesthetic connection to other components
+
+**Accessibility**:
+- `prefers-reduced-motion`: Static bars, no chromatic effect
+- Proper ARIA role and label
+
+#### Examples
+
+**Basic usage with audio:**
+
+```html
+<glitch-waveform id="waveform" bars="8"></glitch-waveform>
+
+<script>
+const waveform = document.getElementById('waveform');
+const audioCtx = new AudioContext();
+const analyser = audioCtx.createAnalyser();
+
+// Connect audio source to analyser
+source.connect(analyser);
+analyser.connect(audioCtx.destination);
+
+// Connect waveform to analyser
+waveform.connectAnalyser(analyser);
+waveform.playing = true;
+</script>
+```
+
+**Status bar integration:**
+
+```html
+<footer class="status-bar">
+  <button id="audio-toggle">Play</button>
+  <glitch-waveform id="waveform" bars="8" style="--waveform-height: 16px;"></glitch-waveform>
+</footer>
+```
+
+**Manual levels for testing:**
+
+```javascript
+const waveform = document.querySelector('glitch-waveform');
+waveform.setLevels([0.2, 0.5, 0.8, 0.6, 0.4, 0.7, 0.3, 0.5]);
+waveform.playing = true;
+```
+
+---
+
 ### dithered-glitch-gradient
 
 Dithered gradients that glitch into chromatic separation. Synthesizes PC-98 constraint with glitch feminist refusal.

@@ -13,6 +13,7 @@
 // Core components
 export { GlitchText } from './glitch-text.js';
 export { GlitchBorder } from './glitch-border.js';
+export { GlitchWaveform } from './glitch-waveform.js';
 export { DitheredGlitchGradient } from './dithered-glitch-gradient.js';
 
 // Composite components
