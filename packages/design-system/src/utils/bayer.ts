@@ -141,20 +141,90 @@ export function generateCorruptedBayerSVG(
 }
 
 /**
+ * Generate SVG data URI for a void texture pattern.
+ *
+ * Unlike Bayer dithering which uses ordered opacity, void textures
+ * use color variations (noise) to create backdrop textures.
+ *
+ * THEORETICAL GROUNDING:
+ * The void texture represents liminal space - the threshold between
+ * contexts. When used as a backdrop (like modal-menu), it creates
+ * a membrane between the current view and navigation possibilities.
+ *
+ * @param baseColor - CSS hex color value (e.g., '#2e2a28')
+ * @param variance - Color variance from base (0-1), default 0.15
+ * @returns Data URI string for use in CSS background-image
+ *
+ * @example
+ * ```ts
+ * const texture = generateVoidTextureSVG('#2e2a28', 0.15);
+ * element.style.backgroundImage = `url("${texture}")`;
+ * ```
+ */
+export function generateVoidTextureSVG(baseColor: string, variance: number = 0.15): string {
+  // Parse hex color to RGB
+  const hex = baseColor.replace('#', '');
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+
+  // Generate 4x4 noise pattern with color variations
+  const size = 4;
+  const maxVariance = Math.round(255 * variance);
+
+  // Deterministic noise pattern (matches positions used in modal-menu)
+  const noisePattern = [
+    [0.3, 0.1, 0.4, -0.2],
+    [-0.1, 0.2, -0.3, 0.1],
+    [0.2, -0.2, 0.1, 0.3],
+    [-0.3, 0.15, -0.1, 0.25],
+  ];
+
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">`;
+  svg += `<rect width="${size}" height="${size}" fill="${baseColor}"/>`;
+
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const noise = noisePattern[y][x];
+      const offset = Math.round(noise * maxVariance);
+
+      const nr = Math.max(0, Math.min(255, r + offset));
+      const ng = Math.max(0, Math.min(255, g + offset));
+      const nb = Math.max(0, Math.min(255, b + offset));
+
+      const color = `#${nr.toString(16).padStart(2, '0')}${ng.toString(16).padStart(2, '0')}${nb.toString(16).padStart(2, '0')}`;
+
+      svg += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`;
+    }
+  }
+
+  svg += '</svg>';
+
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
+/**
  * Pre-generated dither patterns for common colors.
  * Use these for static CSS to avoid runtime generation.
  */
 export const DITHER_PATTERNS = {
-  // Grayscale
+  // Grayscale Bayer
   gray: generateBayerSVG('#404040'),
   grayDark: generateBayerSVG('#202020'),
   white: generateBayerSVG('#ffffff'),
 
-  // Analog palette
+  // Warm palette Bayer (Paean Black)
+  warm: generateBayerSVG('#3a3632'),
+
+  // Analog palette Bayer
   rose: generateBayerSVG('#8a5555'),
   teal: generateBayerSVG('#527878'),
 
-  // Glitch palette
+  // Glitch palette Bayer
   magenta: generateBayerSVG('#ff00ff'),
   cyan: generateBayerSVG('#00ffff'),
+
+  // Void textures (backdrop noise)
+  voidWarm: generateVoidTextureSVG('#2e2a28', 0.15), // Warm gray backdrop
+  voidCool: generateVoidTextureSVG('#1a1a1a', 0.15), // Cool gray backdrop
 } as const;

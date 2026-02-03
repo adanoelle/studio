@@ -52,7 +52,9 @@ export {
   BAYER_MATRIX_4,
   BAYER_MATRIX_8,
   generateBayerSVG,
+  generateVoidTextureSVG,
   generateCorruptedBayerSVG,
+  seededRandom,
   DITHER_PATTERNS,
 } from './utils/bayer.js';
 
