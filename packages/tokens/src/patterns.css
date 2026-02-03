@@ -1,0 +1,63 @@
+/**
+ * DITHER PATTERNS
+ *
+ * Pre-generated 4x4 Bayer dither patterns as CSS custom properties.
+ * Single source of truth for dithering aesthetics across the design system.
+ *
+ * THEORETICAL GROUNDING:
+ * Ordered dithering is a technical adaptation to color limitation - creating
+ * perceived gradients from binary constraints. These patterns embody the
+ * tension between imposed systems and creative adaptation.
+ *
+ * Usage:
+ *   background-image: var(--dither-gray);
+ *   background-size: var(--dither-size);
+ *   image-rendering: pixelated;
+ *
+ * The 4x4 Bayer matrix provides 75% size reduction vs 8x8 while remaining
+ * visually equivalent at typical display scales.
+ */
+
+:root {
+  /* ============================================
+     GRAYSCALE PATTERNS
+     ============================================ */
+
+  /* Medium gray dither - general UI overlays */
+  --dither-gray: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23404040' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23404040' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%23404040' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23404040' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23404040' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23404040' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23404040' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23404040' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23404040' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23404040' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23404040' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23404040' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23404040' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23404040' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23404040' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23404040' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* Dark gray dither - subtle overlays */
+  --dither-gray-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23202020' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23202020' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%23202020' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23202020' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23202020' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23202020' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23202020' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23202020' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23202020' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23202020' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23202020' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23202020' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23202020' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23202020' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23202020' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23202020' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* White dither - light mode or contrast overlays */
+  --dither-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23ffffff' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23ffffff' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%23ffffff' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23ffffff' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23ffffff' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23ffffff' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23ffffff' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23ffffff' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23ffffff' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23ffffff' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23ffffff' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23ffffff' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23ffffff' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23ffffff' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23ffffff' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23ffffff' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* ============================================
+     ANALOG PALETTE PATTERNS
+     Muted warm tones for the music journal
+     ============================================ */
+
+  /* Rose dither - warm accent for active states */
+  --dither-rose: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%238a5555' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%238a5555' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%238a5555' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%238a5555' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%238a5555' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%238a5555' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%238a5555' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%238a5555' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%238a5555' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%238a5555' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%238a5555' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%238a5555' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%238a5555' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%238a5555' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%238a5555' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%238a5555' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* Teal dither - cool complement to rose */
+  --dither-teal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23527878' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23527878' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%23527878' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23527878' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23527878' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23527878' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23527878' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23527878' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23527878' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23527878' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23527878' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23527878' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23527878' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23527878' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23527878' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23527878' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* ============================================
+     GLITCH PALETTE PATTERNS
+     Vibrant colors for chromatic aberration effects
+     ============================================ */
+
+  /* Magenta dither - glitch chromatic separation */
+  --dither-magenta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23ff00ff' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23ff00ff' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%23ff00ff' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23ff00ff' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23ff00ff' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23ff00ff' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23ff00ff' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23ff00ff' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23ff00ff' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23ff00ff' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23ff00ff' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23ff00ff' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23ff00ff' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23ff00ff' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23ff00ff' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23ff00ff' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* Cyan dither - glitch chromatic separation */
+  --dither-cyan: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%2300ffff' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%2300ffff' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%2300ffff' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%2300ffff' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%2300ffff' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%2300ffff' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%2300ffff' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%2300ffff' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%2300ffff' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%2300ffff' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%2300ffff' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%2300ffff' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%2300ffff' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%2300ffff' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%2300ffff' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%2300ffff' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* ============================================
+     CONVENIENCE PROPERTIES
+     ============================================ */
+
+  /* Standard dither pattern size - matches 4x4 matrix */
+  --dither-size: 4px 4px;
+}

@@ -44,5 +44,16 @@ export type {
 
 export { STRUDEL_EVENTS, VISUALIZATION_COLORS } from './audio/types.js';
 
-// Analog components will be added as they're built
-// export { FretboardDiagram } from './analog/index.js';
+// Re-export all analog components
+export { CollageCanvas, CollageItem } from './analog/index.js';
+
+// Re-export bayer dithering utilities
+export {
+  BAYER_MATRIX_4,
+  BAYER_MATRIX_8,
+  generateBayerSVG,
+  generateCorruptedBayerSVG,
+  DITHER_PATTERNS,
+} from './utils/bayer.js';
+
+export type { BayerMatrix } from './utils/bayer.js';

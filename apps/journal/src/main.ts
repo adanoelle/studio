@@ -513,6 +513,7 @@ const patternStop = document.getElementById('stop-pattern') as HTMLButtonElement
 const volumeSlider = document.getElementById('volume') as HTMLInputElement;
 const presetSelector = document.getElementById('hydra-preset') as HTMLSelectElement;
 const hydraCanvas = document.getElementById('hydra') as HydraCanvas;
+const mobilePlayBtn = document.getElementById('mobile-play') as HTMLButtonElement;
 
 function startPlayback() {
   synth.init();
@@ -528,6 +529,11 @@ function startPlayback() {
   patternPlay.disabled = true;
   patternPlay.classList.add('playing');
   patternStop.disabled = false;
+
+  // Update mobile play button
+  mobilePlayBtn.textContent = '■';
+  mobilePlayBtn.classList.add('playing');
+  mobilePlayBtn.title = 'Stop';
 
   // Switch to reactive preset when playing
   if (presetSelector.value === 'minimal') {
@@ -549,6 +555,11 @@ function stopPlayback() {
   patternPlay.disabled = false;
   patternPlay.classList.remove('playing');
   patternStop.disabled = true;
+
+  // Update mobile play button
+  mobilePlayBtn.textContent = '▶';
+  mobilePlayBtn.classList.remove('playing');
+  mobilePlayBtn.title = 'Play';
 }
 
 // Event listeners
@@ -556,6 +567,15 @@ globalPlay.addEventListener('click', startPlayback);
 globalStop.addEventListener('click', stopPlayback);
 patternPlay.addEventListener('click', startPlayback);
 patternStop.addEventListener('click', stopPlayback);
+
+// Mobile play button toggles play/stop
+mobilePlayBtn.addEventListener('click', () => {
+  if (scheduler.isPlaying) {
+    stopPlayback();
+  } else {
+    startPlayback();
+  }
+});
 
 volumeSlider.addEventListener('input', () => {
   const volume = parseInt(volumeSlider.value, 10) / 100;

@@ -6,15 +6,16 @@
  *
  * @example
  * ```typescript
- * import { FretboardDiagram } from '@studio/design-system/analog';
+ * import { CollageCanvas, CollageItem } from '@studio/design-system/analog';
  * ```
  */
 
-// Components will be added as they're built:
+// Collage layout components
+export { CollageCanvas } from './collage-canvas.js';
+export { CollageItem } from './collage-item.js';
+
+// Components to be added as they're built:
 // - FretboardDiagram
 // - PracticeEntry
 // - AudioPlayer
 // - StrudelEmbed
-
-// Placeholder export for now
-export {};
