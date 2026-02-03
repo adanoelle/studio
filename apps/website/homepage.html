@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ada Noelle - Welcome to My Garden</title>
+
+  <!-- Design tokens from @studio/tokens -->
+  <link rel="stylesheet" href="/node_modules/@studio/tokens/src/index.css">
+
+  <style>
+    /**
+     * HOMEPAGE STYLES
+     *
+     * THEORETICAL GROUNDING:
+     * Morning mode (light) embodies home, warmth, and accessibility.
+     * The dithered boundary represents the threshold between self and world.
+     * Content is calm and readable; edges hold the glitch/disruption.
+     */
+
+    /* ============================================ */
+    /* LAYOUT: Full viewport with boundary frame */
+    /* ============================================ */
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    /**
+     * VOID DITHER PATTERN
+     *
+     * THEORETICAL GROUNDING:
+     * Embodies Lugones' concept of worldtraveling. The void is not empty—
+     * it has texture, presence. When the boundary is disturbed (hover),
+     * the void "notices" and responds. The boundary isn't a wall—it's a
+     * membrane that transmits between spaces.
+     *
+     * Uses a 4×4 Bayer dither pattern in dark gray tones for subtle depth.
+     */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-dark);
+      /* 4×4 Bayer dither pattern - monochrome dark grays */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%231a1a1a'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23262626'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%23202020'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23222222'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%231e1e1e'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23242424'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%231c1c1c'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%231d1d1d'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23232323'/%3E%3C/svg%3E");
+      background-size: 12px 12px;
+      font-family: var(--font-primary);
+      padding: var(--space-8);
+    }
+
+    /**
+     * VOID RESPONSE
+     * When the boundary-frame is hovered (triggering glitch-border),
+     * the void responds with uniform corruption—the dither shifts randomly
+     * across the entire void, not just at the boundary. The membrane transmits.
+     */
+    @keyframes void-corrupt {
+      0%, 100% { background-position: 0 0; }
+      50% { background-position: 3px 2px; }
+    }
+
+    body:has(.boundary-frame:hover) {
+      animation: void-corrupt 0.4s ease-out;
+    }
+
+    /* ============================================ */
+    /* BOUNDARY FRAME: Floating modal in the void */
+    /* Using <glitch-border> component for chromatic aberration */
+    /* ============================================ */
+
+    glitch-border.boundary-frame {
+      display: block;
+      width: min(800px, 90vw);
+      min-height: min(480px, 75vh);
+      max-height: 90vh;
+      position: relative;
+      background: var(--bg-primary);
+      box-shadow:
+        0 4px 60px rgba(0, 0, 0, 0.3),
+        0 0 100px rgba(58, 54, 50, 0.4);
+    }
+
+    /**
+     * Inner wrapper handles flex layout for content
+     * (flex on host doesn't propagate through shadow DOM)
+     */
+    .frame-content {
+      display: flex;
+      flex-direction: column;
+      min-height: min(480px, 75vh);
+      max-height: 90vh;
+    }
+
+    /**
+     * DOUBLE-LINE BORDER
+     * Outer border line creates the double-line aesthetic
+     * Inner border is handled by the glitch-border component
+     */
+    glitch-border.boundary-frame::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border: 1px solid var(--color-muted);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ============================================ */
+    /* CONTENT AREA: Warm, readable space */
+    /* ============================================ */
+
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-10) var(--space-10) var(--space-6);
+    }
+
+    /* ============================================ */
+    /* HERO SECTION */
+    /* ============================================ */
+
+    .hero {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: var(--text-3xl);
+      margin: 0 0 var(--space-1) 0;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+    }
+
+    .hero .title {
+      font-size: var(--text-lg);
+      color: var(--text-secondary);
+      margin: 0 0 var(--space-12) 0;
+    }
+
+    .hero .bio {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      line-height: var(--leading-relaxed);
+      color: var(--text-primary);
+      margin: 0;
+      max-width: 480px;
+    }
+
+    /* ============================================ */
+    /* LINKS */
+    /* ============================================ */
+
+    .links {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: var(--space-8);
+    }
+
+    .links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      padding: var(--space-2) var(--space-3);
+      border-bottom: 1px solid transparent;
+      transition: color var(--duration-normal), border-color var(--duration-normal);
+    }
+
+    .links a:hover,
+    .links a:focus {
+      color: var(--text-primary);
+      border-bottom-color: var(--accent);
+    }
+
+    .links a:focus {
+      outline: 2px solid var(--glitch-cyan);
+      outline-offset: 2px;
+    }
+
+    /* Separator between links */
+    .links span[aria-hidden] {
+      color: var(--text-tertiary);
+    }
+
+    /* ============================================ */
+    /* STATUS BAR */
+    /* ============================================ */
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      background: var(--bg-primary);
+    }
+
+    .status-bar kbd {
+      font-family: var(--font-primary);
+      font-size: inherit;
+      background: var(--bg-secondary);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    /* ============================================ */
+    /* RESPONSIVE */
+    /* ============================================ */
+
+    @media (max-width: 767px) {
+      body {
+        padding: var(--space-4);
+      }
+
+      glitch-border.boundary-frame {
+        width: 100%;
+        min-height: auto;
+        max-height: none;
+      }
+
+      .frame-content {
+        min-height: auto;
+        max-height: none;
+      }
+
+      glitch-border.boundary-frame::before {
+        inset: -4px;
+      }
+
+      .content-area {
+        padding: var(--space-6);
+      }
+
+      .hero h1 {
+        font-size: var(--text-2xl);
+      }
+
+      .hero .title {
+        font-size: var(--text-base);
+        margin-bottom: var(--space-8);
+      }
+
+      .status-bar {
+        font-size: 10px;
+      }
+    }
+
+    /* ============================================ */
+    /* ACCESSIBILITY: Reduced Motion */
+    /* ============================================ */
+
+    @media (prefers-reduced-motion: reduce) {
+      .links a {
+        transition: none;
+      }
+
+      /* Disable void response animation, keep static dither */
+      body:has(.boundary-frame:hover) {
+        animation: none;
+      }
+
+
+      /* glitch-border component handles reduced motion internally */
+    }
+  </style>
+</head>
+<body>
+  <glitch-border
+    class="boundary-frame"
+    break-pattern="shift"
+    thickness="1"
+    hover-delay="50"
+    color="var(--color-muted)"
+  >
+    <div class="frame-content">
+      <main class="content-area">
+        <section class="hero">
+          <h1><glitch-text text="Ada Noelle" intensity="0.3"></glitch-text></h1>
+          <p class="title"></p>
+          <p class="bio">
+            Building resilient distributed systems by day, live coding algorithmic music by night.
+            Interested in the intersection of technology, creativity, and feminist theory.
+          </p>
+          <nav class="links" aria-label="External links">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <span aria-hidden="true">&middot;</span>
+            <a href="mailto:hello@example.com">Email</a>
+            <span aria-hidden="true">&middot;</span>
+            <a href="#">Archive</a>
+          </nav>
+        </section>
+      </main>
+      <footer class="status-bar">
+        <span>~/home</span>
+        <span><kbd>⌘K</kbd> navigate</span>
+      </footer>
+    </div>
+  </glitch-border>
+
+  <modal-menu id="nav-menu"></modal-menu>
+
+  <script type="module" src="/src/homepage.ts"></script>
+</body>
+</html>
