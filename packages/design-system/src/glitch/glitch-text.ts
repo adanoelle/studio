@@ -504,6 +504,7 @@ export class GlitchText extends LitElement {
     }
 
     .glitch-text {
+      position: relative;
       cursor: pointer;
       transition: color var(--duration-normal, 0.2s) ease;
       user-select: none;
@@ -532,7 +533,9 @@ export class GlitchText extends LitElement {
 
     /**
      * SHAKE ANIMATION
-     * IMPORTANT: Uses translate() not left/top for GPU acceleration
+     * Uses em units for proportional scaling across font sizes.
+     * 0.15em ≈ 3px at 20px font, 7px at 48px font.
+     * IMPORTANT: Uses translate() not left/top for GPU acceleration.
      */
     @keyframes glitch-shake {
       0%,
@@ -540,13 +543,13 @@ export class GlitchText extends LitElement {
         transform: translate(0, 0);
       }
       25% {
-        transform: translate(-1px, 1px);
+        transform: translate(-0.15em, 0.15em);
       }
       50% {
-        transform: translate(1px, -1px);
+        transform: translate(0.15em, -0.15em);
       }
       75% {
-        transform: translate(-1px, -1px);
+        transform: translate(-0.15em, -0.15em);
       }
     }
 
@@ -583,10 +586,10 @@ export class GlitchText extends LitElement {
         transform: translate(0, 0);
       }
       33% {
-        transform: translate(-2px, 0);
+        transform: translate(-0.1em, 0);
       }
       66% {
-        transform: translate(2px, 0);
+        transform: translate(0.1em, 0);
       }
     }
 
@@ -596,10 +599,10 @@ export class GlitchText extends LitElement {
         transform: translate(0, 0);
       }
       33% {
-        transform: translate(2px, 0);
+        transform: translate(0.1em, 0);
       }
       66% {
-        transform: translate(-2px, 0);
+        transform: translate(-0.1em, 0);
       }
     }
 
