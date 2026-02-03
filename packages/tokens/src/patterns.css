@@ -44,6 +44,14 @@
   --dither-teal: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23527878' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23527878' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%23527878' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23527878' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23527878' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23527878' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23527878' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23527878' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23527878' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23527878' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23527878' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23527878' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23527878' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23527878' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23527878' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23527878' opacity='0.3125'/%3E%3C/svg%3E");
 
   /* ============================================
+     WARM PALETTE PATTERNS
+     Paean Black based for warm aesthetic
+     ============================================ */
+
+  /* Warm dither - Paean Black (#3a3632) for warm UI overlays */
+  --dither-warm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%233a3632' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%233a3632' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%233a3632' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%233a3632' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%233a3632' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%233a3632' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%233a3632' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%233a3632' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%233a3632' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%233a3632' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%233a3632' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%233a3632' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%233a3632' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%233a3632' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%233a3632' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%233a3632' opacity='0.3125'/%3E%3C/svg%3E");
+
+  /* ============================================
      GLITCH PALETTE PATTERNS
      Vibrant colors for chromatic aberration effects
      ============================================ */
@@ -55,9 +63,27 @@
   --dither-cyan: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect x='0' y='0' width='1' height='1' fill='%2300ffff' opacity='0'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%2300ffff' opacity='0.5'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%2300ffff' opacity='0.125'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%2300ffff' opacity='0.625'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%2300ffff' opacity='0.75'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%2300ffff' opacity='0.25'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%2300ffff' opacity='0.875'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%2300ffff' opacity='0.375'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%2300ffff' opacity='0.1875'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%2300ffff' opacity='0.6875'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%2300ffff' opacity='0.0625'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%2300ffff' opacity='0.5625'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%2300ffff' opacity='0.9375'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%2300ffff' opacity='0.4375'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%2300ffff' opacity='0.8125'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%2300ffff' opacity='0.3125'/%3E%3C/svg%3E");
 
   /* ============================================
+     VOID TEXTURE PATTERNS
+     Color noise for backdrop textures (not Bayer opacity)
+     These create liminal membrane effects for overlays/modals
+     ============================================ */
+
+  /* Warm void texture - dark warm grays with noise (#2e2a28 base, 15% variance) */
+  --dither-void-warm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%232e2a28'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23393533'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23302c2a'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%233d3937'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23282422'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%232c2826'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23363230'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23252120'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23302c2a'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23363230'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23282422'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23302c2a'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%233a3634'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23242120'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23342f2d'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%232c2826'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23383432'/%3E%3C/svg%3E");
+
+  /* Cool void texture - dark cool grays with noise (#1a1a1a base, 15% variance) */
+  --dither-void-cool: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%231a1a1a'/%3E%3Crect x='0' y='0' width='1' height='1' fill='%23262626'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%231d1d1d'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%232a2a2a'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%23161616'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23181818'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23222222'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23131313'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%231d1d1d'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23222222'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23161616'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%231d1d1d'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%23272727'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23121212'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23202020'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23181818'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23252525'/%3E%3C/svg%3E");
+
+  /* Default void - alias to warm for consistency with warm palette */
+  --dither-void: var(--dither-void-warm);
+
+  /* ============================================
      CONVENIENCE PROPERTIES
      ============================================ */
 
   /* Standard dither pattern size - matches 4x4 matrix */
   --dither-size: 4px 4px;
+
+  /* Void texture recommended size - 3x scale for subtler noise */
+  --dither-void-size: 12px 12px;
 }
