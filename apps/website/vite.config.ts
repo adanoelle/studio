@@ -8,6 +8,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        homepage: resolve(__dirname, 'homepage.html'),
         visualization: resolve(__dirname, 'visualization-demo.html'),
         dithering: resolve(__dirname, 'dithering-demo.html'),
       },
