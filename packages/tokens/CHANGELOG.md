@@ -1,5 +1,22 @@
 # @studio/tokens
 
+## 0.3.0
+
+### Minor Changes
+
+- [`5fd276a`](https://github.com/adanoelle/studio/commit/5fd276aa06de84ed4ffb67b1f405487e9cc2e2ec) Thanks [@adanoelle](https://github.com/adanoelle)! - Add dithering strategy with void texture utilities and modal-menu component
+
+  **@studio/tokens:**
+  - Add `--dither-warm` Bayer pattern token (Paean Black)
+  - Add `--dither-void-warm` and `--dither-void-cool` void texture tokens
+  - Add `--dither-void-size` convenience property
+
+  **@studio/design-system:**
+  - Add `generateVoidTextureSVG()` for color noise patterns (distinct from Bayer opacity)
+  - Add `modal-menu` component: keyboard-first navigation with fuzzy search and glitch aesthetics
+  - Fix `glitch-text` chromatic aberration positioning with `position: relative`
+  - Improve `glitch-text` animation scaling using `em` units for consistent visual weight
+
 ## 0.2.0
 
 ### Minor Changes
