@@ -1,6 +1,5 @@
 ---
-"@studio/design-system": minor
-"@studio/website": patch
+'@studio/design-system': minor
 ---
 
 feat(archive): add horizontal temporal view with queer temporality design
@@ -10,6 +9,7 @@ Items flow left-to-right (past to present) with soft year markers that create bo
 liminality—acknowledging time's passage without insisting on hard edges.
 
 Features:
+
 - Horizontal continuous strip with cards sorted chronologically
 - Floating year marker that updates as you scroll
 - Soft year boundaries (subtle gradient separators)

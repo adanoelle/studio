@@ -442,10 +442,7 @@ export class GlitchWaveform extends LitElement {
         ${this.barLevels.map(
           (level, i) => html`
             <div class="bar-container">
-              <div
-                class="peak"
-                style="height: ${(this.peakLevels[i] ?? 0) * 100}%"
-              ></div>
+              <div class="peak" style="height: ${(this.peakLevels[i] ?? 0) * 100}%"></div>
               <div class="bar" style="height: ${Math.max(level * 100, 8)}%"></div>
             </div>
           `

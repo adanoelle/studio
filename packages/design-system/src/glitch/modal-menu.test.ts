@@ -47,7 +47,9 @@ describe('ModalMenu', () => {
     });
 
     it('renders content when open', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const backdrop = el.shadowRoot?.querySelector('.backdrop');
@@ -58,7 +60,9 @@ describe('ModalMenu', () => {
     });
 
     it('renders all items when open', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const items = el.shadowRoot?.querySelectorAll('.item');
@@ -66,7 +70,9 @@ describe('ModalMenu', () => {
     });
 
     it('renders items grouped by category', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const categoryHeaders = el.shadowRoot?.querySelectorAll('.category-header');
@@ -96,9 +102,7 @@ describe('ModalMenu', () => {
     });
 
     it('accepts custom glitch intensity', async () => {
-      const el = await fixture<ModalMenu>(
-        html`<modal-menu glitch-intensity="0.8"></modal-menu>`
-      );
+      const el = await fixture<ModalMenu>(html`<modal-menu glitch-intensity="0.8"></modal-menu>`);
 
       expect(el.glitchIntensity).toBe(0.8);
     });
@@ -120,7 +124,9 @@ describe('ModalMenu', () => {
     });
 
     it('closes on Escape key', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const closeHandler = vi.fn();
@@ -135,7 +141,9 @@ describe('ModalMenu', () => {
     });
 
     it('closes on backdrop click', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const closeHandler = vi.fn();
@@ -151,7 +159,9 @@ describe('ModalMenu', () => {
     });
 
     it('closes on Backspace when input is empty', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const closeHandler = vi.fn();
@@ -203,7 +213,9 @@ describe('ModalMenu', () => {
     });
 
     it('hide() closes the menu', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
 
       el.hide();
       await el.updateComplete;
@@ -224,7 +236,9 @@ describe('ModalMenu', () => {
     });
 
     it('clearFilter() resets the filter', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const input = el.shadowRoot?.querySelector('#menu-input') as HTMLInputElement;
@@ -239,7 +253,9 @@ describe('ModalMenu', () => {
     });
 
     it('getSelectedItem() returns selected item', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const selected = el.getSelectedItem();
@@ -248,7 +264,9 @@ describe('ModalMenu', () => {
     });
 
     it('selectByIndex() changes selection', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       el.selectByIndex(2);
@@ -265,7 +283,9 @@ describe('ModalMenu', () => {
 
   describe('keyboard navigation', () => {
     it('ArrowDown moves selection down', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const input = el.shadowRoot?.querySelector('#menu-input');
@@ -277,7 +297,9 @@ describe('ModalMenu', () => {
     });
 
     it('ArrowUp moves selection up', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       el.selectByIndex(2);
@@ -292,7 +314,9 @@ describe('ModalMenu', () => {
     });
 
     it('does not go below zero', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const input = el.shadowRoot?.querySelector('#menu-input');
@@ -304,7 +328,9 @@ describe('ModalMenu', () => {
     });
 
     it('does not exceed item count', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       el.selectByIndex(sampleItems.length - 1);
@@ -318,7 +344,9 @@ describe('ModalMenu', () => {
     });
 
     it('Enter selects current item', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const selectHandler = vi.fn();
@@ -333,7 +361,9 @@ describe('ModalMenu', () => {
     });
 
     it('dispatches selection-change event on navigation', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const selectionHandler = vi.fn();
@@ -473,7 +503,9 @@ describe('ModalMenu', () => {
     });
 
     it('saves selection to recent', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       // Select second item
@@ -486,7 +518,10 @@ describe('ModalMenu', () => {
     });
 
     it('respects maxRecent limit', async () => {
-      localStorage.setItem('modal-menu-recent', JSON.stringify(['home', 'about', 'archive', 'journal']));
+      localStorage.setItem(
+        'modal-menu-recent',
+        JSON.stringify(['home', 'about', 'archive', 'journal'])
+      );
 
       const el = await fixture<ModalMenu>(
         html`<modal-menu .items=${sampleItems} max-recent="2" open></modal-menu>`
@@ -494,7 +529,8 @@ describe('ModalMenu', () => {
       await el.updateComplete;
 
       // Force reload of recent items
-      (el as unknown as { loadRecentItems: () => void; hasLoadedRecent: boolean }).hasLoadedRecent = false;
+      (el as unknown as { loadRecentItems: () => void; hasLoadedRecent: boolean }).hasLoadedRecent =
+        false;
       (el as unknown as { loadRecentItems: () => void }).loadRecentItems();
       await el.updateComplete;
 
@@ -509,7 +545,9 @@ describe('ModalMenu', () => {
 
   describe('item selection', () => {
     it('selects item on click', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const selectHandler = vi.fn();
@@ -524,9 +562,7 @@ describe('ModalMenu', () => {
 
     it('calls action if provided', async () => {
       const actionFn = vi.fn();
-      const itemsWithAction: MenuItem[] = [
-        { id: 'action', label: 'Action', action: actionFn },
-      ];
+      const itemsWithAction: MenuItem[] = [{ id: 'action', label: 'Action', action: actionFn }];
 
       const el = await fixture<ModalMenu>(
         html`<modal-menu .items=${itemsWithAction} open></modal-menu>`
@@ -540,7 +576,9 @@ describe('ModalMenu', () => {
     });
 
     it('closes menu after selection', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       el.confirmSelection();
@@ -550,7 +588,9 @@ describe('ModalMenu', () => {
     });
 
     it('highlights selected item', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       el.selectByIndex(1);
@@ -568,7 +608,9 @@ describe('ModalMenu', () => {
 
   describe('accessibility', () => {
     it('has role="dialog" with aria-modal', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const dialog = el.shadowRoot?.querySelector('[role="dialog"]');
@@ -577,7 +619,9 @@ describe('ModalMenu', () => {
     });
 
     it('has role="combobox" input', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const input = el.shadowRoot?.querySelector('#menu-input');
@@ -586,7 +630,9 @@ describe('ModalMenu', () => {
     });
 
     it('has role="listbox" for items', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const listbox = el.shadowRoot?.querySelector('#menu-listbox');
@@ -594,7 +640,9 @@ describe('ModalMenu', () => {
     });
 
     it('has role="option" for each item', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const options = el.shadowRoot?.querySelectorAll('[role="option"]');
@@ -602,7 +650,9 @@ describe('ModalMenu', () => {
     });
 
     it('updates aria-activedescendant on selection', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const input = el.shadowRoot?.querySelector('#menu-input');
@@ -615,7 +665,9 @@ describe('ModalMenu', () => {
     });
 
     it('has screen reader status announcements', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       const status = el.shadowRoot?.querySelector('[role="status"]');
@@ -624,14 +676,15 @@ describe('ModalMenu', () => {
     });
   });
 
-
   // ============================================
   // LIFECYCLE
   // ============================================
 
   describe('lifecycle', () => {
     it('cleans up on disconnect', async () => {
-      const el = await fixture<ModalMenu>(html`<modal-menu .items=${sampleItems} open></modal-menu>`);
+      const el = await fixture<ModalMenu>(
+        html`<modal-menu .items=${sampleItems} open></modal-menu>`
+      );
       await el.updateComplete;
 
       el.remove();

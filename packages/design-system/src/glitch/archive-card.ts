@@ -1,12 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import type {
-  ArchiveItem,
-  ImageItem,
-  WritingItem,
-  SoundItem,
-  CodeItem,
-} from './archive-types.js';
+import type { ArchiveItem, ImageItem, WritingItem, SoundItem, CodeItem } from './archive-types.js';
 
 /**
  * ARCHIVE CARD COMPONENT
@@ -44,9 +38,7 @@ export class ArchiveCard extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   static styles = css`
@@ -269,9 +261,7 @@ export class ArchiveCard extends LitElement {
 
     return html`
       <div
-        class="card ${this.isHovered && !this.prefersReducedMotion
-          ? 'hovered'
-          : ''}"
+        class="card ${this.isHovered && !this.prefersReducedMotion ? 'hovered' : ''}"
         role="button"
         tabindex="0"
         aria-label="${this.item.title}"
@@ -286,9 +276,7 @@ export class ArchiveCard extends LitElement {
         </div>
         <div class="footer">
           <span class="type">${this.item.type}</span>
-          ${this.showDate
-            ? html`<span class="date">${this.formatDate(this.item.date)}</span>`
-            : ''}
+          ${this.showDate ? html`<span class="date">${this.formatDate(this.item.date)}</span>` : ''}
         </div>
       </div>
     `;
@@ -331,10 +319,7 @@ export class ArchiveCard extends LitElement {
         <div class="waveform">
           ${waveform.map(
             (value) =>
-              html`<div
-                class="waveform-bar"
-                style="height: ${Math.max(4, value * 48)}px"
-              ></div>`
+              html`<div class="waveform-bar" style="height: ${Math.max(4, value * 48)}px"></div>`
           )}
         </div>
         <span class="duration">${this.formatDuration(item.duration)}</span>
@@ -346,9 +331,7 @@ export class ArchiveCard extends LitElement {
     return html`
       <div class="preview-code">
         <span class="code-icon">{ }</span>
-        ${item.language
-          ? html`<span class="code-language">${item.language}</span>`
-          : ''}
+        ${item.language ? html`<span class="code-language">${item.language}</span>` : ''}
       </div>
     `;
   }

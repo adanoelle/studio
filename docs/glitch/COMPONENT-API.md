@@ -196,12 +196,12 @@ Audio waveform visualization with warm palette bars, ghost peaks, and chromatic 
 
 #### Properties
 
-| Property     | Type      | Default | Description                          |
-| ------------ | --------- | ------- | ------------------------------------ |
-| `bars`       | `number`  | `8`     | Number of visualization bars         |
-| `playing`    | `boolean` | `false` | Whether audio is currently playing   |
-| `bar-height` | `number`  | `24`    | Height of bars in pixels             |
-| `peak-decay` | `number`  | `0.02`  | How fast ghost peaks decay (0-1)     |
+| Property     | Type      | Default | Description                        |
+| ------------ | --------- | ------- | ---------------------------------- |
+| `bars`       | `number`  | `8`     | Number of visualization bars       |
+| `playing`    | `boolean` | `false` | Whether audio is currently playing |
+| `bar-height` | `number`  | `24`    | Height of bars in pixels           |
+| `peak-decay` | `number`  | `0.02`  | How fast ghost peaks decay (0-1)   |
 
 #### Methods
 
@@ -219,26 +219,29 @@ waveform.setLevels(levels: number[]);
 #### CSS Custom Properties
 
 ```css
---waveform-height: 24px;        /* Overall height */
---color-tan: #c9a88a;           /* Bar color (F&B Jitney) */
---dither-warm: rgba(...);       /* Ghost peak color */
---glitch-cyan: #00ffff;         /* Chromatic aberration */
---glitch-magenta: #ff00ff;      /* Chromatic aberration */
---duration-fast: 0.1s;          /* Animation speed */
+--waveform-height: 24px; /* Overall height */
+--color-tan: #c9a88a; /* Bar color (F&B Jitney) */
+--dither-warm: rgba(...); /* Ghost peak color */
+--glitch-cyan: #00ffff; /* Chromatic aberration */
+--glitch-magenta: #ff00ff; /* Chromatic aberration */
+--duration-fast: 0.1s; /* Animation speed */
 ```
 
 #### Behavior
 
 **Visualization**:
+
 - Bars respond to frequency data from connected AnalyserNode
 - Ghost peaks show previous maximum levels, decaying slowly
 - Without an analyser, generates gentle idle animation
 
 **Chromatic Aberration**:
+
 - On hover, bars show cyan/magenta offset layers
 - Creates glitch aesthetic connection to other components
 
 **Accessibility**:
+
 - `prefers-reduced-motion`: Static bars, no chromatic effect
 - Proper ARIA role and label
 
@@ -250,17 +253,17 @@ waveform.setLevels(levels: number[]);
 <glitch-waveform id="waveform" bars="8"></glitch-waveform>
 
 <script>
-const waveform = document.getElementById('waveform');
-const audioCtx = new AudioContext();
-const analyser = audioCtx.createAnalyser();
+  const waveform = document.getElementById('waveform');
+  const audioCtx = new AudioContext();
+  const analyser = audioCtx.createAnalyser();
 
-// Connect audio source to analyser
-source.connect(analyser);
-analyser.connect(audioCtx.destination);
+  // Connect audio source to analyser
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
 
-// Connect waveform to analyser
-waveform.connectAnalyser(analyser);
-waveform.playing = true;
+  // Connect waveform to analyser
+  waveform.connectAnalyser(analyser);
+  waveform.playing = true;
 </script>
 ```
 
@@ -445,28 +448,28 @@ Keyboard-first navigation launcher with fuzzy search, dithered borders, and glit
 
 ```typescript
 interface MenuItem {
-  id: string;              // Unique identifier
-  label: string;           // Display text
-  path?: string;           // URL/route for navigation
-  category?: string;       // Section grouping
-  shortcut?: string;       // Keyboard shortcut display (e.g., "⌘1")
-  keywords?: string[];     // Additional search terms
-  action?: () => void;     // Custom action instead of navigation
+  id: string; // Unique identifier
+  label: string; // Display text
+  path?: string; // URL/route for navigation
+  category?: string; // Section grouping
+  shortcut?: string; // Keyboard shortcut display (e.g., "⌘1")
+  keywords?: string[]; // Additional search terms
+  action?: () => void; // Custom action instead of navigation
 }
 ```
 
 #### Properties
 
-| Property           | Type         | Default              | Description                          |
-| ------------------ | ------------ | -------------------- | ------------------------------------ |
-| `open`             | `boolean`    | `false`              | Menu visibility state                |
-| `items`            | `MenuItem[]` | `[]`                 | Navigation items                     |
-| `placeholder`      | `string`     | `"Type to filter..."` | Input placeholder                    |
-| `enable-dither`    | `boolean`    | `true`               | Enable dithered border effects       |
-| `glitch-intensity` | `number`     | `0.3`                | Base glitch intensity (0-1)          |
-| `show-recent`      | `boolean`    | `true`               | Show recent items section            |
-| `max-recent`       | `number`     | `3`                  | Max recent items to display          |
-| `filter-debounce`  | `number`     | `50`                 | Input debounce time in ms            |
+| Property           | Type         | Default               | Description                    |
+| ------------------ | ------------ | --------------------- | ------------------------------ |
+| `open`             | `boolean`    | `false`               | Menu visibility state          |
+| `items`            | `MenuItem[]` | `[]`                  | Navigation items               |
+| `placeholder`      | `string`     | `"Type to filter..."` | Input placeholder              |
+| `enable-dither`    | `boolean`    | `true`                | Enable dithered border effects |
+| `glitch-intensity` | `number`     | `0.3`                 | Base glitch intensity (0-1)    |
+| `show-recent`      | `boolean`    | `true`                | Show recent items section      |
+| `max-recent`       | `number`     | `3`                   | Max recent items to display    |
+| `filter-debounce`  | `number`     | `50`                  | Input debounce time in ms      |
 
 #### Methods
 
@@ -481,31 +484,31 @@ menu.focusInput();
 menu.clearFilter();
 
 // Selection control
-menu.getSelectedItem();        // Returns MenuItem | null
-menu.selectByIndex(index);     // Select by index
-menu.confirmSelection();       // Trigger current selection
+menu.getSelectedItem(); // Returns MenuItem | null
+menu.selectByIndex(index); // Select by index
+menu.confirmSelection(); // Trigger current selection
 ```
 
 #### Events
 
-| Event              | Detail                                            | Description                    |
-| ------------------ | ------------------------------------------------- | ------------------------------ |
-| `modal-open`       | `{ }`                                             | Menu opened                    |
-| `modal-close`      | `{ reason: 'escape' \| 'select' \| 'click-outside' }` | Menu closed                    |
-| `item-select`      | `{ item: MenuItem }`                              | Item selected                  |
-| `filter-change`    | `{ query: string, results: MenuItem[] }`          | Filter query changed           |
-| `selection-change` | `{ item: MenuItem, index: number }`               | Keyboard selection moved       |
+| Event              | Detail                                                | Description              |
+| ------------------ | ----------------------------------------------------- | ------------------------ |
+| `modal-open`       | `{ }`                                                 | Menu opened              |
+| `modal-close`      | `{ reason: 'escape' \| 'select' \| 'click-outside' }` | Menu closed              |
+| `item-select`      | `{ item: MenuItem }`                                  | Item selected            |
+| `filter-change`    | `{ query: string, results: MenuItem[] }`              | Filter query changed     |
+| `selection-change` | `{ item: MenuItem, index: number }`                   | Keyboard selection moved |
 
 #### Keyboard Navigation
 
-| Key              | Action                      |
-| ---------------- | --------------------------- |
-| `Escape`         | Close menu                  |
-| `↓` / `ArrowDown`| Move selection down         |
-| `↑` / `ArrowUp`  | Move selection up           |
-| `Enter`          | Confirm current selection   |
-| `⌘/Ctrl + 1-9`   | Quick select recent item    |
-| `Backspace` (empty) | Close menu               |
+| Key                 | Action                    |
+| ------------------- | ------------------------- |
+| `Escape`            | Close menu                |
+| `↓` / `ArrowDown`   | Move selection down       |
+| `↑` / `ArrowUp`     | Move selection up         |
+| `Enter`             | Confirm current selection |
+| `⌘/Ctrl + 1-9`      | Quick select recent item  |
+| `Backspace` (empty) | Close menu                |
 
 #### CSS Custom Properties
 
@@ -631,15 +634,15 @@ Creates gradients from binary constraints using a 4x4 Bayer matrix. Best for ove
 
 **Available Bayer tokens:**
 
-| Token | Color | Use Case |
-|-------|-------|----------|
-| `--dither-gray` | #404040 | General UI overlays |
-| `--dither-gray-dark` | #202020 | Subtle overlays |
-| `--dither-warm` | #3a3632 | Warm palette overlays |
-| `--dither-rose` | #8a5555 | Analog accent |
-| `--dither-teal` | #527878 | Analog complement |
-| `--dither-magenta` | #ff00ff | Glitch chromatic |
-| `--dither-cyan` | #00ffff | Glitch chromatic |
+| Token                | Color   | Use Case              |
+| -------------------- | ------- | --------------------- |
+| `--dither-gray`      | #404040 | General UI overlays   |
+| `--dither-gray-dark` | #202020 | Subtle overlays       |
+| `--dither-warm`      | #3a3632 | Warm palette overlays |
+| `--dither-rose`      | #8a5555 | Analog accent         |
+| `--dither-teal`      | #527878 | Analog complement     |
+| `--dither-magenta`   | #ff00ff | Glitch chromatic      |
+| `--dither-cyan`      | #00ffff | Glitch chromatic      |
 
 ### Void Texture (Color Noise)
 
@@ -656,11 +659,11 @@ Creates backdrop textures using color variations instead of opacity. Best for ba
 
 **Available void tokens:**
 
-| Token | Base Color | Use Case |
-|-------|------------|----------|
-| `--dither-void-warm` | #2e2a28 | Warm palette backdrops |
-| `--dither-void-cool` | #1a1a1a | Cool/neutral backdrops |
-| `--dither-void` | (alias) | Default, same as warm |
+| Token                | Base Color | Use Case               |
+| -------------------- | ---------- | ---------------------- |
+| `--dither-void-warm` | #2e2a28    | Warm palette backdrops |
+| `--dither-void-cool` | #1a1a1a    | Cool/neutral backdrops |
+| `--dither-void`      | (alias)    | Default, same as warm  |
 
 ### Runtime Generation
 
@@ -670,7 +673,7 @@ For dynamic effects or custom colors, use the TypeScript utilities:
 import {
   generateBayerSVG,
   generateVoidTextureSVG,
-  generateCorruptedBayerSVG
+  generateCorruptedBayerSVG,
 } from '@studio/design-system/utils/bayer';
 
 // Static Bayer pattern
@@ -681,10 +684,10 @@ const texture = generateVoidTextureSVG('#2e2a28', 0.15);
 
 // Animated corruption
 const corrupted = generateCorruptedBayerSVG(
-  '#3a3632',    // primary
-  '#ff00ff',    // corruption color
-  0.5,          // level 0-1
-  Date.now()    // seed
+  '#3a3632', // primary
+  '#ff00ff', // corruption color
+  0.5, // level 0-1
+  Date.now() // seed
 );
 ```
 

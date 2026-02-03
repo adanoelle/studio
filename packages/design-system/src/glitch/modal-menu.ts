@@ -286,9 +286,12 @@ export class ModalMenu extends GlitchBase {
     const baseLevel = this.corruptionLevel;
     this.corruptionLevel = 0.6;
 
-    setTimeout(() => {
-      this.corruptionLevel = baseLevel;
-    }, 200 + Math.random() * 300);
+    setTimeout(
+      () => {
+        this.corruptionLevel = baseLevel;
+      },
+      200 + Math.random() * 300
+    );
   }
 
   private clearIdleGlitch() {
@@ -366,7 +369,10 @@ export class ModalMenu extends GlitchBase {
     return null;
   }
 
-  private fuzzyMatchString(str: string, query: string): { score: number; indices: number[] } | null {
+  private fuzzyMatchString(
+    str: string,
+    query: string
+  ): { score: number; indices: number[] } | null {
     let queryIndex = 0;
     let score = 0;
     const indices: number[] = [];
@@ -817,17 +823,13 @@ export class ModalMenu extends GlitchBase {
           /* Base shadow */
           0 4px 60px rgba(0, 0, 0, 0.3),
           0 0 100px rgba(58, 54, 50, 0.4),
-          /* Right - cyan */
-          40px 0 0 0 rgba(0, 255, 255, 0.4),
+          /* Right - cyan */ 40px 0 0 0 rgba(0, 255, 255, 0.4),
           25px 0 0 0 rgba(0, 255, 255, 0.2),
-          /* Left - magenta */
-          -40px 0 0 0 rgba(255, 0, 255, 0.4),
+          /* Left - magenta */ -40px 0 0 0 rgba(255, 0, 255, 0.4),
           -25px 0 0 0 rgba(255, 0, 255, 0.2),
-          /* Top - cyan */
-          0 -35px 0 0 rgba(0, 255, 255, 0.35),
+          /* Top - cyan */ 0 -35px 0 0 rgba(0, 255, 255, 0.35),
           0 -20px 0 0 rgba(0, 255, 255, 0.15),
-          /* Bottom - magenta */
-          0 35px 0 0 rgba(255, 0, 255, 0.35),
+          /* Bottom - magenta */ 0 35px 0 0 rgba(255, 0, 255, 0.35),
           0 20px 0 0 rgba(255, 0, 255, 0.15);
       }
       100% {
@@ -901,7 +903,9 @@ export class ModalMenu extends GlitchBase {
       border: 1px solid var(--glitch-cyan, #00ffff);
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.15s ease, transform 0.15s ease;
+      transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
       z-index: 10;
     }
 
@@ -1167,12 +1171,7 @@ export class ModalMenu extends GlitchBase {
         @click=${this.handleBackdropClick}
         role="presentation"
       >
-        <div
-          class="container"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navigation menu"
-        >
+        <div class="container" role="dialog" aria-modal="true" aria-label="Navigation menu">
           <!-- Chromatic afterimage layers for glitch dash effect -->
           <div class="chromatic-layer magenta" aria-hidden="true"></div>
           <div class="chromatic-layer cyan" aria-hidden="true"></div>
@@ -1213,7 +1212,9 @@ export class ModalMenu extends GlitchBase {
                         const currentIndex = startIndex + i;
                         const isSelected = currentIndex === this.selectedIndex;
                         const shortcut =
-                          category === 'RECENT' && !this.filterQuery.trim() ? `⌘${i + 1}` : match.item.shortcut;
+                          category === 'RECENT' && !this.filterQuery.trim()
+                            ? `⌘${i + 1}`
+                            : match.item.shortcut;
 
                         const itemHtml = html`
                           <li
@@ -1226,9 +1227,16 @@ export class ModalMenu extends GlitchBase {
                           >
                             <span class="item-label">
                               <span class="item-indicator" aria-hidden="true">→</span>
-                              <span>${this.renderHighlightedLabel(match.item.label, match.indices)}</span>
+                              <span
+                                >${this.renderHighlightedLabel(
+                                  match.item.label,
+                                  match.indices
+                                )}</span
+                              >
                             </span>
-                            ${shortcut ? html`<span class="item-shortcut">${shortcut}</span>` : nothing}
+                            ${shortcut
+                              ? html`<span class="item-shortcut">${shortcut}</span>`
+                              : nothing}
                           </li>
                         `;
 
@@ -1238,7 +1246,9 @@ export class ModalMenu extends GlitchBase {
                       globalIndex += items.length;
 
                       return html`
-                        ${groupIndex > 0 ? html`<div class="category-divider" role="separator"></div>` : nothing}
+                        ${groupIndex > 0
+                          ? html`<div class="category-divider" role="separator"></div>`
+                          : nothing}
                         <li class="category-header" role="presentation">${category}</li>
                         ${itemsHtml}
                       `;
@@ -1248,15 +1258,9 @@ export class ModalMenu extends GlitchBase {
           </div>
 
           <div class="footer" aria-hidden="true">
-            <span class="footer-hint">
-              <span class="footer-key">Esc</span> close
-            </span>
-            <span class="footer-hint">
-              <span class="footer-key">↑↓</span> navigate
-            </span>
-            <span class="footer-hint">
-              <span class="footer-key">Enter</span> select
-            </span>
+            <span class="footer-hint"> <span class="footer-key">Esc</span> close </span>
+            <span class="footer-hint"> <span class="footer-key">↑↓</span> navigate </span>
+            <span class="footer-hint"> <span class="footer-key">Enter</span> select </span>
           </div>
         </div>
       </div>

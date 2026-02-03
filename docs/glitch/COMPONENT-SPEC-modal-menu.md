@@ -47,12 +47,14 @@ The menu exists in a threshold state - neither fully present nor absent. Its app
 ### Animation States
 
 **Open (~300ms)**:
+
 1. Backdrop fades in (0 → 0.92 opacity)
 2. Container slides up from -10px with fade
 3. Dither corruption peaks at 50% (0.4 level)
 4. Settles to idle state (0.2 corruption)
 
 **Close (~200ms)**:
+
 1. Corruption intensifies briefly (0.5 level)
 2. Container fades out + slides up
 3. Backdrop fades out
@@ -65,53 +67,53 @@ The menu exists in a threshold state - neither fully present nor absent. Its app
 
 ### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `open` | `boolean` | `false` | Menu visibility state |
-| `items` | `MenuItem[]` | `[]` | Navigation items to display |
-| `placeholder` | `string` | `"Type to filter..."` | Input placeholder text |
-| `enableDither` | `boolean` | `true` | Enable dithering effects on borders |
-| `glitchIntensity` | `number` | `0.3` | Base glitch effect intensity (0-1) |
-| `showRecent` | `boolean` | `true` | Show recent items section |
-| `maxRecent` | `number` | `3` | Maximum recent items to display |
-| `filterDebounce` | `number` | `50` | Input debounce time in ms |
+| Property          | Type         | Default               | Description                         |
+| ----------------- | ------------ | --------------------- | ----------------------------------- |
+| `open`            | `boolean`    | `false`               | Menu visibility state               |
+| `items`           | `MenuItem[]` | `[]`                  | Navigation items to display         |
+| `placeholder`     | `string`     | `"Type to filter..."` | Input placeholder text              |
+| `enableDither`    | `boolean`    | `true`                | Enable dithering effects on borders |
+| `glitchIntensity` | `number`     | `0.3`                 | Base glitch effect intensity (0-1)  |
+| `showRecent`      | `boolean`    | `true`                | Show recent items section           |
+| `maxRecent`       | `number`     | `3`                   | Maximum recent items to display     |
+| `filterDebounce`  | `number`     | `50`                  | Input debounce time in ms           |
 
 ### MenuItem Interface
 
 ```typescript
 interface MenuItem {
-  id: string;              // Unique identifier
-  label: string;           // Display text
-  path?: string;           // URL/route for navigation
-  category?: string;       // Section grouping (e.g., "Navigation", "Tools")
-  shortcut?: string;       // Keyboard shortcut display (e.g., "⌘1")
-  keywords?: string[];     // Additional search terms
-  action?: () => void;     // Custom action instead of navigation
+  id: string; // Unique identifier
+  label: string; // Display text
+  path?: string; // URL/route for navigation
+  category?: string; // Section grouping (e.g., "Navigation", "Tools")
+  shortcut?: string; // Keyboard shortcut display (e.g., "⌘1")
+  keywords?: string[]; // Additional search terms
+  action?: () => void; // Custom action instead of navigation
 }
 ```
 
 ### Methods
 
-| Method | Signature | Description |
-|--------|-----------|-------------|
-| `show()` | `() => void` | Open the modal menu |
-| `hide()` | `() => void` | Close the modal menu |
-| `toggle()` | `() => void` | Toggle open/close state |
-| `focusInput()` | `() => void` | Focus the search input |
-| `clearFilter()` | `() => void` | Clear current filter text |
-| `getSelectedItem()` | `() => MenuItem \| null` | Get currently selected item |
-| `selectByIndex(index: number)` | `(index: number) => void` | Select item by index |
-| `confirmSelection()` | `() => void` | Trigger selection of current item |
+| Method                         | Signature                 | Description                       |
+| ------------------------------ | ------------------------- | --------------------------------- |
+| `show()`                       | `() => void`              | Open the modal menu               |
+| `hide()`                       | `() => void`              | Close the modal menu              |
+| `toggle()`                     | `() => void`              | Toggle open/close state           |
+| `focusInput()`                 | `() => void`              | Focus the search input            |
+| `clearFilter()`                | `() => void`              | Clear current filter text         |
+| `getSelectedItem()`            | `() => MenuItem \| null`  | Get currently selected item       |
+| `selectByIndex(index: number)` | `(index: number) => void` | Select item by index              |
+| `confirmSelection()`           | `() => void`              | Trigger selection of current item |
 
 ### Events
 
-| Event | Detail | Description |
-|-------|--------|-------------|
-| `modal-open` | `{ }` | Fired when menu opens |
-| `modal-close` | `{ reason: 'escape' \| 'select' \| 'click-outside' }` | Fired when menu closes |
-| `item-select` | `{ item: MenuItem }` | Fired when item is selected |
-| `filter-change` | `{ query: string, results: MenuItem[] }` | Fired when filter changes |
-| `selection-change` | `{ item: MenuItem, index: number }` | Fired when keyboard selection moves |
+| Event              | Detail                                                | Description                         |
+| ------------------ | ----------------------------------------------------- | ----------------------------------- |
+| `modal-open`       | `{ }`                                                 | Fired when menu opens               |
+| `modal-close`      | `{ reason: 'escape' \| 'select' \| 'click-outside' }` | Fired when menu closes              |
+| `item-select`      | `{ item: MenuItem }`                                  | Fired when item is selected         |
+| `filter-change`    | `{ query: string, results: MenuItem[] }`              | Fired when filter changes           |
+| `selection-change` | `{ item: MenuItem, index: number }`                   | Fired when keyboard selection moves |
 
 ### CSS Custom Properties
 
@@ -140,15 +142,15 @@ interface MenuItem {
 
 ## Keyboard Navigation
 
-| Key | Action |
-|-----|--------|
-| `⌘/Ctrl + K` | Global: Open menu (requires external listener) |
-| `Escape` | Close menu |
-| `↓` / `j` | Move selection down |
-| `↑` / `k` | Move selection up |
-| `Enter` | Confirm current selection |
-| `⌘/Ctrl + 1-9` | Quick select recent item by position |
-| `Backspace` (empty input) | Close menu |
+| Key                       | Action                                         |
+| ------------------------- | ---------------------------------------------- |
+| `⌘/Ctrl + K`              | Global: Open menu (requires external listener) |
+| `Escape`                  | Close menu                                     |
+| `↓` / `j`                 | Move selection down                            |
+| `↑` / `k`                 | Move selection up                              |
+| `Enter`                   | Confirm current selection                      |
+| `⌘/Ctrl + 1-9`            | Quick select recent item by position           |
+| `Backspace` (empty input) | Close menu                                     |
 
 ## Fuzzy Search
 
@@ -181,9 +183,7 @@ Example: Query "arc" matches "**a**rchive", "t**a**sk-t**r**a**c**ker", etc.
     aria-activedescendant="item-{id}"
   />
   <ul role="listbox" id="menu-listbox">
-    <li role="option" id="item-{id}" aria-selected="true|false">
-      ...
-    </li>
+    <li role="option" id="item-{id}" aria-selected="true|false">...</li>
   </ul>
 </div>
 ```
@@ -204,6 +204,7 @@ Example: Query "arc" matches "**a**rchive", "t**a**sk-t**r**a**c**ker", etc.
 ### Reduced Motion
 
 When `prefers-reduced-motion: reduce`:
+
 - Instant open/close (no slide animation)
 - No idle glitch effects
 - No chromatic aberration animation
@@ -212,6 +213,7 @@ When `prefers-reduced-motion: reduce`:
 ### Color Contrast
 
 All text meets WCAG AA contrast requirements:
+
 - Regular text: 4.5:1 minimum
 - Large text: 3:1 minimum
 - Focus indicators: 3:1 minimum

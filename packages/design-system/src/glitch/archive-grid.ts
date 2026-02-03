@@ -201,7 +201,9 @@ export class ArchiveGrid extends LitElement {
 
     .year-nav button {
       opacity: 0.6;
-      transition: opacity 0.15s ease, color 0.15s ease;
+      transition:
+        opacity 0.15s ease,
+        color 0.15s ease;
     }
 
     .year-nav button:hover {
@@ -235,7 +237,9 @@ export class ArchiveGrid extends LitElement {
       font-size: var(--text-sm, 0.875rem);
       padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
       cursor: pointer;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
     }
 
     .pagination button:hover:not(:disabled) {
@@ -318,10 +322,7 @@ export class ArchiveGrid extends LitElement {
 
   updated(changedProperties: Map<string, unknown>) {
     if (changedProperties.has('items') || changedProperties.has('pageSize')) {
-      this.totalPages = Math.max(
-        1,
-        Math.ceil(this.items.length / this.pageSize)
-      );
+      this.totalPages = Math.max(1, Math.ceil(this.items.length / this.pageSize));
       // Ensure page is within bounds
       if (this.page > this.totalPages) {
         this.page = this.totalPages;
@@ -345,9 +346,7 @@ export class ArchiveGrid extends LitElement {
 
     // Scroll to the right (present) after render
     requestAnimationFrame(() => {
-      const container = this.renderRoot.querySelector(
-        '.temporal-horizontal'
-      ) as HTMLElement;
+      const container = this.renderRoot.querySelector('.temporal-horizontal') as HTMLElement;
       if (container) {
         this._temporalContainer = container;
         container.scrollTo({ left: container.scrollWidth, behavior: 'auto' });
@@ -378,15 +377,9 @@ export class ArchiveGrid extends LitElement {
       <div class="grid">
         ${pageItems.map(
           (item) =>
-            html`<archive-card
-              .item=${item}
-              @card-click=${this.handleCardClick}
-            ></archive-card>`
+            html`<archive-card .item=${item} @card-click=${this.handleCardClick}></archive-card>`
         )}
-        ${Array.from(
-          { length: placeholderCount },
-          () => html`<div class="placeholder"></div>`
-        )}
+        ${Array.from({ length: placeholderCount }, () => html`<div class="placeholder"></div>`)}
       </div>
     `;
   }
@@ -449,16 +442,9 @@ export class ArchiveGrid extends LitElement {
 
         ${timelineElements.map((el) =>
           el.type === 'boundary'
-            ? html`<div
-                class="year-boundary"
-                data-year="${el.year}"
-                aria-hidden="true"
-              ></div>`
+            ? html`<div class="year-boundary" data-year="${el.year}" aria-hidden="true"></div>`
             : html`<div class="temporal-card" data-year="${new Date(el.item!.date).getFullYear()}">
-                <archive-card
-                  .item=${el.item!}
-                  @card-click=${this.handleCardClick}
-                ></archive-card>
+                <archive-card .item=${el.item!} @card-click=${this.handleCardClick}></archive-card>
               </div>`
         )}
       </div>
@@ -546,8 +532,7 @@ export class ArchiveGrid extends LitElement {
     if (target) {
       const containerRect = container.getBoundingClientRect();
       const targetRect = target.getBoundingClientRect();
-      const scrollLeft =
-        container.scrollLeft + (targetRect.left - containerRect.left) - 16;
+      const scrollLeft = container.scrollLeft + (targetRect.left - containerRect.left) - 16;
 
       container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
     }
@@ -558,11 +543,7 @@ export class ArchiveGrid extends LitElement {
 
     return html`
       <nav class="pagination" aria-label="Archive pagination">
-        <button
-          @click=${this.handlePrev}
-          ?disabled=${this.page <= 1}
-          aria-label="Previous page"
-        >
+        <button @click=${this.handlePrev} ?disabled=${this.page <= 1} aria-label="Previous page">
           ←
         </button>
         <span class="page-info">${this.page} of ${this.totalPages}</span>

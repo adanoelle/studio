@@ -30,10 +30,7 @@ export function extractTags(items: ArchiveItem[]): string[] {
 /**
  * Filter items by tag
  */
-export function filterByTag(
-  items: ArchiveItem[],
-  tag: string | null
-): ArchiveItem[] {
+export function filterByTag(items: ArchiveItem[], tag: string | null): ArchiveItem[] {
   if (!tag) return items;
   return items.filter((item) => item.tags.includes(tag));
 }
@@ -42,17 +39,13 @@ export function filterByTag(
  * Sort items by date (most recent first)
  */
 export function sortByDate(items: ArchiveItem[]): ArchiveItem[] {
-  return [...items].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return [...items].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 /**
  * Group items by year for temporal view
  */
-export function groupByYear(
-  items: ArchiveItem[]
-): Map<number, ArchiveItem[]> {
+export function groupByYear(items: ArchiveItem[]): Map<number, ArchiveItem[]> {
   const groups = new Map<number, ArchiveItem[]>();
   for (const item of items) {
     const year = new Date(item.date).getFullYear();
@@ -61,9 +54,7 @@ export function groupByYear(
     groups.set(year, group);
   }
   // Sort years descending
-  return new Map(
-    [...groups.entries()].sort(([a], [b]) => b - a)
-  );
+  return new Map([...groups.entries()].sort(([a], [b]) => b - a));
 }
 
 /**
