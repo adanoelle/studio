@@ -77,7 +77,7 @@ export function generateBayerSVG(color: string, matrix: BayerMatrix = BAYER_MATR
  * Seeded random number generator for deterministic patterns.
  * Same seed + same inputs = same pattern (prevents flickering).
  */
-function seededRandom(seed: number): number {
+export function seededRandom(seed: number): number {
   const x = Math.sin(seed) * 10000;
   return x - Math.floor(x);
 }
