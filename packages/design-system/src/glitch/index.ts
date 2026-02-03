@@ -19,6 +19,8 @@ export { DitheredGlitchGradient } from './dithered-glitch-gradient.js';
 export { HolographicUI } from './holographic-ui.js';
 export { DitherCorruption } from './dither-corruption.js';
 export { DashTrail } from './dash-trail.js';
+export { ModalMenu } from './modal-menu.js';
+export type { MenuItem } from './modal-menu.js';
 
 // Base class for extending
 export { GlitchBase } from './glitch-base.js';
