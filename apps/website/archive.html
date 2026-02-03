@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archive - Ada Noelle</title>
+
+  <!-- Design tokens from @studio/tokens -->
+  <link rel="stylesheet" href="/node_modules/@studio/tokens/src/index.css">
+
+  <style>
+    /**
+     * ARCHIVE PAGE STYLES
+     *
+     * THEORETICAL GROUNDING:
+     * The archive is inhabited space—you have crossed the threshold and are
+     * now fully inside the warm interior. The void is absent because you're
+     * no longer at the boundary. A subtle glitch-border trace at the top
+     * serves as memory of the threshold crossed.
+     *
+     * Following Lugones' worldtraveling: once you've traveled through,
+     * you're in a different world where the boundary isn't visible from inside.
+     */
+
+    /* ============================================ */
+    /* LAYOUT: Full viewport, warm interior */
+    /* ============================================ */
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100dvh; /* Dynamic viewport height for mobile */
+      overflow: hidden; /* No page scrolling - resist doomscroll */
+      background-color: var(--bg-primary);
+      font-family: var(--font-primary);
+      color: var(--text-primary);
+    }
+
+    /* ============================================ */
+    /* THRESHOLD TRACE: Memory of the boundary */
+    /* ============================================ */
+
+    .threshold-trace {
+      flex-shrink: 0;
+      padding: var(--space-4) var(--space-6);
+    }
+
+    .threshold-trace glitch-border {
+      display: block;
+      height: 1px;
+    }
+
+    /* ============================================ */
+    /* CONTENT AREA */
+    /* ============================================ */
+
+    .content-area {
+      flex: 1;
+      min-height: 0; /* Allow flex item to shrink */
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-4) var(--space-6);
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    /* ============================================ */
+    /* FILTER BAR */
+    /* ============================================ */
+
+    .filter-section {
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ============================================ */
+    /* GRID AREA */
+    /* ============================================ */
+
+    .grid-section {
+      flex: 1;
+      min-height: 0; /* Allow flex item to shrink */
+      display: flex;
+      flex-direction: column;
+      position: relative; /* For temporal view position indicator */
+    }
+
+    /* Make archive-grid fill available space and constrain its content */
+    .grid-section archive-grid {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Temporal view specific: ensure full width for horizontal scroll */
+    .grid-section archive-grid[view="temporal"] {
+      width: 100%;
+      overflow: visible; /* Allow horizontal overflow */
+    }
+
+    /* ============================================ */
+    /* STATUS BAR */
+    /* ============================================ */
+
+    .status-bar {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-2) var(--space-6);
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      background: var(--bg-primary);
+    }
+
+    .status-bar kbd {
+      font-family: var(--font-primary);
+      font-size: inherit;
+      background: var(--bg-secondary);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    .status-left {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .status-separator {
+      color: var(--text-tertiary);
+    }
+
+    /* View toggle */
+    .view-toggle {
+      display: flex;
+      gap: var(--space-1);
+    }
+
+    .view-toggle button {
+      background: none;
+      border: none;
+      font-family: var(--font-primary);
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      padding: var(--space-1) var(--space-2);
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .view-toggle button:hover {
+      color: var(--text-primary);
+    }
+
+    .view-toggle button.active {
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .view-toggle button:focus-visible {
+      outline: 2px solid var(--glitch-cyan);
+      outline-offset: 2px;
+    }
+
+    /* ============================================ */
+    /* RESPONSIVE */
+    /* ============================================ */
+
+    @media (max-width: 767px) {
+      .threshold-trace {
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .content-area {
+        padding: var(--space-3) var(--space-4);
+      }
+
+      .status-bar {
+        padding: var(--space-2) var(--space-4);
+        font-size: 10px;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+
+      .status-left {
+        flex-wrap: wrap;
+        gap: var(--space-2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Threshold trace: subtle memory of the boundary crossed -->
+  <header class="threshold-trace">
+    <glitch-border
+      break-pattern="shift"
+      thickness="1"
+      hover-delay="100"
+      color="var(--color-muted)"
+    ></glitch-border>
+  </header>
+
+  <main class="content-area">
+    <section class="filter-section">
+      <tag-filter id="tag-filter"></tag-filter>
+    </section>
+    <section class="grid-section">
+      <archive-grid id="archive-grid" page-size="6"></archive-grid>
+    </section>
+  </main>
+
+  <footer class="status-bar">
+    <div class="status-left">
+      <span>~/archive</span>
+      <span class="status-separator">|</span>
+      <span id="item-count">0 items</span>
+      <span class="status-separator">|</span>
+      <div class="view-toggle">
+        <button id="view-grid" class="active" aria-pressed="true">grid</button>
+        <button id="view-temporal" aria-pressed="false">temporal</button>
+      </div>
+    </div>
+    <span><kbd>⌘K</kbd> navigate</span>
+  </footer>
+
+  <modal-menu id="nav-menu"></modal-menu>
+
+  <script type="module" src="/src/archive.ts"></script>
+</body>
+</html>

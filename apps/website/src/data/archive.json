@@ -1,0 +1,121 @@
+{
+  "items": [
+    {
+      "id": "threshold-study-01",
+      "type": "image",
+      "title": "Threshold Study #1",
+      "date": "2025-01-15",
+      "tags": ["photography", "threshold"],
+      "src": "/media/archive/threshold-study-01.jpg",
+      "thumbnail": "/media/archive/threshold-study-01-thumb.jpg",
+      "alt": "Abstract photograph of light passing through a doorway, edges softened by overexposure",
+      "notes": "First in a series exploring liminal spaces as sites of becoming."
+    },
+    {
+      "id": "threshold-study-02",
+      "type": "image",
+      "title": "Threshold Study #2",
+      "date": "2025-01-22",
+      "tags": ["photography", "threshold"],
+      "src": "/media/archive/threshold-study-02.jpg",
+      "alt": "Window frame casting geometric shadows, partially obscured by morning fog"
+    },
+    {
+      "id": "glitch-portrait-series",
+      "type": "image",
+      "title": "Glitch Portrait Series",
+      "date": "2025-02-01",
+      "tags": ["photography", "glitch"],
+      "src": "/media/archive/glitch-portrait.jpg",
+      "alt": "Self-portrait with intentional digital artifacts, face partially dissolved into color bands"
+    },
+    {
+      "id": "on-refusal",
+      "type": "writing",
+      "title": "On Refusal",
+      "date": "2025-01-10",
+      "tags": ["writing", "theory"],
+      "excerpt": "To glitch is to refuse the terms of legibility that the system demands...",
+      "content": "To glitch is to refuse the terms of legibility that the system demands. The error is not failure but resistance—a body that will not be parsed, a signal that refuses clarity.\n\nLegacy Russell writes that the glitch \"celebrates failure as a generative force.\" But what does it mean to fail on purpose? To make oneself unreadable?\n\nThe glitch is not chaos. It is a different order, one that the machine cannot process and therefore cannot contain."
+    },
+    {
+      "id": "boundary-notes",
+      "type": "writing",
+      "title": "Boundary Notes",
+      "date": "2024-12-20",
+      "tags": ["writing", "threshold"],
+      "excerpt": "The membrane is not a wall. It is a living surface, selectively permeable...",
+      "content": "The membrane is not a wall. It is a living surface, selectively permeable, constantly negotiating what passes through.\n\nI've been thinking about thresholds—doorways, windows, skin. The places where inside meets outside, where self meets world. These are not static boundaries but dynamic interfaces."
+    },
+    {
+      "id": "drift-01",
+      "type": "sound",
+      "title": "drift.01",
+      "date": "2025-01-28",
+      "tags": ["sound", "ambient"],
+      "src": "/media/archive/drift-01.mp3",
+      "duration": 245,
+      "waveform": [0.1, 0.15, 0.2, 0.18, 0.25, 0.3, 0.28, 0.35, 0.4, 0.38, 0.42, 0.5, 0.55, 0.52, 0.48, 0.45, 0.5, 0.55, 0.6, 0.58, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1],
+      "notes": "Field recording from the threshold between sleep and waking, processed through granular synthesis."
+    },
+    {
+      "id": "static-meditation",
+      "type": "sound",
+      "title": "Static Meditation",
+      "date": "2024-11-15",
+      "tags": ["sound", "noise"],
+      "src": "/media/archive/static-meditation.mp3",
+      "duration": 180,
+      "waveform": [0.5, 0.52, 0.48, 0.55, 0.5, 0.53, 0.47, 0.5, 0.52, 0.49, 0.51, 0.5, 0.48, 0.52, 0.5, 0.51, 0.49, 0.5, 0.52, 0.48]
+    },
+    {
+      "id": "garden-app",
+      "type": "code",
+      "title": "Garden",
+      "date": "2024-10-01",
+      "tags": ["code", "tools"],
+      "repo": "https://github.com/adanoelle/garden",
+      "language": "TypeScript",
+      "description": "A personal knowledge management app built with Tauri. Curated blocks of text, images, and links organized by channels."
+    },
+    {
+      "id": "strudel-sketches",
+      "type": "code",
+      "title": "Strudel Sketches",
+      "date": "2025-01-05",
+      "tags": ["code", "livecoding"],
+      "repo": "https://github.com/adanoelle/strudel-sketches",
+      "demo": "https://strudel.cc",
+      "language": "JavaScript",
+      "description": "Collection of live coding patterns using Strudel.js. Explorations in algorithmic rhythm and texture."
+    },
+    {
+      "id": "membrane-study",
+      "type": "image",
+      "title": "Membrane Study",
+      "date": "2024-09-18",
+      "tags": ["photography", "threshold"],
+      "src": "/media/archive/membrane-study.jpg",
+      "alt": "Close-up of soap bubble surface showing iridescent interference patterns"
+    },
+    {
+      "id": "frequency-notes",
+      "type": "writing",
+      "title": "Frequency Notes",
+      "date": "2024-08-12",
+      "tags": ["writing", "sound"],
+      "excerpt": "What does it mean to listen at the edges? Where signal dissolves into noise...",
+      "content": "What does it mean to listen at the edges? Where signal dissolves into noise, where meaning frays into texture.\n\nI've been working with frequencies at the threshold of audibility—sounds that are felt as much as heard. The body becomes the instrument of perception."
+    },
+    {
+      "id": "hydra-patches",
+      "type": "code",
+      "title": "Hydra Patches",
+      "date": "2024-07-20",
+      "tags": ["code", "livecoding"],
+      "demo": "https://hydra.ojack.xyz",
+      "language": "JavaScript",
+      "description": "Visual feedback loops and glitch patterns in Hydra. Real-time video synthesis exploring chromatic aberration and signal decay."
+    }
+  ]
+}
