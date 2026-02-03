@@ -318,11 +318,154 @@ HLD-inspired movement trails with chromatic afterimages.
 
 ---
 
+### modal-menu
+
+Keyboard-first navigation launcher with fuzzy search, dithered borders, and glitch aesthetics. A dmenu/rofi-style modal for instant site navigation.
+
+#### API
+
+```typescript
+<modal-menu
+  open="boolean"                    // Menu visibility (default: false)
+  .items=${MenuItem[]}              // Navigation items array
+  placeholder="string"              // Input placeholder (default: "Type to filter...")
+  enable-dither="boolean"           // Dithering on borders (default: true)
+  glitch-intensity="number"         // Effect intensity 0-1 (default: 0.3)
+  show-recent="boolean"             // Show recent items section (default: true)
+  max-recent="number"               // Max recent items (default: 3)
+  filter-debounce="number"          // Input debounce ms (default: 50)
+></modal-menu>
+```
+
+#### MenuItem Interface
+
+```typescript
+interface MenuItem {
+  id: string;              // Unique identifier
+  label: string;           // Display text
+  path?: string;           // URL/route for navigation
+  category?: string;       // Section grouping
+  shortcut?: string;       // Keyboard shortcut display (e.g., "⌘1")
+  keywords?: string[];     // Additional search terms
+  action?: () => void;     // Custom action instead of navigation
+}
+```
+
+#### Properties
+
+| Property           | Type         | Default              | Description                          |
+| ------------------ | ------------ | -------------------- | ------------------------------------ |
+| `open`             | `boolean`    | `false`              | Menu visibility state                |
+| `items`            | `MenuItem[]` | `[]`                 | Navigation items                     |
+| `placeholder`      | `string`     | `"Type to filter..."` | Input placeholder                    |
+| `enable-dither`    | `boolean`    | `true`               | Enable dithered border effects       |
+| `glitch-intensity` | `number`     | `0.3`                | Base glitch intensity (0-1)          |
+| `show-recent`      | `boolean`    | `true`               | Show recent items section            |
+| `max-recent`       | `number`     | `3`                  | Max recent items to display          |
+| `filter-debounce`  | `number`     | `50`                 | Input debounce time in ms            |
+
+#### Methods
+
+```typescript
+// Open/close control
+menu.show();
+menu.hide();
+menu.toggle();
+
+// Input control
+menu.focusInput();
+menu.clearFilter();
+
+// Selection control
+menu.getSelectedItem();        // Returns MenuItem | null
+menu.selectByIndex(index);     // Select by index
+menu.confirmSelection();       // Trigger current selection
+```
+
+#### Events
+
+| Event              | Detail                                            | Description                    |
+| ------------------ | ------------------------------------------------- | ------------------------------ |
+| `modal-open`       | `{ }`                                             | Menu opened                    |
+| `modal-close`      | `{ reason: 'escape' \| 'select' \| 'click-outside' }` | Menu closed                    |
+| `item-select`      | `{ item: MenuItem }`                              | Item selected                  |
+| `filter-change`    | `{ query: string, results: MenuItem[] }`          | Filter query changed           |
+| `selection-change` | `{ item: MenuItem, index: number }`               | Keyboard selection moved       |
+
+#### Keyboard Navigation
+
+| Key              | Action                      |
+| ---------------- | --------------------------- |
+| `Escape`         | Close menu                  |
+| `↓` / `ArrowDown`| Move selection down         |
+| `↑` / `ArrowUp`  | Move selection up           |
+| `Enter`          | Confirm current selection   |
+| `⌘/Ctrl + 1-9`   | Quick select recent item    |
+| `Backspace` (empty) | Close menu               |
+
+#### CSS Custom Properties
+
+```css
+--modal-menu-backdrop-color: rgba(26, 10, 46, 0.92);
+--modal-menu-background: #1a0a2e;
+--modal-menu-border-color: #3a2a4e;
+--modal-menu-width: min(90vw, 500px);
+--modal-menu-item-color: var(--text-primary);
+--modal-menu-item-hover: rgba(0, 255, 255, 0.1);
+--modal-menu-item-selected: rgba(0, 255, 255, 0.15);
+--modal-menu-highlight-color: var(--glitch-magenta);
+--modal-menu-selection-accent: var(--glitch-cyan);
+```
+
+#### Examples
+
+**Basic usage:**
+
+```html
+<modal-menu
+  .items=${[
+    { id: 'home', label: 'Home', path: '/' },
+    { id: 'about', label: 'About', path: '/about' }
+  ]}
+></modal-menu>
+```
+
+**With categories and keywords:**
+
+```html
+<modal-menu
+  .items=${[
+    { id: 'home', label: 'Home', path: '/', category: 'Navigation' },
+    { id: 'search', label: 'Search', category: 'Tools', keywords: ['find', 'lookup'] }
+  ]}
+></modal-menu>
+```
+
+**Programmatic control with keyboard shortcut:**
+
+```javascript
+const menu = document.querySelector('modal-menu');
+
+// Global keyboard shortcut
+document.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    menu.toggle();
+  }
+});
+
+// Handle selection
+menu.addEventListener('item-select', (e) => {
+  const { item } = e.detail;
+  if (item.path) {
+    window.location.href = item.path;
+  }
+});
+```
+
+---
+
 ## Layout Components (Planned)
-
-### modal-window (Planned)
-
-Pixel art window chrome with film grain overlay.
 
 ### page-layout (Planned)
 
@@ -344,6 +487,102 @@ The following components are designed but deferred for future implementation:
 | `boundary-guide` | Guide character sprite              | `archive/GUIDE-CHARACTER-DESIGN.md` |
 
 See `docs/archive/` for full documentation on deferred features.
+
+---
+
+## Dithering Strategy
+
+The design system provides two distinct dithering techniques for different use cases.
+
+### Decision Tree
+
+```
+Need dithering?
+├── Static overlay/background?
+│   └── USE CSS TOKENS (patterns.css)
+│       ├── Bayer: --dither-warm, --dither-gray, --dither-magenta
+│       └── Void: --dither-void-warm, --dither-void-cool
+│
+├── Dynamic/animated corruption?
+│   └── USE bayer.ts RUNTIME
+│       └── generateCorruptedBayerSVG()
+│
+└── Custom color at runtime?
+    └── USE bayer.ts RUNTIME
+        └── generateBayerSVG() or generateVoidTextureSVG()
+```
+
+### Bayer Dithering (Ordered Opacity)
+
+Creates gradients from binary constraints using a 4x4 Bayer matrix. Best for overlays, gradients, and chromatic effects.
+
+```css
+/* Use CSS tokens for static patterns */
+.overlay {
+  background-image: var(--dither-warm);
+  background-size: var(--dither-size);
+  image-rendering: pixelated;
+}
+```
+
+**Available Bayer tokens:**
+
+| Token | Color | Use Case |
+|-------|-------|----------|
+| `--dither-gray` | #404040 | General UI overlays |
+| `--dither-gray-dark` | #202020 | Subtle overlays |
+| `--dither-warm` | #3a3632 | Warm palette overlays |
+| `--dither-rose` | #8a5555 | Analog accent |
+| `--dither-teal` | #527878 | Analog complement |
+| `--dither-magenta` | #ff00ff | Glitch chromatic |
+| `--dither-cyan` | #00ffff | Glitch chromatic |
+
+### Void Texture (Color Noise)
+
+Creates backdrop textures using color variations instead of opacity. Best for backdrops and liminal membrane effects.
+
+```css
+/* Warm void for modal backdrops */
+.backdrop::before {
+  background-image: var(--dither-void-warm);
+  background-size: var(--dither-void-size);
+  opacity: 0.7;
+}
+```
+
+**Available void tokens:**
+
+| Token | Base Color | Use Case |
+|-------|------------|----------|
+| `--dither-void-warm` | #2e2a28 | Warm palette backdrops |
+| `--dither-void-cool` | #1a1a1a | Cool/neutral backdrops |
+| `--dither-void` | (alias) | Default, same as warm |
+
+### Runtime Generation
+
+For dynamic effects or custom colors, use the TypeScript utilities:
+
+```typescript
+import {
+  generateBayerSVG,
+  generateVoidTextureSVG,
+  generateCorruptedBayerSVG
+} from '@studio/design-system/utils/bayer';
+
+// Static Bayer pattern
+const pattern = generateBayerSVG('#3a3632');
+
+// Void texture with custom variance
+const texture = generateVoidTextureSVG('#2e2a28', 0.15);
+
+// Animated corruption
+const corrupted = generateCorruptedBayerSVG(
+  '#3a3632',    // primary
+  '#ff00ff',    // corruption color
+  0.5,          // level 0-1
+  Date.now()    // seed
+);
+```
 
 ---
 
