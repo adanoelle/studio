@@ -183,11 +183,7 @@ export class HomepageAudio {
   setVolume(volume: number): void {
     this._volume = Math.max(0, Math.min(1, volume));
     if (this.masterGain) {
-      this.masterGain.gain.setTargetAtTime(
-        this._volume,
-        this.audioCtx?.currentTime ?? 0,
-        0.1
-      );
+      this.masterGain.gain.setTargetAtTime(this._volume, this.audioCtx?.currentTime ?? 0, 0.1);
     }
   }
 
