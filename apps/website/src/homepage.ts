@@ -29,7 +29,7 @@ const navItems: MenuItem[] = [
   {
     id: 'archive',
     label: 'Archive',
-    path: '#',
+    path: '/archive.html',
     category: 'Navigation',
     keywords: ['posts', 'writing', 'blog'],
   },

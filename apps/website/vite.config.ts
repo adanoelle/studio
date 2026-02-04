@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         homepage: resolve(__dirname, 'homepage.html'),
+        archive: resolve(__dirname, 'archive.html'),
         visualization: resolve(__dirname, 'visualization-demo.html'),
         dithering: resolve(__dirname, 'dithering-demo.html'),
       },
