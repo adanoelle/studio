@@ -1,5 +1,31 @@
 # @studio/design-system
 
+## 0.4.0
+
+### Minor Changes
+
+- [`bdb2e51`](https://github.com/adanoelle/studio/commit/bdb2e51761872eee2c9a369bdf7a7f6fc9003c76) Thanks [@adanoelle](https://github.com/adanoelle)! - feat(archive): add horizontal temporal view with queer temporality design
+
+  Implements a horizontal timeline view for the archive that resists vertical doomscroll patterns.
+  Items flow left-to-right (past to present) with soft year markers that create boundary and
+  liminality—acknowledging time's passage without insisting on hard edges.
+
+  Features:
+  - Horizontal continuous strip with cards sorted chronologically
+  - Floating year marker that updates as you scroll
+  - Soft year boundaries (subtle gradient separators)
+  - Year jump buttons in position indicator
+  - Keyboard navigation (arrow keys, Home/End)
+  - Auto-scroll to present (right side) on view switch
+  - Fixed card dimensions (280x320px) centered vertically
+  - Responsive sizing for mobile and tablet
+  - Reduced motion support
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @studio/tokens@0.4.0
+
 ## 0.3.0
 
 ### Minor Changes
