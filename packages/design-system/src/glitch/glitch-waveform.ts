@@ -72,7 +72,7 @@ export class GlitchWaveform extends LitElement {
   private analyser: AnalyserNode | null = null;
 
   /** Frequency data buffer */
-  private frequencyData: Uint8Array<ArrayBuffer> | null = null;
+  private frequencyData: Uint8Array | null = null;
 
   /** Animation frame ID */
   private rafId?: number;
