@@ -1,5 +1,6 @@
 import { LitElement } from 'lit';
 import { state } from 'lit/decorators.js';
+import { detectDeviceCapabilities } from '../utils/device.js';
 
 /**
  * GLITCH-BASE COMPONENT
@@ -71,13 +72,9 @@ export class GlitchBase extends LitElement {
    * Avoids user-agent sniffing in favor of capability detection
    */
   protected detectCapabilities() {
-    // Check for hover capability and pointer type
-    const hasHover = window.matchMedia('(hover: hover)').matches;
-    const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    this.isMobile = !hasHover || hasCoarsePointer || window.innerWidth < 768;
-
-    // Check reduced motion preference
-    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const capabilities = detectDeviceCapabilities();
+    this.isMobile = capabilities.isMobile;
+    this.prefersReducedMotion = capabilities.prefersReducedMotion;
   }
 
   // ============================================

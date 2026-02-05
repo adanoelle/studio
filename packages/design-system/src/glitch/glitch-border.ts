@@ -1,5 +1,6 @@
-import { LitElement, html, css, PropertyValues } from 'lit';
+import { LitElement, html, css, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { detectDeviceCapabilities } from '../utils/device.js';
 
 /**
  * GLITCH-BORDER COMPONENT
@@ -48,7 +49,7 @@ export class GlitchBorder extends LitElement {
    * - 'color': Color shifts only
    * - 'all': All effects combined
    */
-  @property({ type: String, attribute: 'break-pattern' })
+  @property({ type: String, attribute: 'break-pattern', reflect: true })
   breakPattern: 'shift' | 'gap' | 'color' | 'all' = 'all';
 
   /**
@@ -109,12 +110,9 @@ export class GlitchBorder extends LitElement {
   }
 
   private detectDeviceCapabilities() {
-    // Use feature detection instead of user-agent sniffing
-    const hasHover = window.matchMedia('(hover: hover)').matches;
-    const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    this.isMobile = !hasHover || hasCoarsePointer || window.innerWidth < 768;
-
-    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const capabilities = detectDeviceCapabilities();
+    this.isMobile = capabilities.isMobile;
+    this.prefersReducedMotion = capabilities.prefersReducedMotion;
   }
 
   private applyDeviceOptimizations() {

@@ -1,6 +1,7 @@
-import { LitElement, html, css, PropertyValues } from 'lit';
+import { LitElement, html, css, type PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { BAYER_MATRIX_8, generateBayerSVG } from '../utils/bayer.js';
+import { detectDeviceCapabilities } from '../utils/device.js';
 
 /**
  * DITHERED-GLITCH-GRADIENT COMPONENT
@@ -63,6 +64,16 @@ export class DitheredGlitchGradient extends LitElement {
     updateInterval: 50, // 20fps
   };
 
+  /** Cached pattern data URIs keyed by pattern type */
+  private cachedPatterns = new Map<string, string>();
+
+  protected willUpdate(changedProperties: PropertyValues) {
+    // Invalidate cached patterns when pattern type changes
+    if (changedProperties.has('pattern')) {
+      this.cachedPatterns.clear();
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.detectDeviceCapabilities();
@@ -77,12 +88,9 @@ export class DitheredGlitchGradient extends LitElement {
   }
 
   private detectDeviceCapabilities() {
-    // Use feature detection instead of user-agent sniffing
-    const hasHover = window.matchMedia('(hover: hover)').matches;
-    const hasCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    this.isMobile = !hasHover || hasCoarsePointer || window.innerWidth < 768;
-
-    this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const capabilities = detectDeviceCapabilities();
+    this.isMobile = capabilities.isMobile;
+    this.prefersReducedMotion = capabilities.prefersReducedMotion;
   }
 
   private applyDeviceOptimizations() {
@@ -149,11 +157,20 @@ export class DitheredGlitchGradient extends LitElement {
   }
 
   /**
-   * Generate Bayer matrix pattern as data URI
-   * 8×8 Bayer matrix for smooth PC-98 style gradients
+   * Get pattern data URI, using cache to avoid regenerating SVG every frame.
+   * Patterns only depend on the pattern type (bayer vs floyd-steinberg),
+   * not on glitch offset, so they can be cached across glitch frames.
    */
-  private generateBayerPattern(): string {
-    return generateBayerSVG('black', BAYER_MATRIX_8);
+  private getPatternDataUri(): string {
+    const key = this.pattern === 'floyd-steinberg' ? 'floyd-steinberg' : 'bayer';
+    let cached = this.cachedPatterns.get(key);
+    if (!cached) {
+      cached = key === 'floyd-steinberg'
+        ? this.generateFloydSteinbergPattern()
+        : generateBayerSVG('black', BAYER_MATRIX_8);
+      this.cachedPatterns.set(key, cached);
+    }
+    return cached;
   }
 
   /**
@@ -317,11 +334,7 @@ export class DitheredGlitchGradient extends LitElement {
       diagonal: 'to bottom right',
     };
 
-    const patterns = {
-      bayer: this.generateBayerPattern(),
-      'floyd-steinberg': this.generateFloydSteinbergPattern(),
-      ordered: this.generateBayerPattern(),
-    };
+    const patternUri = this.getPatternDataUri();
 
     return html`
       <div
@@ -330,7 +343,7 @@ export class DitheredGlitchGradient extends LitElement {
           --color-a: ${this.colorA};
           --color-b: ${this.colorB};
           --gradient-direction: ${directions[this.direction]};
-          --dither-pattern: url('${patterns[this.pattern]}');
+          --dither-pattern: url('${patternUri}');
           --glitch-x: ${this.glitchOffset.x}px;
           --glitch-y: ${this.glitchOffset.y}px;
         "
