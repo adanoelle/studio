@@ -4,12 +4,17 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    claude-code-overlay.url = "github:ryoppippi/claude-code-overlay";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, claude-code-overlay, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [ claude-code-overlay.overlays.default ];
+          config.allowUnfreePredicate = pkg: (pkg.pname or "") == "claude-code";
+        };
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
@@ -25,35 +30,18 @@
             git
             gh
             direnv
+
+            # Claude Code (native binary from overlay)
+            claude-code
           ];
 
           shellHook = ''
-            # Project-local npm global prefix
-            export PATH="$PWD/.npm-tools/bin:$PATH"
-            export NPM_CONFIG_PREFIX="$PWD/.npm-tools"
-
             echo ""
             figlet -f slant "glitch"
             echo ""
-            echo "  Node:  $(node --version)"
-            echo "  pnpm:  $(pnpm --version)"
-
-            # Claude Code setup (project-local)
-            if [ -n "$CI" ]; then
-              echo "  Claude: (skipped in CI)"
-            elif [[ -f "$PWD/.npm-tools/bin/claude" ]]; then
-              echo "  Claude: $(claude --version 2>/dev/null | head -1 || echo 'installed')"
-            else
-              echo "  Installing Claude Code CLI..."
-              mkdir -p "$PWD/.npm-tools"
-              if npm install -g @anthropic-ai/claude-code@latest 2>/dev/null; then
-                echo "  Claude: installed successfully"
-              else
-                echo "  Claude: auto-install failed"
-                echo "  Try: npm install -g @anthropic-ai/claude-code"
-              fi
-            fi
-
+            echo "  Node:   $(node --version)"
+            echo "  pnpm:   $(pnpm --version)"
+            echo "  Claude: $(claude --version 2>/dev/null | head -1 || echo 'available')"
             echo ""
             echo "  Run 'just' to see available commands"
             echo ""
