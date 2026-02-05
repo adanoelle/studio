@@ -63,6 +63,9 @@ export class DashTrail extends GlitchBase {
   private rectCacheTime = 0;
   private readonly RECT_CACHE_DURATION = 50; // ms
 
+  /** Fade interval ID - stored on instance to prevent orphaned intervals */
+  private fadeIntervalId?: ReturnType<typeof setInterval>;
+
   // ============================================
   // LIFECYCLE
   // ============================================
@@ -78,6 +81,10 @@ export class DashTrail extends GlitchBase {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    if (this.fadeIntervalId !== undefined) {
+      clearInterval(this.fadeIntervalId);
+      this.fadeIntervalId = undefined;
+    }
     this.positions = [];
   }
 
@@ -149,13 +156,19 @@ export class DashTrail extends GlitchBase {
     // Gradually age out existing trails
     if (this.positions.length === 0) return;
 
-    const fadeInterval = setInterval(() => {
+    // Clear any previous fade interval to prevent accumulation
+    if (this.fadeIntervalId !== undefined) {
+      clearInterval(this.fadeIntervalId);
+    }
+
+    this.fadeIntervalId = setInterval(() => {
       this.positions = this.positions
         .map((p) => ({ ...p, age: p.age + 1 }))
         .filter((p) => p.age < this.trailLength);
 
       if (this.positions.length === 0) {
-        clearInterval(fadeInterval);
+        clearInterval(this.fadeIntervalId);
+        this.fadeIntervalId = undefined;
       }
     }, 100);
   }
