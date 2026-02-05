@@ -53,6 +53,9 @@ export class ArchiveGrid extends LitElement {
   // Used to track the temporal container for scroll handling
   private _temporalContainer: HTMLElement | null = null;
 
+  /** Observer for tracking which year cards are visible */
+  private _yearObserver: IntersectionObserver | null = null;
+
   static styles = css`
     :host {
       display: flex;
@@ -320,6 +323,12 @@ export class ArchiveGrid extends LitElement {
     }
   `;
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._yearObserver?.disconnect();
+    this._yearObserver = null;
+  }
+
   updated(changedProperties: Map<string, unknown>) {
     if (changedProperties.has('items') || changedProperties.has('pageSize')) {
       this.totalPages = Math.max(1, Math.ceil(this.items.length / this.pageSize));
@@ -344,14 +353,59 @@ export class ArchiveGrid extends LitElement {
       this.currentYear = sortedDates[0];
     }
 
-    // Scroll to the right (present) after render
+    // Scroll to the right (present) after render, then set up year observer
     requestAnimationFrame(() => {
       const container = this.renderRoot.querySelector('.temporal-horizontal') as HTMLElement;
       if (container) {
         this._temporalContainer = container;
         container.scrollTo({ left: container.scrollWidth, behavior: 'auto' });
+        this.setupYearObserver(container);
       }
     });
+  }
+
+  /**
+   * Set up IntersectionObserver on temporal cards to track visible year
+   * without O(n) DOM queries on every scroll event.
+   */
+  private setupYearObserver(container: HTMLElement) {
+    this._yearObserver?.disconnect();
+
+    this._yearObserver = new IntersectionObserver(
+      (entries) => {
+        // Find the leftmost visible card to determine current year
+        let leftmostLeft = Infinity;
+        let leftmostYear: number | null = null;
+
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const rect = entry.boundingClientRect;
+            if (rect.left < leftmostLeft) {
+              leftmostLeft = rect.left;
+              const year = parseInt(
+                (entry.target as HTMLElement).dataset.year || '0',
+                10
+              );
+              if (year) leftmostYear = year;
+            }
+          }
+        }
+
+        if (leftmostYear && leftmostYear !== this.currentYear) {
+          this.currentYear = leftmostYear;
+        }
+      },
+      {
+        root: container,
+        threshold: 0,
+        rootMargin: '0px -66% 0px 0px', // Trigger based on left third of container
+      }
+    );
+
+    const cards = container.querySelectorAll('.temporal-card');
+    for (const card of cards) {
+      this._yearObserver.observe(card);
+    }
   }
 
   render() {
@@ -472,25 +526,7 @@ export class ArchiveGrid extends LitElement {
   private handleTemporalScroll(e: Event) {
     const container = e.target as HTMLElement;
     this._temporalContainer = container;
-
-    // Find the visible year based on scroll position
-    const cards = container.querySelectorAll('.temporal-card');
-    const containerRect = container.getBoundingClientRect();
-    const containerCenter = containerRect.left + containerRect.width / 3;
-
-    let visibleYear: number | null = null;
-
-    for (const card of cards) {
-      const rect = card.getBoundingClientRect();
-      if (rect.left <= containerCenter && rect.right >= containerRect.left) {
-        visibleYear = parseInt(card.getAttribute('data-year') || '0', 10);
-        break;
-      }
-    }
-
-    if (visibleYear && visibleYear !== this.currentYear) {
-      this.currentYear = visibleYear;
-    }
+    // Year tracking is handled by IntersectionObserver (setupYearObserver)
   }
 
   private handleTemporalKeydown(e: KeyboardEvent) {

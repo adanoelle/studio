@@ -126,6 +126,11 @@ export class ModalMenu extends GlitchBase {
   private animationTimer?: ReturnType<typeof setTimeout>;
   private hasLoadedRecent = false;
 
+  /** Cached display items - invalidated when filteredItems or recentItems change */
+  private _cachedDisplayItems: FuzzyMatch[] | null = null;
+  /** Cached category groups - invalidated when display items change */
+  private _cachedCategoryGroups: Map<string, FuzzyMatch[]> | null = null;
+
   // ============================================
   // LIFECYCLE
   // ============================================
@@ -138,6 +143,21 @@ export class ModalMenu extends GlitchBase {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.cleanup();
+  }
+
+  protected willUpdate(changedProperties: PropertyValues) {
+    super.willUpdate(changedProperties);
+
+    // Invalidate memoized lists when their inputs change
+    if (
+      changedProperties.has('filteredItems') ||
+      changedProperties.has('recentItems') ||
+      changedProperties.has('filterQuery') ||
+      changedProperties.has('showRecent')
+    ) {
+      this._cachedDisplayItems = null;
+      this._cachedCategoryGroups = null;
+    }
   }
 
   updated(changedProperties: PropertyValues) {
@@ -452,8 +472,11 @@ export class ModalMenu extends GlitchBase {
   // ============================================
 
   private getAllDisplayItems(): FuzzyMatch[] {
+    if (this._cachedDisplayItems) return this._cachedDisplayItems;
+
     if (!this.showRecent || this.filterQuery.trim() || this.recentItems.length === 0) {
-      return this.filteredItems;
+      this._cachedDisplayItems = this.filteredItems;
+      return this._cachedDisplayItems;
     }
 
     // Show recent items at top when no filter
@@ -467,7 +490,8 @@ export class ModalMenu extends GlitchBase {
     const recentIds = new Set(this.recentItems.map((i) => i.id));
     const nonRecent = this.filteredItems.filter((m) => !recentIds.has(m.item.id));
 
-    return [...recentMatches, ...nonRecent];
+    this._cachedDisplayItems = [...recentMatches, ...nonRecent];
+    return this._cachedDisplayItems;
   }
 
   private selectItem(item: MenuItem) {
@@ -684,6 +708,8 @@ export class ModalMenu extends GlitchBase {
   }
 
   private getCategoryGroups(): Map<string, FuzzyMatch[]> {
+    if (this._cachedCategoryGroups) return this._cachedCategoryGroups;
+
     const groups = new Map<string, FuzzyMatch[]>();
     const allItems = this.getAllDisplayItems();
 
@@ -712,6 +738,7 @@ export class ModalMenu extends GlitchBase {
       }
     }
 
+    this._cachedCategoryGroups = groups;
     return groups;
   }
 
